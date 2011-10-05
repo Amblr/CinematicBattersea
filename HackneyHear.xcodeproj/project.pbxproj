@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D8230907143CCE8600894000 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8230906143CCE8600894000 /* UIKit.framework */; };
+		D8230909143CCE8600894000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8230908143CCE8600894000 /* Foundation.framework */; };
+		D823090B143CCE8600894000 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D823090A143CCE8600894000 /* CoreGraphics.framework */; };
+		D8230911143CCE8600894000 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D823090F143CCE8600894000 /* InfoPlist.strings */; };
+		D8230914143CCE8600894000 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8230913143CCE8600894000 /* main.m */; };
+		D8230917143CCE8600894000 /* HackneyHearAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8230916143CCE8600894000 /* HackneyHearAppDelegate.m */; };
+		D823091B143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = D823091A143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m */; };
+		D823091E143CCE8700894000 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D823091C143CCE8700894000 /* MainWindow_iPhone.xib */; };
+		D8230922143CCE8700894000 /* HackneyHearAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8230921143CCE8700894000 /* HackneyHearAppDelegate_iPad.m */; };
+		D8230925143CCE8700894000 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8230923143CCE8700894000 /* MainWindow_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D8230902143CCE8600894000 /* HackneyHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackneyHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8230906143CCE8600894000 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D8230908143CCE8600894000 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D823090A143CCE8600894000 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D823090E143CCE8600894000 /* HackneyHear-Info.plist */ = {isa = PBXFileReference; path = "HackneyHear-Info.plist"; sourceTree = "<group>"; };
+		D8230910143CCE8600894000 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8230912143CCE8600894000 /* HackneyHear-Prefix.pch */ = {isa = PBXFileReference; path = "HackneyHear-Prefix.pch"; sourceTree = "<group>"; };
+		D8230913143CCE8600894000 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D8230915143CCE8600894000 /* HackneyHearAppDelegate.h */ = {isa = PBXFileReference; path = HackneyHearAppDelegate.h; sourceTree = "<group>"; };
+		D8230916143CCE8600894000 /* HackneyHearAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackneyHearAppDelegate.m; sourceTree = "<group>"; };
+		D8230919143CCE8700894000 /* HackneyHearAppDelegate_iPhone.h */ = {isa = PBXFileReference; name = HackneyHearAppDelegate_iPhone.h; path = iPhone/HackneyHearAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		D823091A143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HackneyHearAppDelegate_iPhone.m; path = iPhone/HackneyHearAppDelegate_iPhone.m; sourceTree = "<group>"; };
+		D823091D143CCE8700894000 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		D8230920143CCE8700894000 /* HackneyHearAppDelegate_iPad.h */ = {isa = PBXFileReference; name = HackneyHearAppDelegate_iPad.h; path = iPad/HackneyHearAppDelegate_iPad.h; sourceTree = "<group>"; };
+		D8230921143CCE8700894000 /* HackneyHearAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HackneyHearAppDelegate_iPad.m; path = iPad/HackneyHearAppDelegate_iPad.m; sourceTree = "<group>"; };
+		D8230924143CCE8700894000 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D82308FF143CCE8600894000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8230907143CCE8600894000 /* UIKit.framework in Frameworks */,
+				D8230909143CCE8600894000 /* Foundation.framework in Frameworks */,
+				D823090B143CCE8600894000 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D82308F7143CCE8600894000 = {
+			isa = PBXGroup;
+			children = (
+				D823090C143CCE8600894000 /* HackneyHear */,
+				D8230905143CCE8600894000 /* Frameworks */,
+				D8230903143CCE8600894000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D8230903143CCE8600894000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8230902143CCE8600894000 /* HackneyHear.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D8230905143CCE8600894000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8230906143CCE8600894000 /* UIKit.framework */,
+				D8230908143CCE8600894000 /* Foundation.framework */,
+				D823090A143CCE8600894000 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D823090C143CCE8600894000 /* HackneyHear */ = {
+			isa = PBXGroup;
+			children = (
+				D8230915143CCE8600894000 /* HackneyHearAppDelegate.h */,
+				D8230916143CCE8600894000 /* HackneyHearAppDelegate.m */,
+				D8230918143CCE8700894000 /* iPhone */,
+				D823091F143CCE8700894000 /* iPad */,
+				D823090D143CCE8600894000 /* Supporting Files */,
+			);
+			path = HackneyHear;
+			sourceTree = "<group>";
+		};
+		D823090D143CCE8600894000 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D823090E143CCE8600894000 /* HackneyHear-Info.plist */,
+				D823090F143CCE8600894000 /* InfoPlist.strings */,
+				D8230912143CCE8600894000 /* HackneyHear-Prefix.pch */,
+				D8230913143CCE8600894000 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8230918143CCE8700894000 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				D8230919143CCE8700894000 /* HackneyHearAppDelegate_iPhone.h */,
+				D823091A143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m */,
+				D823091C143CCE8700894000 /* MainWindow_iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		D823091F143CCE8700894000 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D8230920143CCE8700894000 /* HackneyHearAppDelegate_iPad.h */,
+				D8230921143CCE8700894000 /* HackneyHearAppDelegate_iPad.m */,
+				D8230923143CCE8700894000 /* MainWindow_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D8230901143CCE8600894000 /* HackneyHear */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8230928143CCE8700894000 /* Build configuration list for PBXNativeTarget "HackneyHear" */;
+			buildPhases = (
+				D82308FE143CCE8600894000 /* Sources */,
+				D82308FF143CCE8600894000 /* Frameworks */,
+				D8230900143CCE8600894000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HackneyHear;
+			productName = HackneyHear;
+			productReference = D8230902143CCE8600894000 /* HackneyHear.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D82308F9143CCE8600894000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Imperial College London";
+			};
+			buildConfigurationList = D82308FC143CCE8600894000 /* Build configuration list for PBXProject "HackneyHear" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D82308F7143CCE8600894000;
+			productRefGroup = D8230903143CCE8600894000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D8230901143CCE8600894000 /* HackneyHear */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D8230900143CCE8600894000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8230911143CCE8600894000 /* InfoPlist.strings in Resources */,
+				D823091E143CCE8700894000 /* MainWindow_iPhone.xib in Resources */,
+				D8230925143CCE8700894000 /* MainWindow_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D82308FE143CCE8600894000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8230914143CCE8600894000 /* main.m in Sources */,
+				D8230917143CCE8600894000 /* HackneyHearAppDelegate.m in Sources */,
+				D823091B143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m in Sources */,
+				D8230922143CCE8700894000 /* HackneyHearAppDelegate_iPad.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D823090F143CCE8600894000 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8230910143CCE8600894000 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D823091C143CCE8700894000 /* MainWindow_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D823091D143CCE8700894000 /* en */,
+			);
+			name = MainWindow_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		D8230923143CCE8700894000 /* MainWindow_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8230924143CCE8700894000 /* en */,
+			);
+			name = MainWindow_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D8230926143CCE8700894000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D8230927143CCE8700894000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D8230929143CCE8700894000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
+				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D823092A143CCE8700894000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
+				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D82308FC143CCE8600894000 /* Build configuration list for PBXProject "HackneyHear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8230926143CCE8700894000 /* Debug */,
+				D8230927143CCE8700894000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8230928143CCE8700894000 /* Build configuration list for PBXNativeTarget "HackneyHear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8230929143CCE8700894000 /* Debug */,
+				D823092A143CCE8700894000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D82308F9143CCE8600894000 /* Project object */;
+}
