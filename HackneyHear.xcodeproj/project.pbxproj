@@ -7,35 +7,135 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D8230907143CCE8600894000 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8230906143CCE8600894000 /* UIKit.framework */; };
-		D8230909143CCE8600894000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8230908143CCE8600894000 /* Foundation.framework */; };
-		D823090B143CCE8600894000 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D823090A143CCE8600894000 /* CoreGraphics.framework */; };
+		D8055D6414406D0500AB5E23 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8055D6314406D0500AB5E23 /* CoreGraphics.framework */; };
+		D8055D6C14406D8500AB5E23 /* IASKAppSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8055D6614406D8500AB5E23 /* IASKAppSettingsView.xib */; };
+		D8055D6D14406D8500AB5E23 /* IASKAppSettingsWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8055D6714406D8500AB5E23 /* IASKAppSettingsWebView.xib */; };
+		D8055D6E14406D8500AB5E23 /* IASKPSSliderSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8055D6814406D8500AB5E23 /* IASKPSSliderSpecifierViewCell.xib */; };
+		D8055D6F14406D8500AB5E23 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8055D6914406D8500AB5E23 /* IASKPSTextFieldSpecifierViewCell.xib */; };
+		D8055D7014406D8500AB5E23 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8055D6A14406D8500AB5E23 /* IASKPSToggleSwitchSpecifierViewCell.xib */; };
+		D8055D7114406D8500AB5E23 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8055D6B14406D8500AB5E23 /* IASKSpecifierValuesView.xib */; };
+		D8055D7B14406DF000AB5E23 /* HTNotifier.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8055D7214406DF000AB5E23 /* HTNotifier.strings */; };
+		D8055D8A14406EFB00AB5E23 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D7D14406EFB00AB5E23 /* 19-gear.png */; };
+		D8055D8B14406EFB00AB5E23 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D7E14406EFB00AB5E23 /* 20-gear2.png */; };
+		D8055D8C14406EFB00AB5E23 /* 40-inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D7F14406EFB00AB5E23 /* 40-inbox.png */; };
+		D8055D8D14406EFB00AB5E23 /* 57-download.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8014406EFB00AB5E23 /* 57-download.png */; };
+		D8055D8E14406EFB00AB5E23 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8114406EFB00AB5E23 /* 103-map.png */; };
+		D8055D8F14406EFB00AB5E23 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8214406EFB00AB5E23 /* 112-group.png */; };
+		D8055D9014406EFB00AB5E23 /* 113-navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8314406EFB00AB5E23 /* 113-navigation.png */; };
+		D8055D9114406EFB00AB5E23 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8414406EFB00AB5E23 /* 117-todo.png */; };
+		D8055D9214406EFB00AB5E23 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8514406EFB00AB5E23 /* 184-warning.png */; };
+		D8055D9314406EFB00AB5E23 /* HH_logo_57.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8614406EFB00AB5E23 /* HH_logo_57.jpg */; };
+		D8055D9414406EFB00AB5E23 /* HH_logo_114.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8714406EFB00AB5E23 /* HH_logo_114.jpg */; };
+		D8055D9514406EFB00AB5E23 /* icon_controls_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8814406EFB00AB5E23 /* icon_controls_3.png */; };
+		D8055D9614406EFB00AB5E23 /* icon_controls_4.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8914406EFB00AB5E23 /* icon_controls_4.png */; };
+		D8055F40144077A100AB5E23 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = D8055F3F144077A100AB5E23 /* Tiles */; };
+		D8055F4214407C3900AB5E23 /* icon_dollar.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055F4114407C3900AB5E23 /* icon_dollar.png */; };
+		D8055F4414407C4500AB5E23 /* icon_document.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055F4314407C4400AB5E23 /* icon_document.png */; };
+		D81A6EA71444558500394431 /* atmos.json in Resources */ = {isa = PBXBuildFile; fileRef = D81A6EA41444558400394431 /* atmos.json */; };
+		D81A6EA81444558500394431 /* music.json in Resources */ = {isa = PBXBuildFile; fileRef = D81A6EA51444558500394431 /* music.json */; };
+		D81A6EA91444558500394431 /* speech.json in Resources */ = {isa = PBXBuildFile; fileRef = D81A6EA61444558500394431 /* speech.json */; };
 		D8230911143CCE8600894000 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D823090F143CCE8600894000 /* InfoPlist.strings */; };
 		D8230914143CCE8600894000 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8230913143CCE8600894000 /* main.m */; };
-		D8230917143CCE8600894000 /* HackneyHearAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8230916143CCE8600894000 /* HackneyHearAppDelegate.m */; };
 		D823091B143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = D823091A143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m */; };
-		D823091E143CCE8700894000 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D823091C143CCE8700894000 /* MainWindow_iPhone.xib */; };
 		D8230922143CCE8700894000 /* HackneyHearAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8230921143CCE8700894000 /* HackneyHearAppDelegate_iPad.m */; };
 		D8230925143CCE8700894000 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8230923143CCE8700894000 /* MainWindow_iPad.xib */; };
+		D8230930143CD02900894000 /* libAmblr-Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D823092F143CD02900894000 /* libAmblr-Core.a */; };
+		D823093414405FA000894000 /* HackneyHear_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D823093114405FA000894000 /* HackneyHear_ViewController.m */; };
+		D823093514405FA000894000 /* Hackney_Hear_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D823093314405FA000894000 /* Hackney_Hear_ViewController.xib */; };
+		D83204A5144060CD0052038D /* HHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D83204A0144060CD0052038D /* HHSoundManager.m */; };
+		D83204A6144060CD0052038D /* HHMediaStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D83204A2144060CD0052038D /* HHMediaStatusViewController.m */; };
+		D83204A7144060CD0052038D /* HHIntroSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D83204A4144060CD0052038D /* HHIntroSound.mp3 */; };
+		D83204F0144063E80052038D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DE144063E80052038D /* UIKit.framework */; };
+		D83204F1144063E80052038D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DF144063E80052038D /* libz.dylib */; };
+		D83204F2144063E80052038D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E0144063E80052038D /* AVFoundation.framework */; };
+		D83204F3144063E80052038D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E1144063E80052038D /* CoreLocation.framework */; };
+		D83204F4144063E80052038D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E2144063E80052038D /* QuartzCore.framework */; };
+		D83204F5144063E80052038D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E3144063E80052038D /* libxml2.dylib */; };
+		D83204F6144063E80052038D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E4144063E80052038D /* libicucore.dylib */; };
+		D83204F7144063E80052038D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E5144063E80052038D /* MapKit.framework */; };
+		D83204F8144063E80052038D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E6144063E80052038D /* CoreAudio.framework */; };
+		D83204F9144063E80052038D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E7144063E80052038D /* CFNetwork.framework */; };
+		D83204FA144063E80052038D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E8144063E80052038D /* OpenAL.framework */; };
+		D83204FB144063E80052038D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E9144063E80052038D /* SystemConfiguration.framework */; };
+		D83204FC144063E80052038D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204EA144063E80052038D /* AudioToolbox.framework */; };
+		D8320500144063E80052038D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204EE144063E80052038D /* MobileCoreServices.framework */; };
+		D8320501144063E80052038D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204EF144063E80052038D /* Foundation.framework */; };
+		D83205031440646B0052038D /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D83205021440646B0052038D /* MainWindow_iPhone.xib */; };
+		D8EFF92E144069FF0073D9A2 /* HackneyHearAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8055D6314406D0500AB5E23 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D8055D6614406D8500AB5E23 /* IASKAppSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKAppSettingsView.xib; path = "../../Core/Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKAppSettingsView.xib"; sourceTree = "<group>"; };
+		D8055D6714406D8500AB5E23 /* IASKAppSettingsWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKAppSettingsWebView.xib; path = "../../Core/Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKAppSettingsWebView.xib"; sourceTree = "<group>"; };
+		D8055D6814406D8500AB5E23 /* IASKPSSliderSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKPSSliderSpecifierViewCell.xib; path = "../../Core/Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKPSSliderSpecifierViewCell.xib"; sourceTree = "<group>"; };
+		D8055D6914406D8500AB5E23 /* IASKPSTextFieldSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKPSTextFieldSpecifierViewCell.xib; path = "../../Core/Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKPSTextFieldSpecifierViewCell.xib"; sourceTree = "<group>"; };
+		D8055D6A14406D8500AB5E23 /* IASKPSToggleSwitchSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKPSToggleSwitchSpecifierViewCell.xib; path = "../../Core/Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKPSToggleSwitchSpecifierViewCell.xib"; sourceTree = "<group>"; };
+		D8055D6B14406D8500AB5E23 /* IASKSpecifierValuesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKSpecifierValuesView.xib; path = "../../Core/Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKSpecifierValuesView.xib"; sourceTree = "<group>"; };
+		D8055D7314406DF000AB5E23 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8055D7414406DF000AB5E23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8055D7514406DF000AB5E23 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8055D7614406DF000AB5E23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8055D7714406DF000AB5E23 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8055D7814406DF000AB5E23 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8055D7914406DF000AB5E23 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HTNotifier.strings; sourceTree = "<group>"; };
+		D8055D7A14406DF000AB5E23 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/HTNotifier.strings"; sourceTree = "<group>"; };
+		D8055D7D14406EFB00AB5E23 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
+		D8055D7E14406EFB00AB5E23 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
+		D8055D7F14406EFB00AB5E23 /* 40-inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "40-inbox.png"; sourceTree = "<group>"; };
+		D8055D8014406EFB00AB5E23 /* 57-download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57-download.png"; sourceTree = "<group>"; };
+		D8055D8114406EFB00AB5E23 /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
+		D8055D8214406EFB00AB5E23 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
+		D8055D8314406EFB00AB5E23 /* 113-navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "113-navigation.png"; sourceTree = "<group>"; };
+		D8055D8414406EFB00AB5E23 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
+		D8055D8514406EFB00AB5E23 /* 184-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning.png"; sourceTree = "<group>"; };
+		D8055D8614406EFB00AB5E23 /* HH_logo_57.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HH_logo_57.jpg; sourceTree = "<group>"; };
+		D8055D8714406EFB00AB5E23 /* HH_logo_114.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HH_logo_114.jpg; sourceTree = "<group>"; };
+		D8055D8814406EFB00AB5E23 /* icon_controls_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_controls_3.png; sourceTree = "<group>"; };
+		D8055D8914406EFB00AB5E23 /* icon_controls_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_controls_4.png; sourceTree = "<group>"; };
+		D8055F3F144077A100AB5E23 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
+		D8055F4114407C3900AB5E23 /* icon_dollar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_dollar.png; sourceTree = "<group>"; };
+		D8055F4314407C4400AB5E23 /* icon_document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_document.png; sourceTree = "<group>"; };
+		D81A6EA41444558400394431 /* atmos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atmos.json; sourceTree = "<group>"; };
+		D81A6EA51444558500394431 /* music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = music.json; sourceTree = "<group>"; };
+		D81A6EA61444558500394431 /* speech.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = speech.json; sourceTree = "<group>"; };
 		D8230902143CCE8600894000 /* HackneyHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackneyHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8230906143CCE8600894000 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D8230908143CCE8600894000 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D823090A143CCE8600894000 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D823090E143CCE8600894000 /* HackneyHear-Info.plist */ = {isa = PBXFileReference; path = "HackneyHear-Info.plist"; sourceTree = "<group>"; };
+		D823090E143CCE8600894000 /* HackneyHear-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HackneyHear-Info.plist"; sourceTree = "<group>"; };
 		D8230910143CCE8600894000 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D8230912143CCE8600894000 /* HackneyHear-Prefix.pch */ = {isa = PBXFileReference; path = "HackneyHear-Prefix.pch"; sourceTree = "<group>"; };
+		D8230912143CCE8600894000 /* HackneyHear-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HackneyHear-Prefix.pch"; sourceTree = "<group>"; };
 		D8230913143CCE8600894000 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D8230915143CCE8600894000 /* HackneyHearAppDelegate.h */ = {isa = PBXFileReference; path = HackneyHearAppDelegate.h; sourceTree = "<group>"; };
-		D8230916143CCE8600894000 /* HackneyHearAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackneyHearAppDelegate.m; sourceTree = "<group>"; };
-		D8230919143CCE8700894000 /* HackneyHearAppDelegate_iPhone.h */ = {isa = PBXFileReference; name = HackneyHearAppDelegate_iPhone.h; path = iPhone/HackneyHearAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		D8230919143CCE8700894000 /* HackneyHearAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HackneyHearAppDelegate_iPhone.h; path = iPhone/HackneyHearAppDelegate_iPhone.h; sourceTree = "<group>"; };
 		D823091A143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HackneyHearAppDelegate_iPhone.m; path = iPhone/HackneyHearAppDelegate_iPhone.m; sourceTree = "<group>"; };
-		D823091D143CCE8700894000 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
-		D8230920143CCE8700894000 /* HackneyHearAppDelegate_iPad.h */ = {isa = PBXFileReference; name = HackneyHearAppDelegate_iPad.h; path = iPad/HackneyHearAppDelegate_iPad.h; sourceTree = "<group>"; };
+		D8230920143CCE8700894000 /* HackneyHearAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HackneyHearAppDelegate_iPad.h; path = iPad/HackneyHearAppDelegate_iPad.h; sourceTree = "<group>"; };
 		D8230921143CCE8700894000 /* HackneyHearAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HackneyHearAppDelegate_iPad.m; path = iPad/HackneyHearAppDelegate_iPad.m; sourceTree = "<group>"; };
 		D8230924143CCE8700894000 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+		D823092F143CD02900894000 /* libAmblr-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAmblr-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D823093114405FA000894000 /* HackneyHear_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackneyHear_ViewController.m; sourceTree = "<group>"; };
+		D823093214405FA000894000 /* HackneyHear_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HackneyHear_ViewController.h; sourceTree = "<group>"; };
+		D823093314405FA000894000 /* Hackney_Hear_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Hackney_Hear_ViewController.xib; sourceTree = "<group>"; };
+		D83204A0144060CD0052038D /* HHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHSoundManager.m; sourceTree = "<group>"; };
+		D83204A1144060CD0052038D /* HHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHSoundManager.h; sourceTree = "<group>"; };
+		D83204A2144060CD0052038D /* HHMediaStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHMediaStatusViewController.m; sourceTree = "<group>"; };
+		D83204A3144060CD0052038D /* HHMediaStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHMediaStatusViewController.h; sourceTree = "<group>"; };
+		D83204A4144060CD0052038D /* HHIntroSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HHIntroSound.mp3; sourceTree = "<group>"; };
+		D83204DE144063E80052038D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D83204DF144063E80052038D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D83204E0144063E80052038D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D83204E1144063E80052038D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D83204E2144063E80052038D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D83204E3144063E80052038D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		D83204E4144063E80052038D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		D83204E5144063E80052038D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D83204E6144063E80052038D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D83204E7144063E80052038D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D83204E8144063E80052038D /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		D83204E9144063E80052038D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D83204EA144063E80052038D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D83204EE144063E80052038D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D83204EF144063E80052038D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D83205021440646B0052038D /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		D8EFF92C144069FF0073D9A2 /* HackneyHearAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HackneyHearAppDelegate.h; sourceTree = "<group>"; };
+		D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackneyHearAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,19 +143,73 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8230907143CCE8600894000 /* UIKit.framework in Frameworks */,
-				D8230909143CCE8600894000 /* Foundation.framework in Frameworks */,
-				D823090B143CCE8600894000 /* CoreGraphics.framework in Frameworks */,
+				D8055D6414406D0500AB5E23 /* CoreGraphics.framework in Frameworks */,
+				D8230930143CD02900894000 /* libAmblr-Core.a in Frameworks */,
+				D83204F0144063E80052038D /* UIKit.framework in Frameworks */,
+				D83204F1144063E80052038D /* libz.dylib in Frameworks */,
+				D83204F2144063E80052038D /* AVFoundation.framework in Frameworks */,
+				D83204F3144063E80052038D /* CoreLocation.framework in Frameworks */,
+				D83204F5144063E80052038D /* libxml2.dylib in Frameworks */,
+				D83204F6144063E80052038D /* libicucore.dylib in Frameworks */,
+				D83204F7144063E80052038D /* MapKit.framework in Frameworks */,
+				D83204F8144063E80052038D /* CoreAudio.framework in Frameworks */,
+				D83204F9144063E80052038D /* CFNetwork.framework in Frameworks */,
+				D83204FA144063E80052038D /* OpenAL.framework in Frameworks */,
+				D8320500144063E80052038D /* MobileCoreServices.framework in Frameworks */,
+				D8320501144063E80052038D /* Foundation.framework in Frameworks */,
+				D83204FB144063E80052038D /* SystemConfiguration.framework in Frameworks */,
+				D83204F4144063E80052038D /* QuartzCore.framework in Frameworks */,
+				D83204FC144063E80052038D /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8055D6514406D4800AB5E23 /* Imported Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8055D7214406DF000AB5E23 /* HTNotifier.strings */,
+				D8055D6614406D8500AB5E23 /* IASKAppSettingsView.xib */,
+				D8055D6714406D8500AB5E23 /* IASKAppSettingsWebView.xib */,
+				D8055D6814406D8500AB5E23 /* IASKPSSliderSpecifierViewCell.xib */,
+				D8055D6914406D8500AB5E23 /* IASKPSTextFieldSpecifierViewCell.xib */,
+				D8055D6A14406D8500AB5E23 /* IASKPSToggleSwitchSpecifierViewCell.xib */,
+				D8055D6B14406D8500AB5E23 /* IASKSpecifierValuesView.xib */,
+			);
+			name = "Imported Resources";
+			path = HackneyHear;
+			sourceTree = "<group>";
+		};
+		D8055D7C14406E2B00AB5E23 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				D8055D7D14406EFB00AB5E23 /* 19-gear.png */,
+				D8055D7E14406EFB00AB5E23 /* 20-gear2.png */,
+				D8055D7F14406EFB00AB5E23 /* 40-inbox.png */,
+				D8055D8014406EFB00AB5E23 /* 57-download.png */,
+				D8055D8114406EFB00AB5E23 /* 103-map.png */,
+				D8055D8214406EFB00AB5E23 /* 112-group.png */,
+				D8055D8314406EFB00AB5E23 /* 113-navigation.png */,
+				D8055D8414406EFB00AB5E23 /* 117-todo.png */,
+				D8055D8514406EFB00AB5E23 /* 184-warning.png */,
+				D8055D8614406EFB00AB5E23 /* HH_logo_57.jpg */,
+				D8055D8714406EFB00AB5E23 /* HH_logo_114.jpg */,
+				D8055D8814406EFB00AB5E23 /* icon_controls_3.png */,
+				D8055D8914406EFB00AB5E23 /* icon_controls_4.png */,
+				D8055F4314407C4400AB5E23 /* icon_document.png */,
+				D8055F4114407C3900AB5E23 /* icon_dollar.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		D82308F7143CCE8600894000 = {
 			isa = PBXGroup;
 			children = (
+				D8055F3F144077A100AB5E23 /* Tiles */,
+				D8055D6514406D4800AB5E23 /* Imported Resources */,
 				D823090C143CCE8600894000 /* HackneyHear */,
+				D8055D7C14406E2B00AB5E23 /* Icons */,
 				D8230905143CCE8600894000 /* Frameworks */,
 				D8230903143CCE8600894000 /* Products */,
 			);
@@ -72,9 +226,21 @@
 		D8230905143CCE8600894000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8230906143CCE8600894000 /* UIKit.framework */,
-				D8230908143CCE8600894000 /* Foundation.framework */,
-				D823090A143CCE8600894000 /* CoreGraphics.framework */,
+				D8055D6314406D0500AB5E23 /* CoreGraphics.framework */,
+				D83204DE144063E80052038D /* UIKit.framework */,
+				D83204DF144063E80052038D /* libz.dylib */,
+				D83204E1144063E80052038D /* CoreLocation.framework */,
+				D83204E2144063E80052038D /* QuartzCore.framework */,
+				D83204E3144063E80052038D /* libxml2.dylib */,
+				D83204E4144063E80052038D /* libicucore.dylib */,
+				D83204E5144063E80052038D /* MapKit.framework */,
+				D83204E7144063E80052038D /* CFNetwork.framework */,
+				D83204E8144063E80052038D /* OpenAL.framework */,
+				D83204E9144063E80052038D /* SystemConfiguration.framework */,
+				D83204EA144063E80052038D /* AudioToolbox.framework */,
+				D83204EE144063E80052038D /* MobileCoreServices.framework */,
+				D83204EF144063E80052038D /* Foundation.framework */,
+				D823092F143CD02900894000 /* libAmblr-Core.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -82,8 +248,18 @@
 		D823090C143CCE8600894000 /* HackneyHear */ = {
 			isa = PBXGroup;
 			children = (
-				D8230915143CCE8600894000 /* HackneyHearAppDelegate.h */,
-				D8230916143CCE8600894000 /* HackneyHearAppDelegate.m */,
+				D81A6EA41444558400394431 /* atmos.json */,
+				D81A6EA51444558500394431 /* music.json */,
+				D81A6EA61444558500394431 /* speech.json */,
+				D83204A0144060CD0052038D /* HHSoundManager.m */,
+				D83204A1144060CD0052038D /* HHSoundManager.h */,
+				D83204A2144060CD0052038D /* HHMediaStatusViewController.m */,
+				D83204A3144060CD0052038D /* HHMediaStatusViewController.h */,
+				D83204A4144060CD0052038D /* HHIntroSound.mp3 */,
+				D823093114405FA000894000 /* HackneyHear_ViewController.m */,
+				D823093214405FA000894000 /* HackneyHear_ViewController.h */,
+				D8EFF92C144069FF0073D9A2 /* HackneyHearAppDelegate.h */,
+				D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */,
 				D8230918143CCE8700894000 /* iPhone */,
 				D823091F143CCE8700894000 /* iPad */,
 				D823090D143CCE8600894000 /* Supporting Files */,
@@ -107,7 +283,8 @@
 			children = (
 				D8230919143CCE8700894000 /* HackneyHearAppDelegate_iPhone.h */,
 				D823091A143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m */,
-				D823091C143CCE8700894000 /* MainWindow_iPhone.xib */,
+				D823093314405FA000894000 /* Hackney_Hear_ViewController.xib */,
+				D83205021440646B0052038D /* MainWindow_iPhone.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -173,8 +350,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8230911143CCE8600894000 /* InfoPlist.strings in Resources */,
-				D823091E143CCE8700894000 /* MainWindow_iPhone.xib in Resources */,
 				D8230925143CCE8700894000 /* MainWindow_iPad.xib in Resources */,
+				D823093514405FA000894000 /* Hackney_Hear_ViewController.xib in Resources */,
+				D83204A7144060CD0052038D /* HHIntroSound.mp3 in Resources */,
+				D83205031440646B0052038D /* MainWindow_iPhone.xib in Resources */,
+				D8055D6C14406D8500AB5E23 /* IASKAppSettingsView.xib in Resources */,
+				D8055D6D14406D8500AB5E23 /* IASKAppSettingsWebView.xib in Resources */,
+				D8055D6E14406D8500AB5E23 /* IASKPSSliderSpecifierViewCell.xib in Resources */,
+				D8055D6F14406D8500AB5E23 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
+				D8055D7014406D8500AB5E23 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
+				D8055D7114406D8500AB5E23 /* IASKSpecifierValuesView.xib in Resources */,
+				D8055D7B14406DF000AB5E23 /* HTNotifier.strings in Resources */,
+				D8055D8A14406EFB00AB5E23 /* 19-gear.png in Resources */,
+				D8055D8B14406EFB00AB5E23 /* 20-gear2.png in Resources */,
+				D8055D8C14406EFB00AB5E23 /* 40-inbox.png in Resources */,
+				D8055D8D14406EFB00AB5E23 /* 57-download.png in Resources */,
+				D8055D8E14406EFB00AB5E23 /* 103-map.png in Resources */,
+				D8055D8F14406EFB00AB5E23 /* 112-group.png in Resources */,
+				D8055D9014406EFB00AB5E23 /* 113-navigation.png in Resources */,
+				D8055D9114406EFB00AB5E23 /* 117-todo.png in Resources */,
+				D8055D9214406EFB00AB5E23 /* 184-warning.png in Resources */,
+				D8055D9314406EFB00AB5E23 /* HH_logo_57.jpg in Resources */,
+				D8055D9414406EFB00AB5E23 /* HH_logo_114.jpg in Resources */,
+				D8055D9514406EFB00AB5E23 /* icon_controls_3.png in Resources */,
+				D8055D9614406EFB00AB5E23 /* icon_controls_4.png in Resources */,
+				D8055F40144077A100AB5E23 /* Tiles in Resources */,
+				D8055F4214407C3900AB5E23 /* icon_dollar.png in Resources */,
+				D8055F4414407C4500AB5E23 /* icon_document.png in Resources */,
+				D81A6EA71444558500394431 /* atmos.json in Resources */,
+				D81A6EA81444558500394431 /* music.json in Resources */,
+				D81A6EA91444558500394431 /* speech.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,29 +391,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8230914143CCE8600894000 /* main.m in Sources */,
-				D8230917143CCE8600894000 /* HackneyHearAppDelegate.m in Sources */,
 				D823091B143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m in Sources */,
 				D8230922143CCE8700894000 /* HackneyHearAppDelegate_iPad.m in Sources */,
+				D823093414405FA000894000 /* HackneyHear_ViewController.m in Sources */,
+				D83204A5144060CD0052038D /* HHSoundManager.m in Sources */,
+				D83204A6144060CD0052038D /* HHMediaStatusViewController.m in Sources */,
+				D8EFF92E144069FF0073D9A2 /* HackneyHearAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D8055D7214406DF000AB5E23 /* HTNotifier.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8055D7314406DF000AB5E23 /* de */,
+				D8055D7414406DF000AB5E23 /* en */,
+				D8055D7514406DF000AB5E23 /* es */,
+				D8055D7614406DF000AB5E23 /* fr */,
+				D8055D7714406DF000AB5E23 /* nl */,
+				D8055D7814406DF000AB5E23 /* ro */,
+				D8055D7914406DF000AB5E23 /* ru */,
+				D8055D7A14406DF000AB5E23 /* zh-Hant */,
+			);
+			name = HTNotifier.strings;
+			path = "../../Core/Amblr-Core/Amblr-Core/hoptoadnotifier";
+			sourceTree = "<group>";
+		};
 		D823090F143CCE8600894000 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D8230910143CCE8600894000 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D823091C143CCE8700894000 /* MainWindow_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D823091D143CCE8700894000 /* en */,
-			);
-			name = MainWindow_iPhone.xib;
 			sourceTree = "<group>";
 		};
 		D8230923143CCE8700894000 /* MainWindow_iPad.xib */ = {
@@ -234,6 +450,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Users/joe/src/projects/locations/Workspace/Core/Amblr-Core/Amblr-Core/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -249,6 +466,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Users/joe/src/projects/locations/Workspace/Core/Amblr-Core/Amblr-Core/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -265,6 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
 				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
+				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -303,6 +522,7 @@
 				D823092A143CCE8700894000 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
