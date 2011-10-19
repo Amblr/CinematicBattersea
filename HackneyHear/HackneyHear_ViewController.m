@@ -12,7 +12,7 @@
 #import "L1DownloadProximityMonitor.h"
 
 #define FORCE_INTRO_LANUCH 1
-#define ALLOW_FAKE_LOCATION 1
+#define ALLOW_FAKE_LOCATION 0
 
 
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
