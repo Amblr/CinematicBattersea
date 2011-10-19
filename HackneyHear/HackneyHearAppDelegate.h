@@ -18,6 +18,7 @@
     IBOutlet UITabBarController*  mainTabBarController;
     IBOutlet HackneyHear_ViewController * hhViewController;
     IBOutlet HHMediaStatusViewController * mediaStatusViewController;
+
     L1Scenario * scenario;
 }
 

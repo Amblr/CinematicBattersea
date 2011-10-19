@@ -9,20 +9,22 @@
 #import "HackneyHear_ViewController.h"
 #import "L1Path.h"
 #import "L1Utils.h"
-
+#import "L1DownloadProximityMonitor.h"
 
 #define FORCE_INTRO_LANUCH 1
-#define ALLOW_FAKE_LOCATION 0
+#define ALLOW_FAKE_LOCATION 1
 
 
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 #define SINCALIR_SPECIAL_NODE_NAME @"0808 Sinclair bench w sting"
 #define SINCALIR_SPECIAL_NODE_TIME 60
 
-#define INITIAL_CENTER_LAT 51.538818
+#define INITIAL_CENTER_LAT 51.539295464829273
 #define INITIAL_CENTER_LON -0.061721
-#define INITIAL_DELTA_LAT 0.007293 
-#define INITIAL_DELTA_LON 0.009129
+#define INITIAL_DELTA_LAT 0.0065
+#define INITIAL_DELTA_LON 0.0081
+
+
 
 
 @implementation HackneyHear_ViewController
@@ -64,17 +66,12 @@
     realLocationTracker = [[L1BigBrother alloc] init];
     fakeLocationTracker = [[L1BigBrother alloc] init];
     mapViewController.delegate=self;
-    proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
+//    proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
     skipButton=nil;
     NSLog(@"Tiles adding");
     NSString * tileDir = @"Tiles";
     sinclairSpecialCaseNodeFirstOffTime = nil;
     
-//    lat:   lon:  dLat:   dLon:)
-    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(INITIAL_CENTER_LAT, INITIAL_CENTER_LON);
-    MKCoordinateSpan span = MKCoordinateSpanMake(INITIAL_DELTA_LAT, INITIAL_DELTA_LON);
-    MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
-    [mapViewController zoomToRegion:region];
     
     
     CLLocationCoordinate2D southWest, northEast;
@@ -85,6 +82,15 @@
     [mapViewController whiteOutFrom:southWest to:northEast];
     [mapViewController addTilesFromDirectory:tileDir];
     [self checkFirstLaunch];
+    
+    //    lat:   lon:  dLat:   dLon:)
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(INITIAL_CENTER_LAT, INITIAL_CENTER_LON);
+    MKCoordinateSpan span = MKCoordinateSpanMake(INITIAL_DELTA_LAT, INITIAL_DELTA_LON);
+    MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+    [mapViewController zoomToRegion:region];
+    firstLocation=YES;
+    [mapViewController logLocation];
+    
 
     
 
@@ -136,9 +142,10 @@
         skipButton.frame = CGRectMake(80.0, 10.0, 160.0, 40.0);
         [self.view addSubview:skipButton];
         
-        if (![locationManager locationServicesEnabled]){
+        if (![CLLocationManager locationServicesEnabled]){
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Locations Disabled" message:@"This application will not function properly without location services enabled.  Please re-enable them in iPhone Settings if you want to use this app." delegate:nil cancelButtonTitle:@"Continue" otherButtonTitles:nil];
             [alert show];
+            [alert release];
         }
 
         
@@ -213,10 +220,10 @@
                 
         //Add circle overlay.  The colour depends on the sound type.
         //Choose the colour here.
-        UIColor * circleColor;
-        BOOL isSpeech = (sound.soundType==L1SoundTypeSpeech);
-        if (isSpeech) circleColor = [UIColor redColor];
-        else circleColor = [UIColor greenColor];
+//        UIColor * circleColor;
+//        BOOL isSpeech = (sound.soundType==L1SoundTypeSpeech);
+//        if (isSpeech) circleColor = [UIColor redColor];
+//        else circleColor = [UIColor greenColor];
         
         //Create the circle here, store it so we can keep track and change its color later,
         //and add it to the map.
@@ -234,21 +241,22 @@
     // If any nodes have been found we should zoom the map to their location.
     //We use an arbitrary on to zoom to for now.
     if ([nodes count]) {
-        L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
+//        L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
 //        [mapViewController zoomInToCoordinate:];
 //        -(void) zoomInToCoordinate:(CLLocationCoordinate2D) center size:(float) size
-        float lat_center = 51.535463;
-        float lon_center = -0.062656;
-        CLLocationCoordinate2D center;
-        center.latitude=lat_center;
-        center.longitude=lon_center;
-        [mapViewController zoomInToCoordinate:center size:400.0];
+//        float lat_center = 51.535463;
+//        float lon_center = -0.062656;
+//        CLLocationCoordinate2D center;
+//        center.latitude=lat_center;
+//        center.longitude=lon_center;
+//        [mapViewController zoomInToCoordinate:center size:400.0];
         //We also add a pin representing the fake user location (for testing)
         //a little offset from the first node.
+#if ALLOW_FAKE_LOCATION
+        L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
         CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
         firstNodeCoord.latitude -= 5.0e-4;
         firstNodeCoord.longitude -= 5.0e-4;
-#if ALLOW_FAKE_LOCATION
         [mapViewController addManualUserLocationAt:firstNodeCoord];
 #endif
     }
@@ -364,11 +372,30 @@
     }
 }
 
+-(void) trackToFirstLocation:(CLLocationCoordinate2D) location
+{
+//    {134166592.0, 89216064.0, 10240.0, 14720.0}
+    MKMapRect rect = MKMapRectMake(134166592.0, 89216064.0, 10240.0, 14720.0);
+    MKMapPoint point = MKMapPointForCoordinate(location);
+    if (MKMapRectContainsPoint(rect, point)){
+        
+    }
+    else //The user is not in Hackney!
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"You are not in Hackney" message:@"You don't seem to be in our area.  Run this application as you walk around the London Fields area to experience a rich audio tapestry of life in the borough." delegate:nil cancelButtonTitle:@"I'll go there now." otherButtonTitles: nil];
+        [alert show];
+
+    }
+    firstLocation=NO;
+}
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
     NSLog(@"Updated to location: lat = %f,   lon = %f", location.latitude,location.longitude);
     [proximityMonitor updateLocation:location];
+    if (firstLocation){
+        [self trackToFirstLocation:location];
+    }
     
     //We do not want to start playing any kind of sound if the intro is still before its break point.
     //So we should not enable any nodes or anything like that either.

@@ -13,12 +13,12 @@
 #import "L1MapViewController.h"
 #import "SimpleAudioEngine.h"
 #import "L1BigBrother.h"
-#import "L1DownloadProximityMonitor.h"
+//#import "L1DownloadProximityMonitor.h"
 #import "HHSoundManager.h"
 
 
 
-
+@class L1DownloadProximityMonitor;
 
 
 @interface HackneyHear_ViewController : UIViewController<CLLocationManagerDelegate> {
@@ -31,13 +31,15 @@
     
     // Tracking the user's path
     BOOL trackMe;
+    BOOL firstLocation;
     BOOL realGPSControl;
     L1BigBrother * realLocationTracker;
     L1BigBrother * fakeLocationTracker;
-    L1DownloadProximityMonitor * proximityMonitor;
+//    L1DownloadProximityMonitor * proximityMonitor;
     UIButton * skipButton;
     HHSoundManager * soundManager;
     IBOutlet UIButton * pauseButton;
+    IBOutlet L1DownloadProximityMonitor * proximityMonitor;
     NSDate * sinclairSpecialCaseNodeFirstOffTime;
     
     
@@ -55,7 +57,7 @@
 //-(void) setupScenario;
 -(void) pathSource:(id) pathManager didReceivePaths:(NSDictionary*) paths;
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
--(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario;
+//-(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario;
 // Sound
 -(void) nodeSoundOff:(L1Node*) node;
 -(void) nodeSoundOn:(L1Node*) node;

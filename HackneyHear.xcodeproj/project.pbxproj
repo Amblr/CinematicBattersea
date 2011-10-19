@@ -47,13 +47,11 @@
 		D83204A7144060CD0052038D /* HHIntroSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D83204A4144060CD0052038D /* HHIntroSound.mp3 */; };
 		D83204F0144063E80052038D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DE144063E80052038D /* UIKit.framework */; };
 		D83204F1144063E80052038D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DF144063E80052038D /* libz.dylib */; };
-		D83204F2144063E80052038D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E0144063E80052038D /* AVFoundation.framework */; };
 		D83204F3144063E80052038D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E1144063E80052038D /* CoreLocation.framework */; };
 		D83204F4144063E80052038D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E2144063E80052038D /* QuartzCore.framework */; };
 		D83204F5144063E80052038D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E3144063E80052038D /* libxml2.dylib */; };
 		D83204F6144063E80052038D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E4144063E80052038D /* libicucore.dylib */; };
 		D83204F7144063E80052038D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E5144063E80052038D /* MapKit.framework */; };
-		D83204F8144063E80052038D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E6144063E80052038D /* CoreAudio.framework */; };
 		D83204F9144063E80052038D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E7144063E80052038D /* CFNetwork.framework */; };
 		D83204FA144063E80052038D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E8144063E80052038D /* OpenAL.framework */; };
 		D83204FB144063E80052038D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E9144063E80052038D /* SystemConfiguration.framework */; };
@@ -61,6 +59,10 @@
 		D8320500144063E80052038D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204EE144063E80052038D /* MobileCoreServices.framework */; };
 		D8320501144063E80052038D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204EF144063E80052038D /* Foundation.framework */; };
 		D83205031440646B0052038D /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D83205021440646B0052038D /* MainWindow_iPhone.xib */; };
+		D8CE47BD144580ED00B08C71 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE47BC144580ED00B08C71 /* AVFoundation.framework */; };
+		D8CE47C1144586AA00B08C71 /* HHOptionsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */; };
+		D8CE47C2144586AA00B08C71 /* HHOptionsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */; };
+		D8CE47C4144588C700B08C71 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C3144588C700B08C71 /* help.html */; };
 		D8EFF92E144069FF0073D9A2 /* HackneyHearAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -120,13 +122,11 @@
 		D83204A4144060CD0052038D /* HHIntroSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HHIntroSound.mp3; sourceTree = "<group>"; };
 		D83204DE144063E80052038D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D83204DF144063E80052038D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		D83204E0144063E80052038D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D83204E1144063E80052038D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D83204E2144063E80052038D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D83204E3144063E80052038D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D83204E4144063E80052038D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		D83204E5144063E80052038D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D83204E6144063E80052038D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D83204E7144063E80052038D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D83204E8144063E80052038D /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D83204E9144063E80052038D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -134,6 +134,11 @@
 		D83204EE144063E80052038D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D83204EF144063E80052038D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D83205021440646B0052038D /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		D8CE47BC144580ED00B08C71 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D8CE47BE144586A900B08C71 /* HHOptionsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHOptionsMenuController.h; sourceTree = "<group>"; };
+		D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHOptionsMenuController.m; sourceTree = "<group>"; };
+		D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHOptionsMenuController.xib; sourceTree = "<group>"; };
+		D8CE47C3144588C700B08C71 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		D8EFF92C144069FF0073D9A2 /* HackneyHearAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HackneyHearAppDelegate.h; sourceTree = "<group>"; };
 		D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackneyHearAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,16 +148,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8CE47BD144580ED00B08C71 /* AVFoundation.framework in Frameworks */,
 				D8055D6414406D0500AB5E23 /* CoreGraphics.framework in Frameworks */,
 				D8230930143CD02900894000 /* libAmblr-Core.a in Frameworks */,
 				D83204F0144063E80052038D /* UIKit.framework in Frameworks */,
 				D83204F1144063E80052038D /* libz.dylib in Frameworks */,
-				D83204F2144063E80052038D /* AVFoundation.framework in Frameworks */,
 				D83204F3144063E80052038D /* CoreLocation.framework in Frameworks */,
 				D83204F5144063E80052038D /* libxml2.dylib in Frameworks */,
 				D83204F6144063E80052038D /* libicucore.dylib in Frameworks */,
 				D83204F7144063E80052038D /* MapKit.framework in Frameworks */,
-				D83204F8144063E80052038D /* CoreAudio.framework in Frameworks */,
 				D83204F9144063E80052038D /* CFNetwork.framework in Frameworks */,
 				D83204FA144063E80052038D /* OpenAL.framework in Frameworks */,
 				D8320500144063E80052038D /* MobileCoreServices.framework in Frameworks */,
@@ -206,6 +210,7 @@
 		D82308F7143CCE8600894000 = {
 			isa = PBXGroup;
 			children = (
+				D8CE47BC144580ED00B08C71 /* AVFoundation.framework */,
 				D8055F3F144077A100AB5E23 /* Tiles */,
 				D8055D6514406D4800AB5E23 /* Imported Resources */,
 				D823090C143CCE8600894000 /* HackneyHear */,
@@ -260,6 +265,8 @@
 				D823093214405FA000894000 /* HackneyHear_ViewController.h */,
 				D8EFF92C144069FF0073D9A2 /* HackneyHearAppDelegate.h */,
 				D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */,
+				D8CE47BE144586A900B08C71 /* HHOptionsMenuController.h */,
+				D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */,
 				D8230918143CCE8700894000 /* iPhone */,
 				D823091F143CCE8700894000 /* iPad */,
 				D823090D143CCE8600894000 /* Supporting Files */,
@@ -274,6 +281,7 @@
 				D823090F143CCE8600894000 /* InfoPlist.strings */,
 				D8230912143CCE8600894000 /* HackneyHear-Prefix.pch */,
 				D8230913143CCE8600894000 /* main.m */,
+				D8CE47C3144588C700B08C71 /* help.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -284,6 +292,7 @@
 				D8230919143CCE8700894000 /* HackneyHearAppDelegate_iPhone.h */,
 				D823091A143CCE8700894000 /* HackneyHearAppDelegate_iPhone.m */,
 				D823093314405FA000894000 /* Hackney_Hear_ViewController.xib */,
+				D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */,
 				D83205021440646B0052038D /* MainWindow_iPhone.xib */,
 			);
 			name = iPhone;
@@ -325,6 +334,7 @@
 		D82308F9143CCE8600894000 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Imperial College London";
 			};
 			buildConfigurationList = D82308FC143CCE8600894000 /* Build configuration list for PBXProject "HackneyHear" */;
@@ -380,6 +390,8 @@
 				D81A6EA71444558500394431 /* atmos.json in Resources */,
 				D81A6EA81444558500394431 /* music.json in Resources */,
 				D81A6EA91444558500394431 /* speech.json in Resources */,
+				D8CE47C2144586AA00B08C71 /* HHOptionsMenuController.xib in Resources */,
+				D8CE47C4144588C700B08C71 /* help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +409,7 @@
 				D83204A5144060CD0052038D /* HHSoundManager.m in Sources */,
 				D83204A6144060CD0052038D /* HHMediaStatusViewController.m in Sources */,
 				D8EFF92E144069FF0073D9A2 /* HackneyHearAppDelegate.m in Sources */,
+				D8CE47C1144586AA00B08C71 /* HHOptionsMenuController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +495,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
 				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,6 +510,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;

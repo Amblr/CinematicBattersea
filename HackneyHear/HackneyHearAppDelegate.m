@@ -143,8 +143,9 @@
 -(void) failedAuthentication:(NSError*) error
 {
     NSString * message = [error localizedDescription];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Authentication Error" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
     [alert show];
+    [alert release];
     
     
 }
@@ -196,7 +197,7 @@
     NSString * message = @"You don't seem to have an internet connection.  Or possibly your humble developers have screwed up.  Probably the former.";
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"No Network" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
     [alert show];
-    
+    [alert release];
 }
 
 
