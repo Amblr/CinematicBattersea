@@ -129,12 +129,10 @@
 
 -(void) introBreakReached:(NSObject*) dummy
 {
-    @synchronized(self){
     //We have reached the break-point in the audio.  From now on we should 
     //end the intro if any audio is triggered.
     NSLog(@"Reached Intro Audio Break Point");
     introBeforeBreakPoint=NO;
-    }
 }
 
 
@@ -153,7 +151,8 @@
     [introSound release];
     introIsPlaying=YES;
     introBeforeBreakPoint=YES;
-    [self performSelector:@selector(introBreakReached:) withObject:nil afterDelay:INTRO_SOUND_BREAK_POINT];
+//    [self performSelector:@selector(introBreakReached:) withObject:nil afterDelay:INTRO_SOUND_BREAK_POINT];
+        //Have now replaced above line with a check when updating sound
     }
 }
 
@@ -406,6 +405,15 @@
     if (globallyPaused) return;
 
     @synchronized(self){
+        
+    //First check if intro has reached the break point.
+    if (introIsPlaying && introBeforeBreakPoint){
+        L1CDLongAudioSource * intro = [audioSamples objectForKey:INTRO_SOUND_KEY];
+        if(intro && ([intro currentTime]>INTRO_SOUND_BREAK_POINT)){
+            [self introBreakReached:nil];
+        }
+    }
+        
     //Quick exit if there are no sounds to process.
     int nRising = [risingSounds count];
     int nFading = [fadingSounds count];

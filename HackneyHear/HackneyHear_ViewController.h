@@ -16,6 +16,7 @@
 //#import "L1DownloadProximityMonitor.h"
 #import "HHSoundManager.h"
 
+#import "HHConfigurationOptions.h"
 
 
 @class L1DownloadProximityMonitor;

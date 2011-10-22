@@ -24,10 +24,7 @@
 		D8055D9014406EFB00AB5E23 /* 113-navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8314406EFB00AB5E23 /* 113-navigation.png */; };
 		D8055D9114406EFB00AB5E23 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8414406EFB00AB5E23 /* 117-todo.png */; };
 		D8055D9214406EFB00AB5E23 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8514406EFB00AB5E23 /* 184-warning.png */; };
-		D8055D9314406EFB00AB5E23 /* HH_logo_57.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8614406EFB00AB5E23 /* HH_logo_57.jpg */; };
 		D8055D9414406EFB00AB5E23 /* HH_logo_114.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8714406EFB00AB5E23 /* HH_logo_114.jpg */; };
-		D8055D9514406EFB00AB5E23 /* icon_controls_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8814406EFB00AB5E23 /* icon_controls_3.png */; };
-		D8055D9614406EFB00AB5E23 /* icon_controls_4.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055D8914406EFB00AB5E23 /* icon_controls_4.png */; };
 		D8055F40144077A100AB5E23 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = D8055F3F144077A100AB5E23 /* Tiles */; };
 		D8055F4214407C3900AB5E23 /* icon_dollar.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055F4114407C3900AB5E23 /* icon_dollar.png */; };
 		D8055F4414407C4500AB5E23 /* icon_document.png in Resources */ = {isa = PBXBuildFile; fileRef = D8055F4314407C4400AB5E23 /* icon_document.png */; };
@@ -59,11 +56,19 @@
 		D8320500144063E80052038D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204EE144063E80052038D /* MobileCoreServices.framework */; };
 		D8320501144063E80052038D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204EF144063E80052038D /* Foundation.framework */; };
 		D83205031440646B0052038D /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D83205021440646B0052038D /* MainWindow_iPhone.xib */; };
+		D846FFB1144F4E2200867811 /* story.json in Resources */ = {isa = PBXBuildFile; fileRef = D846FFB0144F4E2100867811 /* story.json */; };
+		D846FFB7144F4E6900867811 /* AH.png in Resources */ = {isa = PBXBuildFile; fileRef = D846FFB2144F4E6900867811 /* AH.png */; };
+		D846FFBA144F4E6900867811 /* icon_controls_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D846FFB5144F4E6900867811 /* icon_controls_3.png */; };
+		D846FFBB144F4E6900867811 /* icon_controls_4.png in Resources */ = {isa = PBXBuildFile; fileRef = D846FFB6144F4E6900867811 /* icon_controls_4.png */; };
+		D846FFBD144F4E9E00867811 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D846FFBC144F4E9E00867811 /* Default.png */; };
 		D8CE47BD144580ED00B08C71 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE47BC144580ED00B08C71 /* AVFoundation.framework */; };
 		D8CE47C1144586AA00B08C71 /* HHOptionsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */; };
 		D8CE47C2144586AA00B08C71 /* HHOptionsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */; };
 		D8CE47C4144588C700B08C71 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C3144588C700B08C71 /* help.html */; };
 		D8EFF92E144069FF0073D9A2 /* HackneyHearAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */; };
+		D8FECB41144F621F009A3A8D /* HH-sounds in Resources */ = {isa = PBXBuildFile; fileRef = D8FECB40144F621F009A3A8D /* HH-sounds */; };
+		D8FECB5114502282009A3A8D /* HH_logo_57.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FECB5014502282009A3A8D /* HH_logo_57.png */; };
+		D8FECB5E1451D939009A3A8D /* intro_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FECB5D1451D939009A3A8D /* intro_button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,10 +96,7 @@
 		D8055D8314406EFB00AB5E23 /* 113-navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "113-navigation.png"; sourceTree = "<group>"; };
 		D8055D8414406EFB00AB5E23 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
 		D8055D8514406EFB00AB5E23 /* 184-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning.png"; sourceTree = "<group>"; };
-		D8055D8614406EFB00AB5E23 /* HH_logo_57.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HH_logo_57.jpg; sourceTree = "<group>"; };
 		D8055D8714406EFB00AB5E23 /* HH_logo_114.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HH_logo_114.jpg; sourceTree = "<group>"; };
-		D8055D8814406EFB00AB5E23 /* icon_controls_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_controls_3.png; sourceTree = "<group>"; };
-		D8055D8914406EFB00AB5E23 /* icon_controls_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_controls_4.png; sourceTree = "<group>"; };
 		D8055F3F144077A100AB5E23 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
 		D8055F4114407C3900AB5E23 /* icon_dollar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_dollar.png; sourceTree = "<group>"; };
 		D8055F4314407C4400AB5E23 /* icon_document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_document.png; sourceTree = "<group>"; };
@@ -134,6 +136,13 @@
 		D83204EE144063E80052038D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D83204EF144063E80052038D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D83205021440646B0052038D /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		D846FFA1144EC74B00867811 /* AlexHear-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AlexHear-Info.plist"; path = "/Users/joe/src/projects/locations/Workspace/HackneyHear/AlexHear-Info.plist"; sourceTree = "<absolute>"; };
+		D846FFAE144F4D1D00867811 /* HHConfigurationOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHConfigurationOptions.h; sourceTree = "<group>"; };
+		D846FFB0144F4E2100867811 /* story.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = story.json; sourceTree = "<group>"; };
+		D846FFB2144F4E6900867811 /* AH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AH.png; sourceTree = "<group>"; };
+		D846FFB5144F4E6900867811 /* icon_controls_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_controls_3.png; path = HackneyHear/icon_controls_3.png; sourceTree = "<group>"; };
+		D846FFB6144F4E6900867811 /* icon_controls_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_controls_4.png; path = HackneyHear/icon_controls_4.png; sourceTree = "<group>"; };
+		D846FFBC144F4E9E00867811 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D8CE47BC144580ED00B08C71 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D8CE47BE144586A900B08C71 /* HHOptionsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHOptionsMenuController.h; sourceTree = "<group>"; };
 		D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHOptionsMenuController.m; sourceTree = "<group>"; };
@@ -141,6 +150,9 @@
 		D8CE47C3144588C700B08C71 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		D8EFF92C144069FF0073D9A2 /* HackneyHearAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HackneyHearAppDelegate.h; sourceTree = "<group>"; };
 		D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackneyHearAppDelegate.m; sourceTree = "<group>"; };
+		D8FECB40144F621F009A3A8D /* HH-sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "HH-sounds"; path = "../../../HH-sounds"; sourceTree = "<group>"; };
+		D8FECB5014502282009A3A8D /* HH_logo_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HH_logo_57.png; sourceTree = "<group>"; };
+		D8FECB5D1451D939009A3A8D /* intro_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,14 +205,15 @@
 				D8055D7F14406EFB00AB5E23 /* 40-inbox.png */,
 				D8055D8014406EFB00AB5E23 /* 57-download.png */,
 				D8055D8114406EFB00AB5E23 /* 103-map.png */,
+				D846FFB5144F4E6900867811 /* icon_controls_3.png */,
+				D846FFB6144F4E6900867811 /* icon_controls_4.png */,
 				D8055D8214406EFB00AB5E23 /* 112-group.png */,
 				D8055D8314406EFB00AB5E23 /* 113-navigation.png */,
 				D8055D8414406EFB00AB5E23 /* 117-todo.png */,
 				D8055D8514406EFB00AB5E23 /* 184-warning.png */,
-				D8055D8614406EFB00AB5E23 /* HH_logo_57.jpg */,
+				D8FECB5D1451D939009A3A8D /* intro_button.png */,
+				D8FECB5014502282009A3A8D /* HH_logo_57.png */,
 				D8055D8714406EFB00AB5E23 /* HH_logo_114.jpg */,
-				D8055D8814406EFB00AB5E23 /* icon_controls_3.png */,
-				D8055D8914406EFB00AB5E23 /* icon_controls_4.png */,
 				D8055F4314407C4400AB5E23 /* icon_document.png */,
 				D8055F4114407C3900AB5E23 /* icon_dollar.png */,
 			);
@@ -253,6 +266,8 @@
 		D823090C143CCE8600894000 /* HackneyHear */ = {
 			isa = PBXGroup;
 			children = (
+				D8FECB40144F621F009A3A8D /* HH-sounds */,
+				D846FFB0144F4E2100867811 /* story.json */,
 				D81A6EA41444558400394431 /* atmos.json */,
 				D81A6EA51444558500394431 /* music.json */,
 				D81A6EA61444558500394431 /* speech.json */,
@@ -261,6 +276,7 @@
 				D83204A2144060CD0052038D /* HHMediaStatusViewController.m */,
 				D83204A3144060CD0052038D /* HHMediaStatusViewController.h */,
 				D83204A4144060CD0052038D /* HHIntroSound.mp3 */,
+				D846FFAE144F4D1D00867811 /* HHConfigurationOptions.h */,
 				D823093114405FA000894000 /* HackneyHear_ViewController.m */,
 				D823093214405FA000894000 /* HackneyHear_ViewController.h */,
 				D8EFF92C144069FF0073D9A2 /* HackneyHearAppDelegate.h */,
@@ -277,7 +293,10 @@
 		D823090D143CCE8600894000 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D846FFB2144F4E6900867811 /* AH.png */,
+				D846FFBC144F4E9E00867811 /* Default.png */,
 				D823090E143CCE8600894000 /* HackneyHear-Info.plist */,
+				D846FFA1144EC74B00867811 /* AlexHear-Info.plist */,
 				D823090F143CCE8600894000 /* InfoPlist.strings */,
 				D8230912143CCE8600894000 /* HackneyHear-Prefix.pch */,
 				D8230913143CCE8600894000 /* main.m */,
@@ -380,10 +399,7 @@
 				D8055D9014406EFB00AB5E23 /* 113-navigation.png in Resources */,
 				D8055D9114406EFB00AB5E23 /* 117-todo.png in Resources */,
 				D8055D9214406EFB00AB5E23 /* 184-warning.png in Resources */,
-				D8055D9314406EFB00AB5E23 /* HH_logo_57.jpg in Resources */,
 				D8055D9414406EFB00AB5E23 /* HH_logo_114.jpg in Resources */,
-				D8055D9514406EFB00AB5E23 /* icon_controls_3.png in Resources */,
-				D8055D9614406EFB00AB5E23 /* icon_controls_4.png in Resources */,
 				D8055F40144077A100AB5E23 /* Tiles in Resources */,
 				D8055F4214407C3900AB5E23 /* icon_dollar.png in Resources */,
 				D8055F4414407C4500AB5E23 /* icon_document.png in Resources */,
@@ -392,6 +408,14 @@
 				D81A6EA91444558500394431 /* speech.json in Resources */,
 				D8CE47C2144586AA00B08C71 /* HHOptionsMenuController.xib in Resources */,
 				D8CE47C4144588C700B08C71 /* help.html in Resources */,
+				D846FFB1144F4E2200867811 /* story.json in Resources */,
+				D846FFB7144F4E6900867811 /* AH.png in Resources */,
+				D846FFBA144F4E6900867811 /* icon_controls_3.png in Resources */,
+				D846FFBB144F4E6900867811 /* icon_controls_4.png in Resources */,
+				D846FFBD144F4E9E00867811 /* Default.png in Resources */,
+				D8FECB41144F621F009A3A8D /* HH-sounds in Resources */,
+				D8FECB5114502282009A3A8D /* HH_logo_57.png in Resources */,
+				D8FECB5E1451D939009A3A8D /* intro_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +479,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -465,6 +490,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/Users/joe/src/projects/locations/Workspace/Core/Amblr-Core/Amblr-Core/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PROVISIONING_PROFILE = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -474,7 +501,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -482,6 +510,8 @@
 				HEADER_SEARCH_PATHS = "/Users/joe/src/projects/locations/Workspace/Core/Amblr-Core/Amblr-Core/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -491,6 +521,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -499,6 +531,8 @@
 				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
 				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -507,12 +541,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

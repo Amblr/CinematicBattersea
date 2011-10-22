@@ -13,6 +13,11 @@
 {
     IBOutlet UIWebView * helpWebView;
     IBOutlet L1DownloadProximityMonitor * proximityMonitor;
+    IBOutlet UIButton * fetchAllButton;
+    IBOutlet UILabel * fetchingLabel;
+    IBOutlet UIProgressView * progressView;
+    int resourcesToDownload;
+    
 }
 
 -(IBAction)fetchAll:(id)sender;

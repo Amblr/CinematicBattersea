@@ -8,6 +8,7 @@
 
 #import "HHOptionsMenuController.h"
 #import "L1DownloadProximityMonitor.h"
+#import "L1DownloadManager.h"
 
 @implementation HHOptionsMenuController
 
@@ -55,7 +56,23 @@
 
 -(IBAction)fetchAll:(id)sender
 {
+    [fetchAllButton setHidden:YES];
+    [fetchingLabel setHidden:NO];
+    [progressView setHidden:NO];
+    [progressView setProgress:0.0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resourceDownloaded:) name:L1_RESOURCE_DATA_IS_READY object:nil];
     [proximityMonitor downloadAll];
+    resourcesToDownload = [[L1DownloadManager sharedL1DownloadManager] count];
+
+}
+
+-(void) resourceDownloaded:(L1Resource*) resource
+{
+    int n = resourcesToDownload - [[L1DownloadManager sharedL1DownloadManager] count]+1;//plus one because we receive this message before the current resource is removed.
+    NSLog(@"Downloaded %d of %d",n,resourcesToDownload);
+    float fraction = (1.0*n) / resourcesToDownload;
+    [progressView setProgress:fraction];
+    if (fraction>=0.999)[[NSNotificationCenter defaultCenter] removeObserver:self name:L1_RESOURCE_DATA_IS_READY object:nil];
 }
 
 @end

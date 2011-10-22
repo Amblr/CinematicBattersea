@@ -25,7 +25,7 @@
 #import "HackneyHear_ViewController.h"
 
 
-#define LOAD_SCENARIO_FROM_FILE 0
+
 
 @implementation HackneyHearAppDelegate
 @synthesize  scenario;
@@ -167,16 +167,7 @@
     NSData * data = [NSData dataWithContentsOfFile:storyFile];
     [self performSelector:@selector(hackScenarioReady:) withObject:data afterDelay:5.0];
 #else
-    
-#ifdef ALEX_HEAR    
-    NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e249f58d7c4b60001000023/stories/4e249fe5d7c4b600010000c1.json";
-    NSString scenarioKey = @"4e15c53add71aa000100025"
-#else
-    NSString * storyURL = @"http://amblr.heroku.com/scenarios/4e15c53add71aa000100025b/stories/4e15c6be7bd01600010000c0.json";
-    NSString * scenarioKey = @"4e249f58d7c4b60001000023";
-    
-#endif
-    self.scenario = [L1Scenario scenarioFromStoryURL:storyURL withKey:scenarioKey];
+    self.scenario = [L1Scenario scenarioFromStoryURL:STORY_URL withKey:SCENARIO_KEY];
 #endif        
     
     

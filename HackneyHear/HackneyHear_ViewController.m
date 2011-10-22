@@ -11,19 +11,9 @@
 #import "L1Utils.h"
 #import "L1DownloadProximityMonitor.h"
 
-#define FORCE_INTRO_LANUCH 1
-#define ALLOW_FAKE_LOCATION 0
-
-
 #define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 #define SINCALIR_SPECIAL_NODE_NAME @"0808 Sinclair bench w sting"
 #define SINCALIR_SPECIAL_NODE_TIME 60
-
-#define INITIAL_CENTER_LAT 51.539295464829273
-#define INITIAL_CENTER_LON -0.061721
-#define INITIAL_DELTA_LAT 0.0065
-#define INITIAL_DELTA_LON 0.0081
-
 
 
 
@@ -87,9 +77,17 @@
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(INITIAL_CENTER_LAT, INITIAL_CENTER_LON);
     MKCoordinateSpan span = MKCoordinateSpanMake(INITIAL_DELTA_LAT, INITIAL_DELTA_LON);
     MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
-    [mapViewController zoomToRegion:region];
-    firstLocation=YES;
     [mapViewController logLocation];
+
+    [mapViewController zoomToRegion:region];
+
+    //Now use a 20% enlarged region to restrict the map.
+    [mapViewController logLocation];
+//    [mapViewController restrictToRegion:region];
+//    [mapViewController restrictToCurrentRegionBoundaryFraction:0.5];
+    [mapViewController restrictToCurrentRegion];
+
+    firstLocation=YES;
     
 
     
@@ -134,12 +132,13 @@
 
         
         //Set up the "skip" button
-        skipButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [skipButton addTarget:self 
                        action:@selector(skipIntro:)
          forControlEvents:UIControlEventTouchUpInside];
-        [skipButton setTitle:@"Skip Intro" forState:UIControlStateNormal];
-        skipButton.frame = CGRectMake(80.0, 10.0, 160.0, 40.0);
+//        [skipButton setTitle:@"Skip Intro" forState:UIControlStateNormal];
+        [skipButton setImage:[UIImage imageNamed:@"intro_button.png"] forState:UIControlStateNormal];
+        skipButton.frame = CGRectMake(80.0, 10.0, 160.0, 60.0);
         [self.view addSubview:skipButton];
         
         if (![CLLocationManager locationServicesEnabled]){
@@ -228,7 +227,8 @@
         //Create the circle here, store it so we can keep track and change its color later,
         //and add it to the map.
         if ((![node.name isEqualToString:SPECIAL_SHAPE_NODE_NAME]) && (sound.soundType==L1SoundTypeSpeech)){
-            L1Circle * circle = [mapViewController addCircleAt:node.coordinate radius:[node.radius doubleValue] color:[UIColor redColor]];
+            UIColor * color = [UIColor redColor];
+            L1Circle * circle = [mapViewController addCircleAt:node.coordinate radius:[node.radius doubleValue] color:color];
             [circles setObject:circle forKey:node.key];
             [mapViewController addNode:node];
         }
@@ -263,6 +263,7 @@
     
     //Now all the nodes are in place we can track them to see if we should
     //download their data.  We do that with the proximity manager.
+    NSLog(@"New nodes to %@",proximityMonitor);
     [proximityMonitor addNodes:[nodes allValues]];
     
     //This is also a good time to update our location.
@@ -344,7 +345,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"Location update [real]");
+//    NSLog(@"Location update [real]");
     if (realGPSControl) {
         NSLog(@"Using update");
 
@@ -352,7 +353,7 @@
         if (trackMe)[realLocationTracker addLocation:newLocation];
     }
     else{
-        NSLog(@"Ignoring update");
+//        NSLog(@"Ignoring update");
         
     }
 
@@ -391,6 +392,10 @@
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
+    if (soundManager.globallyPaused){
+        NSLog(@"Ignoring location update becaue we are globally paused - no changes applied.");
+        return;
+    }
     NSLog(@"Updated to location: lat = %f,   lon = %f", location.latitude,location.longitude);
     [proximityMonitor updateLocation:location];
     if (firstLocation){
@@ -467,7 +472,10 @@
                     L1Circle * circle = [circles valueForKey:node.key];
                     if (circle){
                         if (resource.soundType==L1SoundTypeSpeech){
-                            [mapViewController setColor:[UIColor redColor] forCircle:circle];
+                            UIColor * color;
+                            color = [UIColor redColor];
+
+                            [mapViewController setColor:color forCircle:circle];
                         }else {
                             [mapViewController setColor:[UIColor greenColor] forCircle:circle];
                         }
@@ -501,10 +509,12 @@
 {
     [soundManager toggleGlobalPause];
     if (soundManager.globallyPaused){
-        pauseButton.imageView.image = [UIImage imageNamed:@"icon_controls_3.png"];
+        NSLog(@"Just paused.  Set icon to play image.");
+        [pauseButton setImage:[UIImage imageNamed:@"icon_controls_3.png"] forState:UIControlStateNormal];
     }
     else{
-        pauseButton.imageView.image = [UIImage imageNamed:@"icon_controls_4.png"];
+        NSLog(@"Just unpaused.  Set icon to pause image.");
+        [pauseButton setImage:[UIImage imageNamed:@"icon_controls_4.png"] forState:UIControlStateNormal];
     }
 }
 
