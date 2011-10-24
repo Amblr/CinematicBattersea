@@ -11,15 +11,22 @@
 
 #define FORCE_INTRO_LANUCH 1
 
+#define RESTRICT_TO_HACKNEY 1
+
+
 
 #ifdef ALEX_HEAR
 #define ALLOW_FAKE_LOCATION 1
 #else
+
+
+//HH Fake location
 #define ALLOW_FAKE_LOCATION 0
 #endif
 
 
 #define LOAD_SCENARIO_FROM_FILE 0
+
 
 #define INITIAL_CENTER_LAT 51.5393
 #define INITIAL_CENTER_LON -0.0617

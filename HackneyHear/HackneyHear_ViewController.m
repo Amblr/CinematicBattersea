@@ -84,9 +84,10 @@
     //Now use a 20% enlarged region to restrict the map.
     [mapViewController logLocation];
 //    [mapViewController restrictToRegion:region];
-//    [mapViewController restrictToCurrentRegionBoundaryFraction:0.5];
+//    [mapViewController restrictToCurrentRegionBoundaryFraction:
+#if RESTRICT_TO_HACKNEY    
     [mapViewController restrictToCurrentRegion];
-
+#endif
     firstLocation=YES;
     
 
