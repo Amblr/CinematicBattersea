@@ -35,32 +35,8 @@
 
 
 
-@implementation L1CDLongAudioSource
+@implementation HHAudioSource
 @synthesize soundType;
-@synthesize key;
-
--(void) timeJump:(NSTimeInterval) deltaTime
-{
-    NSTimeInterval currentTime = audioSourcePlayer.currentTime;
-    NSTimeInterval newTime = currentTime+deltaTime;
-    NSTimeInterval maxTime = audioSourcePlayer.duration;
-    if (newTime<0.0) newTime=0.0;
-    if (newTime>maxTime) newTime=maxTime-0.01; //Give some buffer just before end, just in case.
-    NSLog(@"Jumping sound time from %f to %f",currentTime,newTime);
-    [audioSourcePlayer setCurrentTime:newTime];
-}
-
--(NSTimeInterval) currentTime
-{
-    return audioSourcePlayer.currentTime;
-}
-
--(NSTimeInterval) totalTime
-{
-    return audioSourcePlayer.duration;
-}
-
-
 @end
 
 
@@ -140,7 +116,7 @@
 {
     @synchronized(self){
 
-    L1CDLongAudioSource * introSound = [[L1CDLongAudioSource alloc] init];
+    HHAudioSource * introSound = [[HHAudioSource alloc] init];
     introSound.delegate=self;
     introSound.soundType=L1SoundTypeIntro;
     introSound.key=INTRO_SOUND_KEY;
@@ -161,7 +137,7 @@
 {
     @synchronized(self){
 
-    L1CDLongAudioSource * sound = [audioSamples objectForKey:key];
+    HHAudioSource * sound = [audioSamples objectForKey:key];
     if (!sound){
         NSLog(@"Tried to fade out sound not found: %@",sound.key);
         return;
@@ -182,7 +158,7 @@
 -(void) fadeInSound:(NSString *) key
 {
     @synchronized(self){
-    L1CDLongAudioSource * sound = [audioSamples objectForKey:key];
+    HHAudioSource * sound = [audioSamples objectForKey:key];
     if (!sound){
         NSLog(@"Tried to fade out sound not found: %@",sound.key);
         return;
@@ -200,7 +176,7 @@
 -(BOOL) newSpeechNodeShouldStart
 {
     @synchronized(self){
-    L1CDLongAudioSource * sound = nil;
+    HHAudioSource * sound = nil;
     sound = [audioSamples objectForKey:activeSpeechTrack];
     if (!sound) return YES;
     NSTimeInterval totalTime = [sound totalTime];
@@ -272,13 +248,13 @@
     
     //If we find the sound in audioSamples then we must have played it before.
     //Otherwise it is new
-    L1CDLongAudioSource * sound = [audioSamples objectForKey:key];
+    HHAudioSource * sound = [audioSamples objectForKey:key];
 
     //If this is a new sound we will need to load it and then play it.
     //And this is pretty much it.
     if (!sound){
         NSLog(@"New sound found!");
-        sound = [[L1CDLongAudioSource alloc] init];
+        sound = [[HHAudioSource alloc] init];
         sound.delegate=self;
         sound.soundType=soundType;
         sound.key=key;
@@ -353,7 +329,7 @@
     
 }
 
--(float) fadeTimeForSound:(L1CDLongAudioSource*)sound
+-(float) fadeTimeForSound:(HHAudioSource*)sound
 {
     switch (sound.soundType) {
         case L1SoundTypeAtmos:
@@ -374,7 +350,7 @@
     }
 }
 
--(float) riseTimeForSound:(L1CDLongAudioSource*)sound
+-(float) riseTimeForSound:(HHAudioSource*)sound
 {
     switch (sound.soundType) {
         case L1SoundTypeAtmos:
@@ -408,7 +384,7 @@
         
     //First check if intro has reached the break point.
     if (introIsPlaying && introBeforeBreakPoint){
-        L1CDLongAudioSource * intro = [audioSamples objectForKey:INTRO_SOUND_KEY];
+        HHAudioSource * intro = [audioSamples objectForKey:INTRO_SOUND_KEY];
         if(intro && ([intro currentTime]>INTRO_SOUND_BREAK_POINT)){
             [self introBreakReached:nil];
         }
@@ -422,7 +398,7 @@
     //Fade out the fading sounds.
     NSArray * fadingSoundsArray;
         fadingSoundsArray = [fadingSounds allValues];
-    for (L1CDLongAudioSource * sound in fadingSoundsArray){
+    for (HHAudioSource * sound in fadingSoundsArray){
         //Reduce the volume by the correct amount, which depends on the total fade time.
         float fadeTime = [self fadeTimeForSound:sound];
         sound.volume = sound.volume-SOUND_UPDATE_TIME_STEP/fadeTime;        
@@ -449,7 +425,7 @@
     
     NSArray * risingSoundsArray;
         risingSoundsArray = [risingSounds allValues];
-    for (L1CDLongAudioSource * sound in risingSoundsArray){
+    for (HHAudioSource * sound in risingSoundsArray){
         float riseTime = [self riseTimeForSound:sound];
         sound.volume = sound.volume+SOUND_UPDATE_TIME_STEP/riseTime;        
         NSLog(@"Rising %@",sound.key);
@@ -467,14 +443,14 @@
 }
 
 
-- (void) cdAudioSourceDidFinishPlaying:(CDLongAudioSource *) audioSource
+- (void) cdAudioSourceDidFinishPlaying:(L1CDLongAudioSource *) audioSource
 {
     @synchronized(self){
     
     // This sound *should* be an instance of our subclass.  Otherwise not sure what
     // is happening
-    if (![audioSource isKindOfClass:[L1CDLongAudioSource class]]) return;
-    L1CDLongAudioSource * source = (L1CDLongAudioSource*) audioSource;
+    if (![audioSource isKindOfClass:[HHAudioSource class]]) return;
+    HHAudioSource * source = (HHAudioSource*) audioSource;
     NSLog(@"Sound finished: %@",source.key);
     
     
@@ -524,7 +500,7 @@
 }
 
 -(void) unpauseGlobal{
-    for (L1CDLongAudioSource * sound in globallyPausedSounds){
+    for (HHAudioSource * sound in globallyPausedSounds){
         [sound resume];
     }
     [globallyPausedSounds removeAllObjects];
@@ -534,7 +510,7 @@
 
 -(void) pauseGlobal{
     for (NSString * key in audioSamples){
-        L1CDLongAudioSource * sound = [audioSamples objectForKey:key];
+        HHAudioSource * sound = [audioSamples objectForKey:key];
         if ([sound isPlaying]){
             [sound pause];
             [globallyPausedSounds addObject:sound];

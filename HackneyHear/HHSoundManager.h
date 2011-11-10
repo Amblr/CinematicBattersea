@@ -9,31 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "SimpleAudioEngine.h"
 #import "L1Scenario.h"
-
+#import "L1CDLongAudioSource.h"
 #define HH_INTRO_SOUND_ENDED_NOTIFICATION @"HH_INTRO_SOUND_ENDED_NOTIFICATION"
 
 
-
-@interface L1CDLongAudioSource : CDLongAudioSource
-{
+@interface HHAudioSource : L1CDLongAudioSource {
+@private
     L1SoundType soundType;
-    NSString * key;
-    BOOL isFading;
-    BOOL isRising;
 }
-
--(void) timeJump:(NSTimeInterval) deltaTime;
--(NSTimeInterval) currentTime;
--(NSTimeInterval) totalTime;
-
 @property (assign) L1SoundType soundType;
-@property (retain) NSString * key;
 @end
 
 
 
 
-@interface HHSoundManager : NSObject<CDLongAudioSourceDelegate> {
+@interface HHSoundManager : NSObject<L1CDLongAudioSourceDelegate> {
     NSMutableDictionary * fadingSounds;
     NSMutableDictionary * risingSounds;
     NSMutableDictionary *audioSamples;
