@@ -532,6 +532,12 @@
 }
 
 
+
+-(NSString*) currentSpeechKey
+{
+    return activeSpeechTrack;
+}
+
 //
 //
 //-(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType

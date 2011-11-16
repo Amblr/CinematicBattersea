@@ -52,7 +52,7 @@
 
         
 }
-
+@property (readonly) NSString * currentSpeechKey;
 @property (retain) id delegate;
 @property (readonly) BOOL introBeforeBreakPoint;
 @property (readonly) BOOL globallyPaused;
