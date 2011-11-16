@@ -19,6 +19,8 @@
 
 @implementation HackneyHear_ViewController
 @synthesize scenario;
+@synthesize selectedWalk;
+@synthesize walkOverlay;
 
 - (void)dealloc
 {
@@ -62,6 +64,9 @@
     NSString * tileDir = @"Tiles";
     sinclairSpecialCaseNodeFirstOffTime = nil;
     
+    [nowPlayingView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bkg-pattern.png"]]];
+    
+    selectedWalk=NO_WALK_SELECTED;
     
     
     CLLocationCoordinate2D southWest, northEast;
@@ -89,10 +94,21 @@
     [mapViewController restrictToCurrentRegion];
 #endif
     firstLocation=YES;
-    
+    self.walkOverlay = nil;
+}
 
-    
 
+-(void) setNowPlayingLabel
+{
+    if (soundManager.currentSpeechKey){
+        L1Node * activeSpeechNode = [self.scenario.nodes objectForKey:soundManager.currentSpeechKey];
+        nowPlayingView.alpha = 1.0;
+        [nowPlayingLabel setText:[NSString stringWithFormat:@"Now playing: %@",activeSpeechNode.name]];
+    }
+    else{
+        nowPlayingView.alpha = 0.0;
+    }
+    
 }
 
 
@@ -102,11 +118,18 @@
     MKCoordinateRegion region = [mapViewController mapRegion];
     
     NSLog(@"BTW, region lat: %f  lon: %f  dLat: %f  dLon:%f)",region.center.latitude,region.center.longitude,region.span.latitudeDelta,region.span.longitudeDelta);
+
+    //replace the skip button with a pause button
     
-    [skipButton removeFromSuperview];
-    skipButton = nil;
+    [pauseButton setImage:[UIImage imageNamed:@"btn-pause.png"] forState:UIControlStateNormal];
+    [pauseButton removeTarget:self action:@selector(skipIntro:) forControlEvents:UIControlEventTouchUpInside];
+    [pauseButton addTarget:self action:@selector(globalPauseToggle) forControlEvents:UIControlEventTouchUpInside];
+    
+//    [skipButton removeFromSuperview];
+//    skipButton = nil;
     [soundManager skipIntro];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self setNowPlayingLabel];
     [self locationUpdate:locationManager.location.coordinate];
 
 }
@@ -125,6 +148,8 @@
         
         //Play the intro sound.
         [soundManager startIntro];
+        [nowPlayingLabel setText:@"Now Playing: Hackney Hear Introduction"];
+
             
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -132,15 +157,9 @@
                                                      name:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
 
         
-        //Set up the "skip" button
-        skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [skipButton addTarget:self 
-                       action:@selector(skipIntro:)
-         forControlEvents:UIControlEventTouchUpInside];
-//        [skipButton setTitle:@"Skip Intro" forState:UIControlStateNormal];
-        [skipButton setImage:[UIImage imageNamed:@"intro_button.png"] forState:UIControlStateNormal];
-        skipButton.frame = CGRectMake(80.0, 10.0, 160.0, 60.0);
-        [self.view addSubview:skipButton];
+        [pauseButton addTarget:self action:@selector(skipIntro:) forControlEvents:UIControlEventTouchUpInside];
+        [pauseButton setImage:[UIImage imageNamed:@"btn-skip.png"] forState:UIControlStateNormal];
+
         
         if (![CLLocationManager locationServicesEnabled]){
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Locations Disabled" message:@"This application will not function properly without location services enabled.  Please re-enable them in iPhone Settings if you want to use this app." delegate:nil cancelButtonTitle:@"Continue" otherButtonTitles:nil];
@@ -391,6 +410,52 @@
     firstLocation=NO;
 }
 
+
+-(void) setWalk:(int) walkIndex
+{
+    NSLog(@"Set walk to %d",walkIndex);
+    selectedWalk=walkIndex;
+    if (self.walkOverlay) [mapViewController removeImageOverlay:self.walkOverlay];
+    if (walkIndex==-1) return;
+
+    CLLocationCoordinate2D lowerLeft, upperRight; 
+
+    switch (walkIndex) {
+        case 1:
+            lowerLeft.latitude = 51.535447;
+            lowerLeft.longitude = -0.062364;
+            upperRight.latitude = 51.537738;
+            upperRight.longitude = -0.060814;
+            break;
+        case 2:
+            lowerLeft.latitude = 0;
+            lowerLeft.longitude = 0;
+            upperRight.latitude = 0;
+            upperRight.longitude = 0;
+            break;
+        case 3:
+            lowerLeft.latitude = 0;
+            lowerLeft.longitude = 0;
+            upperRight.latitude = 0;
+            upperRight.longitude = 0;
+            break;
+        default:
+            return;
+            break;
+    }
+    
+    NSString * filename = [NSString stringWithFormat:@"walk%d.png",walkIndex];
+    UIImage * overlayImage = [UIImage imageNamed:filename];
+
+    self.walkOverlay = [[[L1Overlay alloc] initWithImage:overlayImage withLowerLeftCoordinate:lowerLeft withUpperRightCoordinate:upperRight] autorelease];
+    
+    [mapViewController addImageOverlay:self.walkOverlay];
+    
+    
+    
+}
+
+
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
     if (soundManager.globallyPaused){
@@ -461,35 +526,72 @@
 
         node.enabled = nowEnabled;
         
-        
-        // This is overkill.
         if (nowEnabled){
             L1Circle * circle = [circles valueForKey:node.key];
-            [mapViewController setColor:[UIColor blueColor] forCircle:circle];
+            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
+            if (circleView){
+                circleView.fillColor = [UIColor redColor];
+                circleView.alpha = 0.75;
+            }
+
         }
         else{
-            for(L1Resource * resource in node.resources){
-                if ([resource.type isEqualToString:@"sound"]){
-                    L1Circle * circle = [circles valueForKey:node.key];
-                    if (circle){
-                        if (resource.soundType==L1SoundTypeSpeech){
-                            UIColor * color;
-                            color = [UIColor redColor];
-
-                            [mapViewController setColor:color forCircle:circle];
-                        }else {
-                            [mapViewController setColor:[UIColor greenColor] forCircle:circle];
-                        }
-                    }
-                    
-                    break;
-                    
-                }
-            }            
             
         }
+        
+        
+        L1Circle * circle = [circles valueForKey:node.key];
+        if (circle){
+            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
+            if (circleView){
+                if (nowEnabled){
+                    circleView.fillColor = [UIColor redColor];
+                    circleView.alpha = 0.5;
+                }
+                else{
+                    circleView.fillColor = [UIColor clearColor];
+                    circleView.alpha = 1.0;
+                    
+                }
+            }
+        }
+        
+        // This is overkill.
+//        if (nowEnabled){
+//            L1Circle * circle = [circles valueForKey:node.key];
+////            -(MKCircleView*) circleViewForCircle:(L1Circle*) circle
+//            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
+//            if (circleView){
+//                circleView.fillColor = [UIColor redColor];
+//                circleView.alpha = 0.75;
+//            }
+//            //[mapViewController setColor:[UIColor blueColor] forCircle:circle];
+//        }
+//        else{
+//            
+//        }
+//            for(L1Resource * resource in node.resources){
+//                if ([resource.type isEqualToString:@"sound"] && resource.soundType==L1SoundTypeSpeech){
+//                    L1Circle * circle = [circles valueForKey:node.key];
+//                    if (circle){
+//                            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
+//                            if (circleView){
+//                                circleView.fillColor = [UIColor clearColor];
+//                                circleView.alpha = 0.75;
+//                            }
+//                   
+//                    break;
+//                    
+//                }
+//            }            
+//            
+//        }
+//        }
+            
+//
     }
-    
+        
+        
     for (L1Node * node in offNodes){
         [self nodeSoundOff:node];        
     }
@@ -497,8 +599,11 @@
         [self nodeSoundOn:node];
     }
 
+    
+    [self setNowPlayingLabel];
 
 }
+
 
 
 -(IBAction) downloadAllTheThings
@@ -506,16 +611,16 @@
     [proximityMonitor downloadAll];
 }
 
--(IBAction) globalPauseToggle
+-(void) globalPauseToggle
 {
     [soundManager toggleGlobalPause];
     if (soundManager.globallyPaused){
         NSLog(@"Just paused.  Set icon to play image.");
-        [pauseButton setImage:[UIImage imageNamed:@"icon_controls_3.png"] forState:UIControlStateNormal];
+        [pauseButton setImage:[UIImage imageNamed:@"btn-play.png"] forState:UIControlStateNormal];
     }
     else{
         NSLog(@"Just unpaused.  Set icon to pause image.");
-        [pauseButton setImage:[UIImage imageNamed:@"icon_controls_4.png"] forState:UIControlStateNormal];
+        [pauseButton setImage:[UIImage imageNamed:@"btn-pause.png"] forState:UIControlStateNormal];
     }
 }
 

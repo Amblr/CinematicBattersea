@@ -17,6 +17,9 @@
 #import "HHSoundManager.h"
 
 #import "HHConfigurationOptions.h"
+#import "L1OverlayView.h"
+
+#define NO_WALK_SELECTED -1
 
 
 @class L1DownloadProximityMonitor;
@@ -25,7 +28,9 @@
 @interface HackneyHear_ViewController : UIViewController<CLLocationManagerDelegate> {
     L1Scenario * scenario;
     IBOutlet L1MapViewController * mapViewController;
-
+    IBOutlet UILabel * nowPlayingLabel;
+    IBOutlet UIView * nowPlayingView;
+    
     CLLocationManager *locationManager;
     NSMutableDictionary *circles;
 //    IBOutlet UISwitch *realGPSControl;
@@ -42,12 +47,19 @@
     IBOutlet UIButton * pauseButton;
     IBOutlet L1DownloadProximityMonitor * proximityMonitor;
     NSDate * sinclairSpecialCaseNodeFirstOffTime;
+    int selectedWalk;
+    L1Overlay * walkOverlay;
     
     
 }
+@property (retain) L1Overlay * walkOverlay;
+@property (assign) int selectedWalk;
 @property (retain) L1Scenario * scenario;
 @property (retain) NSDate * sinclairSpecialCaseNodeFirstOffTime;
--(IBAction) globalPauseToggle;
+-(void) globalPauseToggle;
+
+-(void) setWalk:(int) walkIndex;
+
 
 // Location awareness
 -(void) locationUpdate:(CLLocationCoordinate2D) location;
