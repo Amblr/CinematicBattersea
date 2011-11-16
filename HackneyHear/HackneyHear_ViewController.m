@@ -428,16 +428,18 @@
             upperRight.longitude = -0.060814;
             break;
         case 2:
-            lowerLeft.latitude = 0;
-            lowerLeft.longitude = 0;
-            upperRight.latitude = 0;
-            upperRight.longitude = 0;
+
+            lowerLeft.latitude = 51.537799;
+            lowerLeft.longitude = -0.061318;
+            upperRight.latitude = 51.542192;
+            upperRight.longitude = -0.059180;
             break;
         case 3:
-            lowerLeft.latitude = 0;
-            lowerLeft.longitude = 0;
-            upperRight.latitude = 0;
-            upperRight.longitude = 0;
+            lowerLeft.latitude = 51.538658;
+            
+            lowerLeft.longitude = -0.060446;
+            upperRight.latitude = 51.542151;
+            upperRight.longitude = -0.058134;
             break;
         default:
             return;
