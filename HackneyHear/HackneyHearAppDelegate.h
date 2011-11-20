@@ -18,7 +18,8 @@
     IBOutlet UITabBarController*  mainTabBarController;
     IBOutlet HackneyHear_ViewController * hhViewController;
     IBOutlet HHMediaStatusViewController * mediaStatusViewController;
-
+    UIBackgroundTaskIdentifier backgroundTaskID;
+    BOOL useLoadedScenario;
     L1Scenario * scenario;
 }
 

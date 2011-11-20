@@ -64,6 +64,7 @@
 		D850005E1473B637006034FF /* walk1.png in Resources */ = {isa = PBXBuildFile; fileRef = D850005B1473B637006034FF /* walk1.png */; };
 		D850005F1473B637006034FF /* walk3.png in Resources */ = {isa = PBXBuildFile; fileRef = D850005C1473B637006034FF /* walk3.png */; };
 		D85000601473B637006034FF /* walk2.png in Resources */ = {isa = PBXBuildFile; fileRef = D850005D1473B637006034FF /* walk2.png */; };
+		D8B7F8971479274200FFB778 /* flood.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8B7F8961479274100FFB778 /* flood.mp3 */; };
 		D8CE47BD144580ED00B08C71 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE47BC144580ED00B08C71 /* AVFoundation.framework */; };
 		D8CE47C1144586AA00B08C71 /* HHOptionsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */; };
 		D8CE47C2144586AA00B08C71 /* HHOptionsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */; };
@@ -202,6 +203,8 @@
 		D8DB5BB5145DF7420095F308 /* 4e62214388216000010004a4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8DB5B56145DF7420095F308 /* 4e62214388216000010004a4.mp3 */; };
 		D8DB5BB6145DF7420095F308 /* 4e62217288216000010007c1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8DB5B57145DF7420095F308 /* 4e62217288216000010007c1.mp3 */; };
 		D8DB5BB7145DF7420095F308 /* 4e622113882160000100018b.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8DB5B58145DF7420095F308 /* 4e622113882160000100018b.mp3 */; };
+		D8ED442614750E9900CDF716 /* HHAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ED442414750E9800CDF716 /* HHAboutViewController.m */; };
+		D8ED442714750E9900CDF716 /* HHAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8ED442514750E9800CDF716 /* HHAboutViewController.xib */; };
 		D8EFF92E144069FF0073D9A2 /* HackneyHearAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */; };
 		D8FECB5114502282009A3A8D /* HH_logo_57.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FECB5014502282009A3A8D /* HH_logo_57.png */; };
 		D8FECB5E1451D939009A3A8D /* intro_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FECB5D1451D939009A3A8D /* intro_button.png */; };
@@ -281,6 +284,7 @@
 		D850005B1473B637006034FF /* walk1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk1.png; sourceTree = "<group>"; };
 		D850005C1473B637006034FF /* walk3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk3.png; sourceTree = "<group>"; };
 		D850005D1473B637006034FF /* walk2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk2.png; sourceTree = "<group>"; };
+		D8B7F8961479274100FFB778 /* flood.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flood.mp3; sourceTree = "<group>"; };
 		D8CE47BC144580ED00B08C71 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D8CE47BE144586A900B08C71 /* HHOptionsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHOptionsMenuController.h; sourceTree = "<group>"; };
 		D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHOptionsMenuController.m; sourceTree = "<group>"; };
@@ -422,9 +426,11 @@
 		D8DB5B56145DF7420095F308 /* 4e62214388216000010004a4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 4e62214388216000010004a4.mp3; path = "../../HH-sounds/4e62214388216000010004a4.mp3"; sourceTree = "<group>"; };
 		D8DB5B57145DF7420095F308 /* 4e62217288216000010007c1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 4e62217288216000010007c1.mp3; path = "../../HH-sounds/4e62217288216000010007c1.mp3"; sourceTree = "<group>"; };
 		D8DB5B58145DF7420095F308 /* 4e622113882160000100018b.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 4e622113882160000100018b.mp3; path = "../../HH-sounds/4e622113882160000100018b.mp3"; sourceTree = "<group>"; };
+		D8ED442314750E9800CDF716 /* HHAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHAboutViewController.h; sourceTree = "<group>"; };
+		D8ED442414750E9800CDF716 /* HHAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHAboutViewController.m; sourceTree = "<group>"; };
+		D8ED442514750E9800CDF716 /* HHAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHAboutViewController.xib; sourceTree = "<group>"; };
 		D8EFF92C144069FF0073D9A2 /* HackneyHearAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HackneyHearAppDelegate.h; sourceTree = "<group>"; };
 		D8EFF92D144069FF0073D9A2 /* HackneyHearAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackneyHearAppDelegate.m; sourceTree = "<group>"; };
-		D8FECB40144F621F009A3A8D /* HH-sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "HH-sounds"; path = "../../../HH-sounds"; sourceTree = "<group>"; };
 		D8FECB5014502282009A3A8D /* HH_logo_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HH_logo_57.png; sourceTree = "<group>"; };
 		D8FECB5D1451D939009A3A8D /* intro_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -542,7 +548,7 @@
 		D823090C143CCE8600894000 /* HackneyHear */ = {
 			isa = PBXGroup;
 			children = (
-				D8FECB40144F621F009A3A8D /* HH-sounds */,
+				D8B7F8961479274100FFB778 /* flood.mp3 */,
 				D846FFB0144F4E2100867811 /* story.json */,
 				D81A6EA41444558400394431 /* atmos.json */,
 				D81A6EA51444558500394431 /* music.json */,
@@ -566,6 +572,9 @@
 				D8D86D571472F693003F63A2 /* HHCreditsViewController.h */,
 				D8D86D581472F693003F63A2 /* HHCreditsViewController.m */,
 				D8D86D591472F694003F63A2 /* HHCreditsViewController.xib */,
+				D8ED442314750E9800CDF716 /* HHAboutViewController.h */,
+				D8ED442414750E9800CDF716 /* HHAboutViewController.m */,
+				D8ED442514750E9800CDF716 /* HHAboutViewController.xib */,
 				D8230918143CCE8700894000 /* iPhone */,
 				D823091F143CCE8700894000 /* iPad */,
 				D823090D143CCE8600894000 /* Supporting Files */,
@@ -978,6 +987,8 @@
 				D850005E1473B637006034FF /* walk1.png in Resources */,
 				D850005F1473B637006034FF /* walk3.png in Resources */,
 				D85000601473B637006034FF /* walk2.png in Resources */,
+				D8ED442714750E9900CDF716 /* HHAboutViewController.xib in Resources */,
+				D8B7F8971479274200FFB778 /* flood.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1009,7 @@
 				D8CE47C1144586AA00B08C71 /* HHOptionsMenuController.m in Sources */,
 				D8D86CF41472CEE6003F63A2 /* HHWalksViewController.m in Sources */,
 				D8D86D5A1472F694003F63A2 /* HHCreditsViewController.m in Sources */,
+				D8ED442614750E9900CDF716 /* HHAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,8 +1066,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/Users/joe/src/projects/locations/Workspace/Core/Amblr-Core/Amblr-Core/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
+				PROVISIONING_PROFILE = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1074,8 +1086,8 @@
 				HEADER_SEARCH_PATHS = "/Users/joe/src/projects/locations/Workspace/Core/Amblr-Core/Amblr-Core/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC6D2430-BC5D-45E3-A589-30ED463FF8AC";
+				PROVISIONING_PROFILE = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1085,6 +1097,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Joe ZUNTZ";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joe ZUNTZ";
 				COPY_PHASE_STRIP = NO;
@@ -1093,10 +1106,11 @@
 				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				"OTHER_CFLAGS[arch=*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
+				PROVISIONING_PROFILE = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1112,9 +1126,10 @@
 				GCC_PREFIX_HEADER = "HackneyHear/HackneyHear-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HackneyHear/HackneyHear-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E683806-BFE0-413C-8BC7-3A85630FFCB6";
+				PROVISIONING_PROFILE = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0658468-FF3B-4BA0-8A9D-6C0696AB0981";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -13,4 +13,6 @@
     IBOutlet UIScrollView * scrollView;
     IBOutlet UIView * contentView;
 }
+-(IBAction)openAmblrWebpage;
+-(IBAction)openHackneyHearWebpage;
 @end

@@ -37,21 +37,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [[AVAudioSession sharedInstance] setDelegate: self];
-    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:nil];
     [HackneyHear_ViewController class];
     [L1MapViewController class];
     self.window.rootViewController = self.mainTabBarController;
     NSLog(@"view controller = %@",self.mainTabBarController);
     [self.window makeKeyAndVisible];
-    //    [self setupScenario];
     [HTNotifier startNotifierWithAPIKey:@"bf9845eaf284ec17a3652f0a82d70702" environmentName:HTNotifierDevelopmentEnvironment];
-    
+
+    [[AVAudioSession sharedInstance] setDelegate: self];
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:nil];
 #if LOAD_SCENARIO_FROM_FILE
+#warning SETTING SCENARIO FROM FIXED FILE!
+    useLoadedScenario = YES;
     [self setupScenario];
 #else
+    useLoadedScenario = NO;
     [self authenticate];
 #endif
+    
     return YES;
 }
 
@@ -61,7 +64,10 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    
+    NSLog(@"applicationWillResignActive");
 }
+
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -69,6 +75,18 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    NSLog(@"applicationDidEnterBackground");
+//    if ([[UIApplication sharedApplication] respondsToSelector:@selector(backgroundTimeRemaining)]){
+//        NSTimeInterval t = [[UIApplication sharedApplication] backgroundTimeRemaining];
+//        NSLog(@"Time left = %f\n",t);
+//    }
+    
+    if (hhViewController.soundManager.globallyPaused){
+        [hhViewController stopUpdatingLocation];
+        NSLog(@"Stopping location update");
+        //If paused the user does not want to play any more, so de-activate location updating
+    }
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -76,6 +94,10 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    NSLog(@"applicationWillEnterForeground");
+    [hhViewController startUpdatingLocation];
+    hhViewController.lastActivation = [NSDate date];
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -83,6 +105,8 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    NSLog(@"applicationDidBecomeActive");
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -134,18 +158,15 @@
 {
     int code = [response statusCode];
     NSLog(@"Response %d to authentication: %@",code,[NSHTTPURLResponse localizedStringForStatusCode:code]);
-    //    NSString * text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    //    NSLog(@"%@",text);
+    if (code%100!=4) useLoadedScenario=YES;
     [self setupScenario];
     
 }
 
 -(void) failedAuthentication:(NSError*) error
 {
-    NSString * message = [error localizedDescription];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+    useLoadedScenario=YES;
+    [self setupScenario];
     
     
 }
@@ -153,24 +174,22 @@
 -(void) hackScenarioReady:(NSData*) data
 {
     [scenario downloadedStoryData:data withResponse:nil];
-    
 }
 
 
 -(void) setupScenario {
     
-#if LOAD_SCENARIO_FROM_FILE
-#warning SETTING SCENARIO FROM FIXED FILE!
-    NSString * storyFile = [[NSBundle mainBundle]pathForResource:@"story" ofType:@"json"];
-    self.scenario = [[L1Scenario alloc] init];
-    self.scenario.key = @"4e15c53add71aa000100025b";
-    NSData * data = [NSData dataWithContentsOfFile:storyFile];
-    [self performSelector:@selector(hackScenarioReady:) withObject:data afterDelay:5.0];
-#else
-    self.scenario = [L1Scenario scenarioFromStoryURL:STORY_URL withKey:SCENARIO_KEY];
-#endif        
-    
-    
+    if (useLoadedScenario){
+        NSLog(@"SETTING SCENARIO FROM FIXED FILE!");
+        NSString * storyFile = [[NSBundle mainBundle]pathForResource:@"story" ofType:@"json"];
+        self.scenario = [[[L1Scenario alloc] init] autorelease];
+        self.scenario.key = @"4e15c53add71aa000100025b";
+        NSData * data = [NSData dataWithContentsOfFile:storyFile];
+        [self performSelector:@selector(hackScenarioReady:) withObject:data afterDelay:1.0];
+    }
+    else{
+        self.scenario = [L1Scenario scenarioFromStoryURL:STORY_URL withKey:SCENARIO_KEY];
+    }     
     
     self.scenario.delegate = hhViewController;
     hhViewController.scenario = scenario;
@@ -185,10 +204,15 @@
 
 -(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario
 {
-    NSString * message = @"You don't seem to have an internet connection.  Or possibly your humble developers have screwed up.  Probably the former.";
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"No Network" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+//    NSString * message = @"We cannot connect to the internet to find the latest version of the app.";
+//    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"No Network" message:message delegate:self cancelButtonTitle:@"*Sigh*" otherButtonTitles:nil];
+//    [alert show];
+//    [alert release];
+    //We now transparently revert to the inbuilt version of the app if we have no internet connection.
+    
+    [self setupScenario];
+    
+    
 }
 
 

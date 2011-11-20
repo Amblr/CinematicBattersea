@@ -41,6 +41,7 @@
     [scrollView setContentSize:contentView.frame.size];
     UIColor *pattern = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bkg-pattern.png"]];
     [contentView setBackgroundColor:pattern];
+    [scrollView setBackgroundColor:pattern];
     
     for (UIButton * button in walkButtons){
             [button setTitle:TRY_WALK forState:UIControlStateNormal];

@@ -16,8 +16,10 @@
 @interface HHAudioSource : L1CDLongAudioSource {
 @private
     L1SoundType soundType;
+    BOOL hasBeenPaused;
 }
 @property (assign) L1SoundType soundType;
+@property (assign) BOOL hasBeenPaused;
 @end
 
 

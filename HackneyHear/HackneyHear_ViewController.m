@@ -21,6 +21,8 @@
 @synthesize scenario;
 @synthesize selectedWalk;
 @synthesize walkOverlay;
+@synthesize soundManager;
+@synthesize lastActivation;
 
 - (void)dealloc
 {
@@ -47,7 +49,7 @@
 #else
     realGPSControl = YES;
 #endif
-    soundManager = [[HHSoundManager alloc] init];
+    self.soundManager = [[[HHSoundManager alloc] init] autorelease];
 
     BOOL ok = [L1Utils initializeDirs];
     if (!ok) NSAssert(ok, @"Unable to ini dirs.");
@@ -65,7 +67,7 @@
     sinclairSpecialCaseNodeFirstOffTime = nil;
     
     [nowPlayingView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bkg-pattern.png"]]];
-    
+    self.lastActivation = [NSDate date];
     selectedWalk=NO_WALK_SELECTED;
     
     
@@ -221,9 +223,23 @@
 //This is a delegate method that gets called when some nodes have been downloaded.
 //in our case that means that the scenario download is complete and we
 //shoudl start normal behaviour.
-//That means reading through the nodes and adding them to the map if they have a sound attached.
+//That means reading through the nodes and adding them to the map if they have a sound attached
+
+
+//-(void) reset
+//{
+//    for (L1Circle * circle in circles){
+//        [mapViewController removeCircle:circle];
+//    }
+//}
+
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
+    //If we do this a second time it is because we have re-downloaded the scenario.
+    //So we should reset.
+    //[self reset];
+    
+    
     for (L1Node *node in [nodes allValues]){
         
         //Check if node has any sound resources.  If not ignore it.
@@ -239,10 +255,6 @@
                 
         //Add circle overlay.  The colour depends on the sound type.
         //Choose the colour here.
-//        UIColor * circleColor;
-//        BOOL isSpeech = (sound.soundType==L1SoundTypeSpeech);
-//        if (isSpeech) circleColor = [UIColor redColor];
-//        else circleColor = [UIColor greenColor];
         
         //Create the circle here, store it so we can keep track and change its color later,
         //and add it to the map.
@@ -261,15 +273,6 @@
     // If any nodes have been found we should zoom the map to their location.
     //We use an arbitrary on to zoom to for now.
     if ([nodes count]) {
-//        L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
-//        [mapViewController zoomInToCoordinate:];
-//        -(void) zoomInToCoordinate:(CLLocationCoordinate2D) center size:(float) size
-//        float lat_center = 51.535463;
-//        float lon_center = -0.062656;
-//        CLLocationCoordinate2D center;
-//        center.latitude=lat_center;
-//        center.longitude=lon_center;
-//        [mapViewController zoomInToCoordinate:center size:400.0];
         //We also add a pin representing the fake user location (for testing)
         //a little offset from the first node.
 #if ALLOW_FAKE_LOCATION
@@ -457,6 +460,23 @@
     
 }
 
+-(void) checkForBackgroundExpiry
+{
+    //If the app has not been playing any sound for a certain length of time we should alert the user and
+    //then switch off application updates
+    if ([[UIApplication sharedApplication] applicationState]!=UIApplicationStateBackground) return;
+    
+    NSTimeInterval dt = -[self.lastActivation timeIntervalSinceNow];
+    if (dt>TIME_INTERVAL_FOR_SWITCH_OFF){
+        [self stopUpdatingLocation];
+        UILocalNotification * note = [[UILocalNotification alloc] init];
+        note.alertBody = @"You seem to have left the London Fields area so the Hackney Hear application has switched off.  To restart it you can open the app again and return to the area.";
+        note.hasAction=NO;
+        note.soundName = @"flood.mp3";
+        [[UIApplication sharedApplication] presentLocalNotificationNow:note];
+        [note autorelease];
+    }
+}
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
@@ -528,69 +548,20 @@
 
         node.enabled = nowEnabled;
         
-        if (nowEnabled){
-            L1Circle * circle = [circles valueForKey:node.key];
-            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
-            if (circleView){
-                circleView.fillColor = [UIColor redColor];
-                circleView.alpha = 0.75;
-            }
-
-        }
-        else{
-            
-        }
-        
-        
         L1Circle * circle = [circles valueForKey:node.key];
         if (circle){
             MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
             if (circleView){
                 if (nowEnabled){
                     circleView.fillColor = [UIColor redColor];
-                    circleView.alpha = 0.5;
                 }
                 else{
                     circleView.fillColor = [UIColor clearColor];
-                    circleView.alpha = 1.0;
                     
                 }
             }
         }
         
-        // This is overkill.
-//        if (nowEnabled){
-//            L1Circle * circle = [circles valueForKey:node.key];
-////            -(MKCircleView*) circleViewForCircle:(L1Circle*) circle
-//            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
-//            if (circleView){
-//                circleView.fillColor = [UIColor redColor];
-//                circleView.alpha = 0.75;
-//            }
-//            //[mapViewController setColor:[UIColor blueColor] forCircle:circle];
-//        }
-//        else{
-//            
-//        }
-//            for(L1Resource * resource in node.resources){
-//                if ([resource.type isEqualToString:@"sound"] && resource.soundType==L1SoundTypeSpeech){
-//                    L1Circle * circle = [circles valueForKey:node.key];
-//                    if (circle){
-//                            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
-//                            if (circleView){
-//                                circleView.fillColor = [UIColor clearColor];
-//                                circleView.alpha = 0.75;
-//                            }
-//                   
-//                    break;
-//                    
-//                }
-//            }            
-//            
-//        }
-//        }
-            
-//
     }
         
         
@@ -603,6 +574,13 @@
 
     
     [self setNowPlayingLabel];
+    
+    if ([onNodes count]||[offNodes count]){
+        self.lastActivation=[NSDate date];
+    }else{
+        [self checkForBackgroundExpiry];
+    }
+
 
 }
 
@@ -631,6 +609,17 @@
     L1Node * node = [self.scenario.nodes objectForKey:key];
     node.enabled=NO;
 }
+
+-(void) stopUpdatingLocation
+{
+    [locationManager stopUpdatingLocation];
+}
+
+-(void) startUpdatingLocation
+{
+    [locationManager startUpdatingLocation];
+}
+
 
 @synthesize sinclairSpecialCaseNodeFirstOffTime;
 @end

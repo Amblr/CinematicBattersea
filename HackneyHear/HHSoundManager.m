@@ -33,10 +33,20 @@
 #define SPEECH_TIME_FOR_INTERRUPTION_3G 15.0
 #define SPEECH_DURATION_FOR_NO_INTERRUPTION_3G 60.0
 
+#define PAUSE_FADE_TIME 1.0
+#define PAUSE_RISE_TIME 1.0
 
 
 @implementation HHAudioSource
+-(id) init
+{
+    self = [super init];
+    if (self){
+    }
+    return self;
+}
 @synthesize soundType;
+@synthesize hasBeenPaused;
 @end
 
 
@@ -61,8 +71,8 @@
         
         lastCompletionTime = [[NSMutableDictionary alloc] initWithCapacity:0];
         introIsPlaying=NO;
-        volumeChangeTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSoundVolumes:) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:volumeChangeTimer forMode:NSDefaultRunLoopMode];
+//        volumeChangeTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSoundVolumes:) userInfo:nil repeats:YES];
+  //      [[NSRunLoop currentRunLoop] addTimer:volumeChangeTimer forMode:NSDefaultRunLoopMode];
         
         globallyPaused=NO;
         globallyPausedSounds = [[NSMutableArray alloc] initWithCapacity:0];
@@ -90,6 +100,8 @@
 #pragma mark Intro Sound
 -(void) skipIntro
 {
+    NSLog(@"SOUND STATE + %@",[[AVAudioSession sharedInstance] category]);
+    
     //This quick exit test is outside the test because otherwise we can get a deadlock
     //if another synchronized method here posts a notification to the main view which in turn
     //calls this again.  Bad design on my part.
@@ -117,6 +129,7 @@
     @synchronized(self){
 
     HHAudioSource * introSound = [[HHAudioSource alloc] init];
+    introSound.hasBeenPaused=NO;
     introSound.delegate=self;
     introSound.soundType=L1SoundTypeIntro;
     introSound.key=INTRO_SOUND_KEY;
@@ -133,44 +146,7 @@
 }
 
 
--(void) fadeOutSound:(NSString *) key
-{
-    @synchronized(self){
 
-    HHAudioSource * sound = [audioSamples objectForKey:key];
-    if (!sound){
-        NSLog(@"Tried to fade out sound not found: %@",sound.key);
-        return;
-    }
-        if ([key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-        if (oneSoundOfTypeAtATime){
-            if ([key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
-            if ([key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
-        }
-    //If the sound is already rising then we should over-rule this and start fading.
-        if ([risingSounds objectForKey:key]){
-            [risingSounds removeObjectForKey:key];
-        }
-        [fadingSounds setObject:sound forKey:key];
-    }
-}
-
--(void) fadeInSound:(NSString *) key
-{
-    @synchronized(self){
-    HHAudioSource * sound = [audioSamples objectForKey:key];
-    if (!sound){
-        NSLog(@"Tried to fade out sound not found: %@",sound.key);
-        return;
-    }
-
-    //If the sound is already fading then we should over-rule this and start rising.
-        if ([fadingSounds objectForKey:key]){
-            [fadingSounds removeObjectForKey:key];
-        }
-        [risingSounds setObject:sound forKey:key];
-    }
-}
 
 
 -(BOOL) newSpeechNodeShouldStart
@@ -257,6 +233,7 @@
         sound = [[HHAudioSource alloc] init];
         sound.delegate=self;
         sound.soundType=soundType;
+        sound.hasBeenPaused=NO;
         sound.key=key;
         [sound load:filename];
         [sound play];
@@ -372,6 +349,51 @@
 }
 
 
+-(void) fadeOutSound:(NSString *) key
+{
+    
+    HHAudioSource * sound = [audioSamples objectForKey:key];
+    [sound fadeOut:[self fadeTimeForSound:sound]];
+    //    @synchronized(self){
+    //
+    //    HHAudioSource * sound = [audioSamples objectForKey:key];
+    //    if (!sound){
+    //        NSLog(@"Tried to fade out sound not found: %@",sound.key);
+    //        return;
+    //    }
+    //        if ([key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+    //        if (oneSoundOfTypeAtATime){
+    //            if ([key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
+    //            if ([key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+    //        }
+    //    //If the sound is already rising then we should over-rule this and start fading.
+    //        if ([risingSounds objectForKey:key]){
+    //            [risingSounds removeObjectForKey:key];
+    //        }
+    //        [fadingSounds setObject:sound forKey:key];
+    //    }
+}
+
+-(void) fadeInSound:(NSString *) key
+{
+    HHAudioSource * sound = [audioSamples objectForKey:key];
+    [sound riseIn:[self riseTimeForSound:sound]];
+
+//    @synchronized(self){
+//        HHAudioSource * sound = [audioSamples objectForKey:key];
+//        if (!sound){
+//            NSLog(@"Tried to fade out sound not found: %@",sound.key);
+//            return;
+//        }
+//        
+//        //If the sound is already fading then we should over-rule this and start rising.
+//        if ([fadingSounds objectForKey:key]){
+//            [fadingSounds removeObjectForKey:key];
+//        }
+//        [risingSounds setObject:sound forKey:key];
+//    }
+}
+
 
 //This method gets triggered every 1/2 second or so to update the sound volumes.
 //We keep track of whether there are any sounds rising or falling.
@@ -435,12 +457,48 @@
             NSLog(@"Done rising %@",sound.key);
 
             sound.volume=1.0;
-                [risingSounds removeObjectForKey:sound.key];
+            [risingSounds removeObjectForKey:sound.key];
         }
 
     }
     }
 }
+
+-(void) l1CDAudioSourceDidFinishFading:(L1CDLongAudioSource *)source
+{
+    @synchronized(self){
+    HHAudioSource * sound = (HHAudioSource*) source;
+    [sound pause];
+    if (globallyPaused){
+        //The rest of this function removes completed tracks 
+        //during pause, which we do not want to do if we are fading because we are paused
+        return;
+        }
+    if (sound.soundType==L1SoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
+    //This is no longer the active speech track as it has finished.
+    if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+    if ([sound.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
+    if ([sound.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+    NSLog(@"Done fading %@.",sound.key);
+    }
+}
+
+-(void) l1CDAudioSourceDidFinishRising:(L1CDLongAudioSource *)source
+{
+    @synchronized(self){
+    HHAudioSource * sound = (HHAudioSource*) source;
+//    [sound pause];
+//    if (sound.soundType==L1SoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
+    //This is no longer the active speech track as it has finished.
+//    if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+//    if ([sound.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
+//    if ([sound.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+    NSLog(@"Done rising %@",sound.key);
+    }
+}
+
+
+
 
 
 - (void) cdAudioSourceDidFinishPlaying:(L1CDLongAudioSource *) audioSource
@@ -500,23 +558,36 @@
 }
 
 -(void) unpauseGlobal{
+    @synchronized(self){
     for (HHAudioSource * sound in globallyPausedSounds){
-        [sound resume];
+        if (![sound isPlaying]){
+            [sound resume]; //we only resume if the pause-fade finished.   
+            NSLog(@"Resuming %@",sound.key);
+        }else{
+            NSLog(@"Still playing: %@",sound.key);
+        }
+        
+        [sound riseIn:PAUSE_RISE_TIME];
     }
     [globallyPausedSounds removeAllObjects];
-    globallyPaused=NO;
-    
+    globallyPaused=NO;    
+    }
 }
 
+
 -(void) pauseGlobal{
+    @synchronized(self){
     for (NSString * key in audioSamples){
         HHAudioSource * sound = [audioSamples objectForKey:key];
         if ([sound isPlaying]){
-            [sound pause];
+            [sound fadeOut:PAUSE_FADE_TIME];
+            NSLog(@"Pausing %@",sound.key);
             [globallyPausedSounds addObject:sound];
+
         }
     }
     globallyPaused=YES;
+    }
 }
 
 -(void) toggleGlobalPause

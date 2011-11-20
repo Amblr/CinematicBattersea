@@ -37,6 +37,7 @@
     [scrollView setContentSize:contentView.frame.size];
     UIColor *pattern = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bkg-pattern.png"]];
     [contentView setBackgroundColor:pattern];
+    [scrollView setBackgroundColor:pattern];
 
 }
 
@@ -52,5 +53,20 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+-(IBAction)openAmblrWebpage
+{
+    NSURL * url = [NSURL URLWithString:@"http://www.amblr.com"];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+
+-(IBAction)openHackneyHearWebpage
+{
+    NSURL * url = [NSURL URLWithString:@"http://www.hackneyhear.com"];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 
 @end

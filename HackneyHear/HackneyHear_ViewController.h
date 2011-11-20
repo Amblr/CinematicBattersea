@@ -49,17 +49,21 @@
     NSDate * sinclairSpecialCaseNodeFirstOffTime;
     int selectedWalk;
     L1Overlay * walkOverlay;
+    NSDate * lastActivation;
     
     
 }
+@property (retain) NSDate * lastActivation;
 @property (retain) L1Overlay * walkOverlay;
 @property (assign) int selectedWalk;
 @property (retain) L1Scenario * scenario;
 @property (retain) NSDate * sinclairSpecialCaseNodeFirstOffTime;
+@property (retain) HHSoundManager * soundManager;
 -(void) globalPauseToggle;
 
 -(void) setWalk:(int) walkIndex;
-
+-(void) stopUpdatingLocation;
+-(void) startUpdatingLocation;
 
 // Location awareness
 -(void) locationUpdate:(CLLocationCoordinate2D) location;
