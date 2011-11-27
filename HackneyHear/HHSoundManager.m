@@ -76,7 +76,8 @@
         
         globallyPaused=NO;
         globallyPausedSounds = [[NSMutableArray alloc] initWithCapacity:0];
-
+        introIsPlaying=NO;
+        introBeforeBreakPoint=NO;
         oneSoundOfTypeAtATime = YES;
         
         if (oneSoundOfTypeAtATime){
@@ -99,9 +100,7 @@
 
 #pragma mark Intro Sound
 -(void) skipIntro
-{
-    NSLog(@"SOUND STATE + %@",[[AVAudioSession sharedInstance] category]);
-    
+{    
     //This quick exit test is outside the test because otherwise we can get a deadlock
     //if another synchronized method here posts a notification to the main view which in turn
     //calls this again.  Bad design on my part.
@@ -218,6 +217,7 @@
     //In general this does cause the skipIntro to be invoked twice, annoyingly.
     //I had to put the test for quick return in that method outside the synchronization for that reason.
     if (!introBeforeBreakPoint){
+        NSLog(@"Skipping intro because we are playing a new sound that will replace it.");
          [self skipIntro];   
         [[NSNotificationCenter defaultCenter] postNotificationName:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
     }

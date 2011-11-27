@@ -9,7 +9,8 @@
 #import "HHAboutViewController.h"
 #import "L1DownloadManager.h"
 #import "L1DownloadProximityMonitor.h"
-
+#import "HackneyHear_ViewController.h"
+#import "HackneyHearAppDelegate.h"
 @implementation HHAboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -69,16 +70,22 @@
 -(IBAction)checkForNewSounds
 {
     
-    [[UIApplication sharedApplication] delegate];
+//    [[UIApplication sharedApplication] delegate];
+    UITabBarController * parent = [self tabBarController];
+    HackneyHear_ViewController * mainViewController = [[parent viewControllers]objectAtIndex:0];
+    [mainViewController reset];
     
+    HackneyHearAppDelegate * appDelegate = (HackneyHearAppDelegate*) [[UIApplication sharedApplication] delegate];
+    [appDelegate setupScenario];
+    [parent setSelectedIndex:0];
     
-    [checkForNewSoundsButton setTitle:@"Checking..." forState:UIControlStateNormal];
-
-    [progressView setHidden:NO];
-    [progressView setProgress:0.0];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resourceDownloaded:) name:L1_RESOURCE_DATA_IS_READY object:nil];
-    [proximityMonitor downloadAll];
-    resourcesToDownload = [[L1DownloadManager sharedL1DownloadManager] count];
+//    [checkForNewSoundsButton setTitle:@"Checking..." forState:UIControlStateNormal];
+//
+//    [progressView setHidden:NO];
+//    [progressView setProgress:0.0];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resourceDownloaded:) name:L1_RESOURCE_DATA_IS_READY object:nil];
+//    [proximityMonitor downloadAll];
+//    resourcesToDownload = [[L1DownloadManager sharedL1DownloadManager] count];
     
 }
 

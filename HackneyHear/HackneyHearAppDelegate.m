@@ -24,6 +24,14 @@
 #import <AVFoundation/AVFoundation.h>
 #import "HackneyHear_ViewController.h"
 
+void audioRouteChangeListenerCallback (void *data, AudioSessionPropertyID ID, UInt32  dataSize, const void *inData
+                                       )
+{
+    HackneyHearAppDelegate * appDelegate = (HackneyHearAppDelegate *) data;
+    CFDictionaryRef routeChangeDictionary = inData;
+    [appDelegate audioRouteDidChange:routeChangeDictionary];
+    
+}
 
 
 
@@ -31,8 +39,10 @@
 @synthesize  scenario;
 
 @synthesize window=_window;
-
+@synthesize splashScreen;
 @synthesize mainTabBarController;
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -42,6 +52,13 @@
     self.window.rootViewController = self.mainTabBarController;
     NSLog(@"view controller = %@",self.mainTabBarController);
     [self.window makeKeyAndVisible];
+    
+    self.splashScreen = [[[UIImageView alloc] initWithFrame:self.window.bounds] autorelease];
+    splashScreen.image = [UIImage imageNamed:@"splash.png"];
+    [self.window addSubview:splashScreen];
+    [self performSelector:@selector(removeSplashScreen:) withObject:nil afterDelay:SPLASH_SCREEN_DELAY];
+    
+    
     [HTNotifier startNotifierWithAPIKey:@"bf9845eaf284ec17a3652f0a82d70702" environmentName:HTNotifierDevelopmentEnvironment];
 
     [[AVAudioSession sharedInstance] setDelegate: self];
@@ -55,7 +72,22 @@
     [self authenticate];
 #endif
     
+//    OSStatus error = AudioSessionInitialize(NULL, NULL, NULL, NULL);
+
+    OSStatus error = AudioSessionAddPropertyListener (kAudioSessionProperty_AudioRouteChange,
+                                     audioRouteChangeListenerCallback,
+                                     self);
+    
+    char * error_c = (char*) &error;
+    if (error) 
+        NSLog(@"Error %c%c%c%c while adding listener", *(error_c),*(error_c+1),*(error_c+2),*(error_c+3));
+
     return YES;
+}
+
+-(void) removeSplashScreen:(id) dummy
+{
+    [self.splashScreen removeFromSuperview];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -97,7 +129,7 @@
     NSLog(@"applicationWillEnterForeground");
     [hhViewController startUpdatingLocation];
     hhViewController.lastActivation = [NSDate date];
-
+    [hhViewController zoomToCurrentLocation];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -158,7 +190,7 @@
 {
     int code = [response statusCode];
     NSLog(@"Response %d to authentication: %@",code,[NSHTTPURLResponse localizedStringForStatusCode:code]);
-    if (code%100!=4) useLoadedScenario=YES;
+    if (code%100==4||code%100==5) useLoadedScenario=YES;
     [self setupScenario];
     
 }
@@ -193,7 +225,7 @@
     
     self.scenario.delegate = hhViewController;
     hhViewController.scenario = scenario;
-    mediaStatusViewController.scenario = scenario;
+    //mediaStatusViewController.scenario = scenario;
     
 }
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes

@@ -71,35 +71,6 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="780363461">
-						<reference key="NSNextResponder" ref="775819214"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, -6}, {320, 127}}</string>
-						<reference key="NSSuperview" ref="775819214"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="83032027"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bkg-topfade.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="83032027">
-						<reference key="NSNextResponder" ref="775819214"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{69, 0}, {182, 88}}</string>
-						<reference key="NSSuperview" ref="775819214"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="954228869"/>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">small-hackneyhear.png</string>
-						</object>
-					</object>
 					<object class="IBUILabel" id="357936581">
 						<reference key="NSNextResponder" ref="775819214"/>
 						<int key="NSvFlags">292</int>
@@ -369,7 +340,6 @@
 						<string key="NSFrame">{{21, 1521}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="775819214"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">3</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -386,11 +356,40 @@
 						<reference key="IBUIFontDescription" ref="428376018"/>
 						<reference key="IBUIFont" ref="413867429"/>
 					</object>
+					<object class="IBUIImageView" id="108112243">
+						<reference key="NSNextResponder" ref="775819214"/>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{320, 141}</string>
+						<reference key="NSSuperview" ref="775819214"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="798414956"/>
+						<int key="IBUIContentMode">5</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">bkg-topfade.png</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="798414956">
+						<reference key="NSNextResponder" ref="775819214"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{40, 14}, {240, 79}}</string>
+						<reference key="NSSuperview" ref="775819214"/>
+						<reference key="NSWindow"/>
+						<int key="IBUIContentMode">5</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">small-hackneyhear.png</string>
+						</object>
+					</object>
 				</array>
 				<string key="NSFrameSize">{320, 1589}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="780363461"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -410,7 +409,6 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -550,7 +548,6 @@
 						<int key="objectID">6</int>
 						<reference key="object" ref="775819214"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="83032027"/>
 							<reference ref="357936581"/>
 							<reference ref="816583634"/>
 							<reference ref="753607714"/>
@@ -558,7 +555,6 @@
 							<reference ref="1053377693"/>
 							<reference ref="4975066"/>
 							<reference ref="954228869"/>
-							<reference ref="780363461"/>
 							<reference ref="358292285"/>
 							<reference ref="499741"/>
 							<reference ref="585710783"/>
@@ -566,22 +562,14 @@
 							<reference ref="223257436"/>
 							<reference ref="230055837"/>
 							<reference ref="150336962"/>
+							<reference ref="108112243"/>
+							<reference ref="798414956"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
 						<reference key="object" ref="954228869"/>
-						<reference key="parent" ref="775819214"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">16</int>
-						<reference key="object" ref="780363461"/>
-						<reference key="parent" ref="775819214"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">17</int>
-						<reference key="object" ref="83032027"/>
 						<reference key="parent" ref="775819214"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -649,6 +637,16 @@
 						<reference key="object" ref="150336962"/>
 						<reference key="parent" ref="775819214"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">47</int>
+						<reference key="object" ref="108112243"/>
+						<reference key="parent" ref="775819214"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">48</int>
+						<reference key="object" ref="798414956"/>
+						<reference key="parent" ref="775819214"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -658,8 +656,6 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -674,13 +670,15 @@
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">48</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -732,7 +730,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bkg-topfade.png">{320, 127}</string>
+			<string key="bkg-topfade.png">{320, 130}</string>
 			<string key="button_walk.png">{250, 50}</string>
 			<string key="line.png">{320, 5}</string>
 			<string key="small-hackneyhear.png">{140, 64}</string>

@@ -57,8 +57,8 @@
     locationManager.delegate = self;
     circles = [[NSMutableDictionary alloc] initWithCapacity:0];
     //self.scenario=nil;
-    realLocationTracker = [[L1BigBrother alloc] init];
-    fakeLocationTracker = [[L1BigBrother alloc] init];
+//    realLocationTracker = [[L1BigBrother alloc] init];
+//    fakeLocationTracker = [[L1BigBrother alloc] init];
     mapViewController.delegate=self;
 //    proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
     skipButton=nil;
@@ -100,9 +100,42 @@
 }
 
 
+-(void) audioRouteDidChange:(CFDictionaryRef) change
+{
+    CFNumberRef routeChangeReasonRef = CFDictionaryGetValue (change, 
+                                                             CFSTR(kAudioSession_AudioRouteChangeKey_Reason));
+    SInt32 routeChangeReason;
+    
+    CFNumberGetValue (routeChangeReasonRef, kCFNumberSInt32Type, &routeChangeReason);
+    
+    if (routeChangeReason == kAudioSessionRouteChangeReason_OldDeviceUnavailable) 
+    {
+        NSLog(@"Unplugged headset");
+        if (!self.soundManager.globallyPaused) {
+            [self globalPauseToggle];
+            [headphoneLabel setHidden:NO];    
+        }
+        
+        
+    }
+    if (routeChangeReason == kAudioSessionRouteChangeReason_NewDeviceAvailable)
+    {
+        NSLog(@"Plugged in headset");
+        [headphoneLabel setHidden:NO];    
+
+    }
+    
+}
+
+
 -(void) setNowPlayingLabel
 {
-    if (soundManager.currentSpeechKey){
+    if (self.soundManager.globallyPaused){
+        nowPlayingView.alpha = 1.0;
+        [nowPlayingLabel setText:@"PAUSED."];
+
+    }
+    else if (soundManager.currentSpeechKey){
         L1Node * activeSpeechNode = [self.scenario.nodes objectForKey:soundManager.currentSpeechKey];
         nowPlayingView.alpha = 1.0;
         [nowPlayingLabel setText:[NSString stringWithFormat:@"Now playing: %@",activeSpeechNode.name]];
@@ -145,22 +178,26 @@
     NSFileManager * manager = [[NSFileManager alloc]init];
     if (![manager fileExistsAtPath:markerPath] || FORCE_INTRO_LANUCH){
         //Do all the first launch things
-        BOOL ok = [manager createFileAtPath:markerPath contents:[NSData data] attributes:nil];
-        NSAssert(ok, @"Failed to create marker file.");
+        [manager createFileAtPath:markerPath contents:[NSData data] attributes:nil];
         
         //Play the intro sound.
+#ifndef LITE
         [soundManager startIntro];
         [nowPlayingLabel setText:@"Now Playing: Hackney Hear Introduction"];
-
+        
             
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(skipIntro:)
-                                                     name:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
+                                                     name:HH_INTRO_SOUND_ENDED_NOTIFICATION 
+                                                   object:nil];
 
         
         [pauseButton addTarget:self action:@selector(skipIntro:) forControlEvents:UIControlEventTouchUpInside];
         [pauseButton setImage:[UIImage imageNamed:@"btn-skip.png"] forState:UIControlStateNormal];
+#else
+        [self skipIntro:nil];
+#endif
 
         
         if (![CLLocationManager locationServicesEnabled]){
@@ -199,6 +236,15 @@
             [self locationUpdate:mapViewController.manualUserLocation.coordinate];
         }
     }
+    NSLog(@"View did appear");
+    [self performSelector:@selector(showMap:) withObject:nil afterDelay:0.1];
+    
+
+}
+
+-(void) showMap:(NSObject*)dummy
+{
+    mapViewController.view.alpha=1.0;
 
 }
 
@@ -215,7 +261,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
+-(void) viewWillAppear:(BOOL)animated
+{
+    NSLog(@"VIEW WILL APPEAR");
+    mapViewController.view.alpha=0.01;
+    [super viewWillAppear:animated];
+}
 #pragma mark -
 #pragma mark Story Elements
 
@@ -226,12 +277,15 @@
 //That means reading through the nodes and adding them to the map if they have a sound attached
 
 
-//-(void) reset
-//{
-//    for (L1Circle * circle in circles){
-//        [mapViewController removeCircle:circle];
-//    }
-//}
+-(void) reset
+{
+    for (L1Circle * circle in [circles allValues]){
+        [mapViewController removeCircle:circle];
+    }
+    [proximityMonitor removeNodes:[self.scenario.nodes allValues]];
+    [self setWalk:NO_WALK_SELECTED];
+    self.scenario=nil;
+}
 
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes
 {
@@ -373,7 +427,7 @@
         NSLog(@"Using update");
 
         [self locationUpdate:newLocation.coordinate];
-        if (trackMe)[realLocationTracker addLocation:newLocation];
+//        if (trackMe)[realLocationTracker addLocation:newLocation];
     }
     else{
 //        NSLog(@"Ignoring update");
@@ -388,7 +442,7 @@
     if (!realGPSControl) {
         NSLog(@"Using update");
         [self locationUpdate:location.coordinate];
-        if (trackMe) [fakeLocationTracker addLocation:location];
+//        if (trackMe) [fakeLocationTracker addLocation:location];
     }
     else{
         NSLog(@"Ignoring update");
@@ -414,6 +468,55 @@
 }
 
 
+-(void) cornersForWalk:(int)walkIndex lowerLeft:(CLLocationCoordinate2D*) lowerLeft upperRight:(CLLocationCoordinate2D*) upperRight
+{
+    switch (walkIndex) {
+        case 1:
+            lowerLeft->latitude = 51.535447;
+            lowerLeft->longitude = -0.062364;
+            upperRight->latitude = 51.537738;
+            upperRight->longitude = -0.060814;
+            break;
+        case 2:
+            
+            lowerLeft->latitude = 51.537799;
+            lowerLeft->longitude = -0.061318;
+            upperRight->latitude = 51.542192;
+            upperRight->longitude = -0.059180;
+            break;
+        case 3:
+            lowerLeft->latitude = 51.538658;
+            lowerLeft->longitude = -0.060446;
+            upperRight->latitude = 51.542151;
+            upperRight->longitude = -0.058134;
+            break;
+        default:
+            return;
+            break;
+    }
+
+}
+
+
+-(void) zoomToWalk:(int) walkIndex
+{
+    CLLocationCoordinate2D lowerLeft, upperRight; 
+    [self cornersForWalk:walkIndex lowerLeft:&lowerLeft upperRight:&upperRight];
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake((lowerLeft.latitude+upperRight.latitude)/2, (lowerLeft.longitude+upperRight.longitude)/2);
+    
+    MKCoordinateSpan span = MKCoordinateSpanMake(fabs(upperRight.latitude-lowerLeft.latitude), fabs(lowerLeft.longitude-upperRight.longitude));
+    
+    MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+    
+//    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(INITIAL_CENTER_LAT, INITIAL_CENTER_LON);
+//    MKCoordinateSpan span = MKCoordinateSpanMake(INITIAL_DELTA_LAT, INITIAL_DELTA_LON);
+//    MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+
+    
+    [mapViewController zoomToRegion:region];
+}
+
+
 -(void) setWalk:(int) walkIndex
 {
     NSLog(@"Set walk to %d",walkIndex);
@@ -422,39 +525,14 @@
     if (walkIndex==-1) return;
 
     CLLocationCoordinate2D lowerLeft, upperRight; 
-
-    switch (walkIndex) {
-        case 1:
-            lowerLeft.latitude = 51.535447;
-            lowerLeft.longitude = -0.062364;
-            upperRight.latitude = 51.537738;
-            upperRight.longitude = -0.060814;
-            break;
-        case 2:
-
-            lowerLeft.latitude = 51.537799;
-            lowerLeft.longitude = -0.061318;
-            upperRight.latitude = 51.542192;
-            upperRight.longitude = -0.059180;
-            break;
-        case 3:
-            lowerLeft.latitude = 51.538658;
-            
-            lowerLeft.longitude = -0.060446;
-            upperRight.latitude = 51.542151;
-            upperRight.longitude = -0.058134;
-            break;
-        default:
-            return;
-            break;
-    }
-    
+    [self cornersForWalk:walkIndex lowerLeft:&lowerLeft upperRight:&upperRight];
     NSString * filename = [NSString stringWithFormat:@"walk%d.png",walkIndex];
     UIImage * overlayImage = [UIImage imageNamed:filename];
 
     self.walkOverlay = [[[L1Overlay alloc] initWithImage:overlayImage withLowerLeftCoordinate:lowerLeft withUpperRightCoordinate:upperRight] autorelease];
     
     [mapViewController addImageOverlay:self.walkOverlay];
+    [self zoomToWalk:walkIndex];
     
     
     
@@ -472,7 +550,7 @@
         UILocalNotification * note = [[UILocalNotification alloc] init];
         note.alertBody = @"You seem to have left the London Fields area so the Hackney Hear application has switched off.  To restart it you can open the app again and return to the area.";
         note.hasAction=NO;
-        note.soundName = @"flood.mp3";
+//        note.soundName = @"flood.mp3";
         [[UIApplication sharedApplication] presentLocalNotificationNow:note];
         [note autorelease];
     }
@@ -489,6 +567,10 @@
     if (firstLocation){
         [self trackToFirstLocation:location];
     }
+    
+    if (self.scenario==nil) return;
+    
+    
     
     //We do not want to start playing any kind of sound if the intro is still before its break point.
     //So we should not enable any nodes or anything like that either.
@@ -552,16 +634,15 @@
         if (circle){
             MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
             if (circleView){
-                if (nowEnabled){
+                if (nowEnabled && [circleView.fillColor isEqual: [UIColor clearColor]]){
                     circleView.fillColor = [UIColor redColor];
                 }
-                else{
+                if ((!nowEnabled) && [circleView.fillColor isEqual: [UIColor redColor]]){
                     circleView.fillColor = [UIColor clearColor];
-                    
                 }
+
             }
         }
-        
     }
         
         
@@ -593,6 +674,7 @@
 
 -(void) globalPauseToggle
 {
+    [headphoneLabel setHidden:YES];    
     [soundManager toggleGlobalPause];
     if (soundManager.globallyPaused){
         NSLog(@"Just paused.  Set icon to play image.");
@@ -602,6 +684,7 @@
         NSLog(@"Just unpaused.  Set icon to pause image.");
         [pauseButton setImage:[UIImage imageNamed:@"btn-pause.png"] forState:UIControlStateNormal];
     }
+    [self setNowPlayingLabel];
 }
 
 -(void) soundManager:(HHSoundManager*)manager soundDidFinish:(NSString*) key
@@ -620,6 +703,21 @@
     [locationManager startUpdatingLocation];
 }
 
+
+-(void) zoomToCurrentLocation
+{
+#if ALLOW_FAKE_LOCATION    
+    return;
+#endif
+    CLLocationCoordinate2D coord = locationManager.location.coordinate;
+    if (coord.latitude>INITIAL_CENTER_LAT-INITIAL_DELTA_LAT/2
+        && coord.latitude<INITIAL_CENTER_LAT+INITIAL_DELTA_LAT/2 
+        && coord.longitude>INITIAL_CENTER_LON-INITIAL_DELTA_LON/2 
+        && coord.longitude<INITIAL_CENTER_LON+INITIAL_DELTA_LON/2 
+    ){
+        [mapViewController zoomToCoordinate:locationManager.location.coordinate];
+    }
+}
 
 @synthesize sinclairSpecialCaseNodeFirstOffTime;
 @end

@@ -35,7 +35,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="746959384">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIScrollView" id="1018498631">
@@ -43,12 +43,15 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="746959384"/>
+						<reference key="NSWindow"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 460}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1018498631"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -140,7 +143,6 @@
 						<string key="NSFrame">{{26, 1269}, {280, 248}}</string>
 						<reference key="NSSuperview" ref="1242851"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="1036227659">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -226,7 +228,7 @@ dWlyZSwgWGF2aWVyIFphcGF0YQo</string>
 					<object class="IBUIImageView" id="68928171">
 						<reference key="NSNextResponder" ref="1242851"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{43, 13}, {240, 79}}</string>
+						<string key="NSFrame">{{40, 14}, {240, 79}}</string>
 						<reference key="NSSuperview" ref="1242851"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="582879749"/>
@@ -314,12 +316,12 @@ dWlyZSwgWGF2aWVyIFphcGF0YQo</string>
 						<int key="objectID">9</int>
 						<reference key="object" ref="1242851"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="134046887"/>
 							<reference ref="1025634176"/>
 							<reference ref="582879749"/>
-							<reference ref="68928171"/>
 							<reference ref="498992363"/>
 							<reference ref="263230425"/>
+							<reference ref="134046887"/>
+							<reference ref="68928171"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -421,7 +423,7 @@ dWlyZSwgWGF2aWVyIFphcGF0YQo</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bkg-topfade.png">{320, 127}</string>
+			<string key="bkg-topfade.png">{320, 130}</string>
 			<string key="small-hackneyhear.png">{140, 64}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

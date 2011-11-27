@@ -44,7 +44,6 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -68,36 +67,6 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="982508956">
-						<reference key="NSNextResponder" ref="319169521"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 138}</string>
-						<reference key="NSSuperview" ref="319169521"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="611353870"/>
-						<int key="IBUIContentMode">5</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bkg-topfade.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="611353870">
-						<reference key="NSNextResponder" ref="319169521"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 20}, {240, 69}}</string>
-						<reference key="NSSuperview" ref="319169521"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="939563303"/>
-						<int key="IBUIContentMode">5</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">small-hackneyhear.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="827705071">
 						<reference key="NSNextResponder" ref="319169521"/>
 						<int key="NSvFlags">292</int>
@@ -228,7 +197,6 @@ dGNoIGZvciB0cmFmZmljIGFzIHlvdSBnby4</string>
 						<string key="NSFrame">{{20, 938}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="319169521"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -263,11 +231,40 @@ dGNoIGZvciB0cmFmZmljIGFzIHlvdSBnby4</string>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
+					<object class="IBUIImageView" id="613434758">
+						<reference key="NSNextResponder" ref="319169521"/>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{320, 141}</string>
+						<reference key="NSSuperview" ref="319169521"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="272111125"/>
+						<int key="IBUIContentMode">5</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">bkg-topfade.png</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="272111125">
+						<reference key="NSNextResponder" ref="319169521"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{40, 14}, {240, 79}}</string>
+						<reference key="NSSuperview" ref="319169521"/>
+						<reference key="NSWindow"/>
+						<int key="IBUIContentMode">5</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">small-hackneyhear.png</string>
+						</object>
+					</object>
 				</array>
 				<string key="NSFrameSize">{320, 1018}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="982508956"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -356,25 +353,15 @@ dGNoIGZvciB0cmFmZmljIGFzIHlvdSBnby4</string>
 						<int key="objectID">6</int>
 						<reference key="object" ref="319169521"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="982508956"/>
-							<reference ref="611353870"/>
 							<reference ref="939563303"/>
 							<reference ref="827705071"/>
 							<reference ref="1002934443"/>
 							<reference ref="176094777"/>
 							<reference ref="784975265"/>
+							<reference ref="613434758"/>
+							<reference ref="272111125"/>
 						</array>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="982508956"/>
-						<reference key="parent" ref="319169521"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="611353870"/>
-						<reference key="parent" ref="319169521"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
@@ -401,6 +388,16 @@ dGNoIGZvciB0cmFmZmljIGFzIHlvdSBnby4</string>
 						<reference key="object" ref="784975265"/>
 						<reference key="parent" ref="319169521"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">17</int>
+						<reference key="object" ref="613434758"/>
+						<reference key="parent" ref="319169521"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="272111125"/>
+						<reference key="parent" ref="319169521"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -414,16 +411,16 @@ dGNoIGZvciB0cmFmZmljIGFzIHlvdSBnby4</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">16</int>
+			<int key="maxID">18</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -491,7 +488,7 @@ dGNoIGZvciB0cmFmZmljIGFzIHlvdSBnby4</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bkg-about.png">{260, 215}</string>
-			<string key="bkg-topfade.png">{320, 127}</string>
+			<string key="bkg-topfade.png">{320, 130}</string>
 			<string key="button_walk.png">{250, 50}</string>
 			<string key="small-hackneyhear.png">{140, 64}</string>
 		</dictionary>

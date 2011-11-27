@@ -91,13 +91,15 @@
     if ([[clickedButton titleForState:UIControlStateNormal] isEqualToString:TRY_WALK]){
         //This means we are currently not doing the walk but want to start
         [clickedButton setTitle:HIDE_WALK forState:UIControlStateNormal];
-        [viewController setWalk:clickedIndex]; 
+        tabBarController.selectedIndex = mainViewControllerIndex;
+        [viewController setWalk:clickedIndex];
+//        NSNumber * walkNumber = [NSNumber numberWithInt:clickedIndex];
+//        [self performSelector:@selector(setWalkWithNumber:) withObject:walkNumber afterDelay:0.1];
     }
     else{
         //We want to stop the walk
         [clickedButton setTitle:TRY_WALK forState:UIControlStateNormal];
         [viewController setWalk:NO_WALK_SELECTED]; 
-     
     }
     
     

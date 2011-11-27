@@ -30,7 +30,7 @@
     IBOutlet L1MapViewController * mapViewController;
     IBOutlet UILabel * nowPlayingLabel;
     IBOutlet UIView * nowPlayingView;
-    
+    IBOutlet UIImageView * headphoneLabel;
     CLLocationManager *locationManager;
     NSMutableDictionary *circles;
 //    IBOutlet UISwitch *realGPSControl;
@@ -64,6 +64,9 @@
 -(void) setWalk:(int) walkIndex;
 -(void) stopUpdatingLocation;
 -(void) startUpdatingLocation;
+-(void) reset;
+
+-(void) audioRouteDidChange:(CFDictionaryRef) change;
 
 // Location awareness
 -(void) locationUpdate:(CLLocationCoordinate2D) location;
@@ -81,4 +84,5 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 -(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType;
 -(void) checkFirstLaunch;
+-(void) zoomToCurrentLocation;
 @end

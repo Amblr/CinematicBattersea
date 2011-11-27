@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>HackneyHear copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>HackneyHear.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>D846FF5F144EC74A00867811</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D8B7D988147BB3ED0099C901</key>
 		<dict>
 			<key>primary</key>
 			<true/>
