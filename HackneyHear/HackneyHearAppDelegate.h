@@ -33,7 +33,7 @@
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
 -(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario;
 -(void) authenticate;
--(void) audioRouteDidChange:(CFDictionaryRef) change;
+//-(void) audioRouteDidChange:(CFDictionaryRef) change;
 
 @end
 

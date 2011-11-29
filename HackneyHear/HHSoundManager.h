@@ -41,7 +41,7 @@
     BOOL introBeforeBreakPoint;
     NSDate * introSoundLaunchTime;
     NSMutableDictionary * lastCompletionTime;
-    NSTimer * volumeChangeTimer;
+    NSTimer * introTimer;
     NSDate * activeSpeechStartTime;
     NSTimeInterval speechTimeForInterruption;
     NSTimeInterval speechDurationForNoInterruption;
@@ -54,9 +54,11 @@
 
         
 }
+
 @property (readonly) NSString * currentSpeechKey;
 @property (retain) id delegate;
 @property (readonly) BOOL introBeforeBreakPoint;
+@property (readonly) BOOL introIsPlaying;
 @property (readonly) BOOL globallyPaused;
 
 //return YES if the sound is actually played.

@@ -30,7 +30,7 @@
     IBOutlet L1MapViewController * mapViewController;
     IBOutlet UILabel * nowPlayingLabel;
     IBOutlet UIView * nowPlayingView;
-    IBOutlet UIImageView * headphoneLabel;
+//    IBOutlet UIImageView * headphoneLabel;
     CLLocationManager *locationManager;
     NSMutableDictionary *circles;
 //    IBOutlet UISwitch *realGPSControl;

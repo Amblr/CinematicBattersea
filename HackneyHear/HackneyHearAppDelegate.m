@@ -27,9 +27,9 @@
 void audioRouteChangeListenerCallback (void *data, AudioSessionPropertyID ID, UInt32  dataSize, const void *inData
                                        )
 {
-    HackneyHearAppDelegate * appDelegate = (HackneyHearAppDelegate *) data;
+    HackneyHear_ViewController * viewController = (HackneyHear_ViewController *) data;
     CFDictionaryRef routeChangeDictionary = inData;
-    [appDelegate audioRouteDidChange:routeChangeDictionary];
+    [viewController audioRouteDidChange:routeChangeDictionary];
     
 }
 
@@ -76,7 +76,7 @@ void audioRouteChangeListenerCallback (void *data, AudioSessionPropertyID ID, UI
 
     OSStatus error = AudioSessionAddPropertyListener (kAudioSessionProperty_AudioRouteChange,
                                      audioRouteChangeListenerCallback,
-                                     self);
+                                     hhViewController);
     
     char * error_c = (char*) &error;
     if (error) 

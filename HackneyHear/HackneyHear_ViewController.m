@@ -100,39 +100,11 @@
 }
 
 
--(void) audioRouteDidChange:(CFDictionaryRef) change
-{
-    CFNumberRef routeChangeReasonRef = CFDictionaryGetValue (change, 
-                                                             CFSTR(kAudioSession_AudioRouteChangeKey_Reason));
-    SInt32 routeChangeReason;
-    
-    CFNumberGetValue (routeChangeReasonRef, kCFNumberSInt32Type, &routeChangeReason);
-    
-    if (routeChangeReason == kAudioSessionRouteChangeReason_OldDeviceUnavailable) 
-    {
-        NSLog(@"Unplugged headset");
-        if (!self.soundManager.globallyPaused) {
-            [self globalPauseToggle];
-            [headphoneLabel setHidden:NO];    
-        }
-        
-        
-    }
-    if (routeChangeReason == kAudioSessionRouteChangeReason_NewDeviceAvailable)
-    {
-        NSLog(@"Plugged in headset");
-        [headphoneLabel setHidden:NO];    
-
-    }
-    
-}
-
 
 -(void) setNowPlayingLabel
 {
     if (self.soundManager.globallyPaused){
-        nowPlayingView.alpha = 1.0;
-        [nowPlayingLabel setText:@"PAUSED."];
+        nowPlayingView.alpha = 0.0;
 
     }
     else if (soundManager.currentSpeechKey){
@@ -238,7 +210,7 @@
     }
     NSLog(@"View did appear");
     [self performSelector:@selector(showMap:) withObject:nil afterDelay:0.1];
-    
+//    [self performSelector:@selector(testHack:) withObject:nil afterDelay:10.0];
 
 }
 
@@ -672,17 +644,74 @@
     [proximityMonitor downloadAll];
 }
 
+
+-(void) audioRouteDidChange:(CFDictionaryRef) change
+{
+    CFNumberRef routeChangeReasonRef = CFDictionaryGetValue (change, 
+                                                             CFSTR(kAudioSession_AudioRouteChangeKey_Reason));
+    SInt32 routeChangeReason;
+    
+    CFNumberGetValue (routeChangeReasonRef, kCFNumberSInt32Type, &routeChangeReason);
+    
+    if (routeChangeReason == kAudioSessionRouteChangeReason_OldDeviceUnavailable) 
+    {
+        NSLog(@"Unplugged headset");
+        if (!self.soundManager.globallyPaused) {
+            [self globalPauseToggle];
+//            [headphoneLabel setHidden:NO];    
+        }
+        
+        
+    }
+    if (routeChangeReason == kAudioSessionRouteChangeReason_NewDeviceAvailable)
+    {
+        NSLog(@"Plugged in headset");
+//        [headphoneLabel setHidden:YES];    
+        
+    }
+    
+}
+
+-(void) testHack:(id) dummy
+{
+    
+    NSLog(@"Unplugged headset");
+    if (!self.soundManager.globallyPaused) {
+        [self globalPauseToggle];
+//        [headphoneLabel setHidden:NO];    
+    }
+    [self performSelector:@selector(testHack:) withObject:nil afterDelay:10.0];
+
+    
+}
+
+
+
 -(void) globalPauseToggle
 {
-    [headphoneLabel setHidden:YES];    
+//    [headphoneLabel setHidden:YES];    
     [soundManager toggleGlobalPause];
     if (soundManager.globallyPaused){
         NSLog(@"Just paused.  Set icon to play image.");
-        [pauseButton setImage:[UIImage imageNamed:@"btn-play.png"] forState:UIControlStateNormal];
+        [pauseButton setImage:[UIImage imageNamed:@"btn-play.png"] forState:UIControlStateNormal];        
+        [pauseButton removeTarget:self action:NULL forControlEvents:UIControlEventTouchUpInside];
+        [pauseButton addTarget:self action:@selector(globalPauseToggle) 
+              forControlEvents:UIControlEventTouchUpInside];
+
     }
     else{
         NSLog(@"Just unpaused.  Set icon to pause image.");
-        [pauseButton setImage:[UIImage imageNamed:@"btn-pause.png"] forState:UIControlStateNormal];
+        if (soundManager.introIsPlaying){
+            [pauseButton setImage:[UIImage imageNamed:@"btn-skip.png"] forState:UIControlStateNormal];        
+            [pauseButton removeTarget:self action:NULL forControlEvents:UIControlEventTouchUpInside];
+            [pauseButton addTarget:self action:@selector(skipIntro:) forControlEvents:UIControlEventTouchUpInside];
+
+        }
+        else{
+            [pauseButton setImage:[UIImage imageNamed:@"btn-pause.png"] forState:UIControlStateNormal];        
+            [pauseButton removeTarget:self action:NULL forControlEvents:UIControlEventTouchUpInside];
+            [pauseButton addTarget:self action:@selector(globalPauseToggle) forControlEvents:UIControlEventTouchUpInside];
+        }
     }
     [self setNowPlayingLabel];
 }

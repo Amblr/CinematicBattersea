@@ -57,7 +57,7 @@
 @synthesize introBeforeBreakPoint;
 @synthesize globallyPaused;
 @synthesize delegate;
-
+@synthesize introIsPlaying;
 -(id) init
 {
     self = [super init];
@@ -71,8 +71,7 @@
         
         lastCompletionTime = [[NSMutableDictionary alloc] initWithCapacity:0];
         introIsPlaying=NO;
-//        volumeChangeTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSoundVolumes:) userInfo:nil repeats:YES];
-  //      [[NSRunLoop currentRunLoop] addTimer:volumeChangeTimer forMode:NSDefaultRunLoopMode];
+        introTimer=nil;
         
         globallyPaused=NO;
         globallyPausedSounds = [[NSMutableArray alloc] initWithCapacity:0];
@@ -97,6 +96,31 @@
     
 }
 
+-(void) introBreakReached:(NSObject*) dummy
+{
+    //We have reached the break-point in the audio.  From now on we should 
+    //end the intro if any audio is triggered.
+    @synchronized(self){
+        NSLog(@"Reached Intro Audio Break Point");
+        introBeforeBreakPoint=NO;
+        if (introTimer) [introTimer invalidate];
+        introTimer=nil;
+    }
+}
+
+
+-(void) checkIntroBreak:(id)dummy
+{
+    @synchronized(self){
+    //First check if intro has reached the break point.
+    if (introIsPlaying && introBeforeBreakPoint){
+        HHAudioSource * intro = [audioSamples objectForKey:INTRO_SOUND_KEY];
+        if(intro && ([intro currentTime]>INTRO_SOUND_BREAK_POINT)){
+            [self introBreakReached:nil];
+        }
+    }
+    }
+}
 
 #pragma mark Intro Sound
 -(void) skipIntro
@@ -110,17 +134,11 @@
     [self fadeOutSound:INTRO_SOUND_KEY];
     introIsPlaying=NO;
     introBeforeBreakPoint=NO;
+        if (introTimer) [introTimer invalidate];
     }
 }
 
 
--(void) introBreakReached:(NSObject*) dummy
-{
-    //We have reached the break-point in the audio.  From now on we should 
-    //end the intro if any audio is triggered.
-    NSLog(@"Reached Intro Audio Break Point");
-    introBeforeBreakPoint=NO;
-}
 
 
 -(void) startIntro
@@ -139,8 +157,12 @@
     [introSound release];
     introIsPlaying=YES;
     introBeforeBreakPoint=YES;
-//    [self performSelector:@selector(introBreakReached:) withObject:nil afterDelay:INTRO_SOUND_BREAK_POINT];
-        //Have now replaced above line with a check when updating sound
+    introTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 
+                                                  target:self 
+                                                selector:@selector(checkIntroBreak:) 
+                                                userInfo:nil 
+                                                 repeats:YES];
+
     }
 }
 
@@ -404,13 +426,6 @@
 
     @synchronized(self){
         
-    //First check if intro has reached the break point.
-    if (introIsPlaying && introBeforeBreakPoint){
-        HHAudioSource * intro = [audioSamples objectForKey:INTRO_SOUND_KEY];
-        if(intro && ([intro currentTime]>INTRO_SOUND_BREAK_POINT)){
-            [self introBreakReached:nil];
-        }
-    }
         
     //Quick exit if there are no sounds to process.
     int nRising = [risingSounds count];

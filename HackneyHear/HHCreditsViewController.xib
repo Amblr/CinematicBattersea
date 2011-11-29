@@ -160,7 +160,7 @@ YXJlIGluY2x1ZGVkIGluIHRoaXMgYXBwbGljYXRpb24uA</string>
 						<reference key="IBUITextColor" ref="236886092"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">16</float>
+						<float key="IBUIMinimumFontSize">15</float>
 						<int key="IBUINumberOfLines">11</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">ArialRoundedMTBold</string>
