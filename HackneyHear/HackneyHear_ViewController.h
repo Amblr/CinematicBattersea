@@ -25,9 +25,7 @@
 @class L1DownloadProximityMonitor;
 
 
-@interface HackneyHear_ViewController : UIViewController<CLLocationManagerDelegate> {
-    L1Scenario * scenario;
-    IBOutlet L1MapViewController * mapViewController;
+@interface HackneyHear_ViewController : L1MapViewController<CLLocationManagerDelegate> {
     IBOutlet UILabel * nowPlayingLabel;
     IBOutlet UIView * nowPlayingView;
 //    IBOutlet UIImageView * headphoneLabel;

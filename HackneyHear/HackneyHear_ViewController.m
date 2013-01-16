@@ -18,7 +18,7 @@
 
 
 @implementation HackneyHear_ViewController
-@synthesize scenario;
+//@synthesize scenario;
 @synthesize selectedWalk;
 @synthesize walkOverlay;
 @synthesize soundManager;
@@ -59,8 +59,8 @@
     //self.scenario=nil;
 //    realLocationTracker = [[L1BigBrother alloc] init];
 //    fakeLocationTracker = [[L1BigBrother alloc] init];
-    mapViewController.delegate=self;
-//    proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
+    self.delegate=self;
+    proximityMonitor = [[L1DownloadProximityMonitor alloc] init];
     skipButton=nil;
     NSLog(@"Tiles adding");
     NSString * tileDir = @"Tiles";
@@ -76,24 +76,24 @@
     southWest.longitude = -0.28;
     northEast.latitude = 51.8;
     northEast.longitude = -0.0;
-    [mapViewController whiteOutFrom:southWest to:northEast];
-    [mapViewController addTilesFromDirectory:tileDir];
+    [self whiteOutFrom:southWest to:northEast];
+    [self addTilesFromDirectory:tileDir];
     [self checkFirstLaunch];
     
     //    lat:   lon:  dLat:   dLon:)
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(INITIAL_CENTER_LAT, INITIAL_CENTER_LON);
     MKCoordinateSpan span = MKCoordinateSpanMake(INITIAL_DELTA_LAT, INITIAL_DELTA_LON);
     MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
-    [mapViewController logLocation];
+    [self logLocation];
 
-    [mapViewController zoomToRegion:region];
+    [self zoomToRegion:region];
 
     //Now use a 20% enlarged region to restrict the map.
-    [mapViewController logLocation];
+    [self logLocation];
 //    [mapViewController restrictToRegion:region];
 //    [mapViewController restrictToCurrentRegionBoundaryFraction:
 #if RESTRICT_TO_HACKNEY    
-    [mapViewController restrictToCurrentRegion];
+    [self restrictToCurrentRegion];
 #endif
     firstLocation=YES;
     self.walkOverlay = nil;
@@ -122,7 +122,7 @@
 -(void) skipIntro:(NSObject*) dummy
 {
     NSLog(@"The intro ended or was skipped somehow.");
-    MKCoordinateRegion region = [mapViewController mapRegion];
+    MKCoordinateRegion region = [self mapRegion];
     
     NSLog(@"BTW, region lat: %f  lon: %f  dLat: %f  dLon:%f)",region.center.latitude,region.center.longitude,region.span.latitudeDelta,region.span.longitudeDelta);
 
@@ -205,7 +205,7 @@
             [self locationUpdate:locationManager.location.coordinate];
         }
         else {
-            [self locationUpdate:mapViewController.manualUserLocation.coordinate];
+            [self locationUpdate:self.manualUserLocation.coordinate];
         }
     }
     NSLog(@"View did appear");
@@ -216,7 +216,7 @@
 
 -(void) showMap:(NSObject*)dummy
 {
-    mapViewController.view.alpha=1.0;
+    self.view.alpha=1.0;
 
 }
 
@@ -236,7 +236,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     NSLog(@"VIEW WILL APPEAR");
-    mapViewController.view.alpha=0.01;
+    self.view.alpha=0.01;
     [super viewWillAppear:animated];
 }
 #pragma mark -
@@ -252,7 +252,7 @@
 -(void) reset
 {
     for (L1Circle * circle in [circles allValues]){
-        [mapViewController removeCircle:circle];
+        [self removeCircle:circle];
     }
     [proximityMonitor removeNodes:[self.scenario.nodes allValues]];
     [self setWalk:NO_WALK_SELECTED];
@@ -286,9 +286,9 @@
         //and add it to the map.
         if ((![node.name isEqualToString:SPECIAL_SHAPE_NODE_NAME]) && (sound.soundType==L1SoundTypeSpeech)){
             UIColor * color = [UIColor redColor];
-            L1Circle * circle = [mapViewController addCircleAt:node.coordinate radius:[node.radius doubleValue] color:color];
+            L1Circle * circle = [self addCircleAt:node.coordinate radius:[node.radius doubleValue] color:color];
             [circles setObject:circle forKey:node.key];
-            [mapViewController addNode:node];
+            [self addNode:node];
         }
 
         //We use the enabled flag to track whether a node is playing.
@@ -306,7 +306,7 @@
         CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
         firstNodeCoord.latitude -= 5.0e-4;
         firstNodeCoord.longitude -= 5.0e-4;
-        [mapViewController addManualUserLocationAt:firstNodeCoord];
+        [self addManualUserLocationAt:firstNodeCoord];
 #endif
     }
     
@@ -485,7 +485,7 @@
 //    MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
 
     
-    [mapViewController zoomToRegion:region];
+    [self zoomToRegion:region];
 }
 
 
@@ -493,7 +493,7 @@
 {
     NSLog(@"Set walk to %d",walkIndex);
     selectedWalk=walkIndex;
-    if (self.walkOverlay) [mapViewController removeImageOverlay:self.walkOverlay];
+    if (self.walkOverlay) [self removeImageOverlay:self.walkOverlay];
     if (walkIndex==-1) return;
 
     CLLocationCoordinate2D lowerLeft, upperRight; 
@@ -503,7 +503,7 @@
 
     self.walkOverlay = [[[L1Overlay alloc] initWithImage:overlayImage withLowerLeftCoordinate:lowerLeft withUpperRightCoordinate:upperRight] autorelease];
     
-    [mapViewController addImageOverlay:self.walkOverlay];
+    [self addImageOverlay:self.walkOverlay];
     [self zoomToWalk:walkIndex];
     
     
@@ -604,7 +604,7 @@
         
         L1Circle * circle = [circles valueForKey:node.key];
         if (circle){
-            MKCircleView * circleView = [mapViewController circleViewForCircle:circle];
+            MKCircleView * circleView = [self circleViewForCircle:circle];
             if (circleView){
                 if (nowEnabled && [circleView.fillColor isEqual: [UIColor clearColor]]){
                     circleView.fillColor = [UIColor redColor];
@@ -744,7 +744,7 @@
         && coord.longitude>INITIAL_CENTER_LON-INITIAL_DELTA_LON/2 
         && coord.longitude<INITIAL_CENTER_LON+INITIAL_DELTA_LON/2 
     ){
-        [mapViewController zoomToCoordinate:locationManager.location.coordinate];
+        [self zoomToCoordinate:locationManager.location.coordinate];
     }
 }
 
