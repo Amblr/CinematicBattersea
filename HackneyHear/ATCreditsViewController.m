@@ -6,9 +6,9 @@
 //  Copyright (c) 2011 Imperial College London. All rights reserved.
 //
 
-#import "HHCreditsViewController.h"
+#import "ATCreditsViewController.h"
 
-@implementation HHCreditsViewController
+@implementation ATCreditsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

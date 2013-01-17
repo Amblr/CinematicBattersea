@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class L1DownloadProximityMonitor;
-@interface HHOptionsMenuController : UIViewController
+@interface ATOptionsMenuController : UIViewController
 {
     IBOutlet UIWebView * helpWebView;
     IBOutlet L1DownloadProximityMonitor * proximityMonitor;

@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 Imperial College London. All rights reserved.
 //
 
-#import "HHOptionsMenuController.h"
+#import "ATOptionsMenuController.h"
 #import "L1DownloadProximityMonitor.h"
 #import "L1DownloadManager.h"
 
-@implementation HHOptionsMenuController
+@implementation ATOptionsMenuController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

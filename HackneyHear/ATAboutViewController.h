@@ -11,7 +11,7 @@
 
 @class L1DownloadProximityMonitor;
 
-@interface HHAboutViewController : UIViewController
+@interface ATAboutViewController : UIViewController
 {    
     IBOutlet UIScrollView * scrollView;
     IBOutlet UIView * contentView;

@@ -6,7 +6,7 @@
 //  Copyright 2011 Amblr. All rights reserved.
 //
 
-#import "HHSoundManager.h"
+#import "ATSoundManager.h"
 #import "L1Utils.h"
 #import "L1Node.h"
 
@@ -37,7 +37,7 @@
 #define PAUSE_RISE_TIME 1.0
 
 
-@implementation HHAudioSource
+@implementation ATAudioSource
 -(id) init
 {
     self = [super init];
@@ -53,7 +53,7 @@
 
 
 
-@implementation HHSoundManager
+@implementation ATSoundManager
 @synthesize introBeforeBreakPoint;
 @synthesize globallyPaused;
 @synthesize delegate;
@@ -114,7 +114,7 @@
     @synchronized(self){
     //First check if intro has reached the break point.
     if (introIsPlaying && introBeforeBreakPoint){
-        HHAudioSource * intro = [audioSamples objectForKey:INTRO_SOUND_KEY];
+        ATAudioSource * intro = [audioSamples objectForKey:INTRO_SOUND_KEY];
         if(intro && ([intro currentTime]>INTRO_SOUND_BREAK_POINT)){
             [self introBreakReached:nil];
         }
@@ -145,7 +145,7 @@
 {
     @synchronized(self){
 
-    HHAudioSource * introSound = [[HHAudioSource alloc] init];
+    ATAudioSource * introSound = [[ATAudioSource alloc] init];
     introSound.hasBeenPaused=NO;
     introSound.delegate=self;
     introSound.soundType=L1SoundTypeIntro;
@@ -173,7 +173,7 @@
 -(BOOL) newSpeechNodeShouldStart
 {
     @synchronized(self){
-    HHAudioSource * sound = nil;
+    ATAudioSource * sound = nil;
     sound = [audioSamples objectForKey:activeSpeechTrack];
     if (!sound) return YES;
     NSTimeInterval totalTime = [sound totalTime];
@@ -246,13 +246,13 @@
     
     //If we find the sound in audioSamples then we must have played it before.
     //Otherwise it is new
-    HHAudioSource * sound = [audioSamples objectForKey:key];
+    ATAudioSource * sound = [audioSamples objectForKey:key];
 
     //If this is a new sound we will need to load it and then play it.
     //And this is pretty much it.
     if (!sound){
         NSLog(@"New sound found!");
-        sound = [[HHAudioSource alloc] init];
+        sound = [[ATAudioSource alloc] init];
         sound.delegate=self;
         sound.soundType=soundType;
         sound.hasBeenPaused=NO;
@@ -328,7 +328,7 @@
     
 }
 
--(float) fadeTimeForSound:(HHAudioSource*)sound
+-(float) fadeTimeForSound:(ATAudioSource*)sound
 {
     switch (sound.soundType) {
         case L1SoundTypeAtmos:
@@ -349,7 +349,7 @@
     }
 }
 
--(float) riseTimeForSound:(HHAudioSource*)sound
+-(float) riseTimeForSound:(ATAudioSource*)sound
 {
     switch (sound.soundType) {
         case L1SoundTypeAtmos:
@@ -374,11 +374,11 @@
 -(void) fadeOutSound:(NSString *) key
 {
     
-    HHAudioSource * sound = [audioSamples objectForKey:key];
+    ATAudioSource * sound = [audioSamples objectForKey:key];
     [sound fadeOut:[self fadeTimeForSound:sound]];
     //    @synchronized(self){
     //
-    //    HHAudioSource * sound = [audioSamples objectForKey:key];
+    //    ATAudioSource * sound = [audioSamples objectForKey:key];
     //    if (!sound){
     //        NSLog(@"Tried to fade out sound not found: %@",sound.key);
     //        return;
@@ -398,11 +398,11 @@
 
 -(void) fadeInSound:(NSString *) key
 {
-    HHAudioSource * sound = [audioSamples objectForKey:key];
+    ATAudioSource * sound = [audioSamples objectForKey:key];
     [sound riseIn:[self riseTimeForSound:sound]];
 
 //    @synchronized(self){
-//        HHAudioSource * sound = [audioSamples objectForKey:key];
+//        ATAudioSource * sound = [audioSamples objectForKey:key];
 //        if (!sound){
 //            NSLog(@"Tried to fade out sound not found: %@",sound.key);
 //            return;
@@ -435,7 +435,7 @@
     //Fade out the fading sounds.
     NSArray * fadingSoundsArray;
         fadingSoundsArray = [fadingSounds allValues];
-    for (HHAudioSource * sound in fadingSoundsArray){
+    for (ATAudioSource * sound in fadingSoundsArray){
         //Reduce the volume by the correct amount, which depends on the total fade time.
         float fadeTime = [self fadeTimeForSound:sound];
         sound.volume = sound.volume-SOUND_UPDATE_TIME_STEP/fadeTime;        
@@ -462,7 +462,7 @@
     
     NSArray * risingSoundsArray;
         risingSoundsArray = [risingSounds allValues];
-    for (HHAudioSource * sound in risingSoundsArray){
+    for (ATAudioSource * sound in risingSoundsArray){
         float riseTime = [self riseTimeForSound:sound];
         sound.volume = sound.volume+SOUND_UPDATE_TIME_STEP/riseTime;        
         NSLog(@"Rising %@",sound.key);
@@ -482,7 +482,7 @@
 -(void) l1CDAudioSourceDidFinishFading:(L1CDLongAudioSource *)source
 {
     @synchronized(self){
-    HHAudioSource * sound = (HHAudioSource*) source;
+    ATAudioSource * sound = (ATAudioSource*) source;
     [sound pause];
     if (globallyPaused){
         //The rest of this function removes completed tracks 
@@ -501,7 +501,7 @@
 -(void) l1CDAudioSourceDidFinishRising:(L1CDLongAudioSource *)source
 {
     @synchronized(self){
-    HHAudioSource * sound = (HHAudioSource*) source;
+    ATAudioSource * sound = (ATAudioSource*) source;
 //    [sound pause];
 //    if (sound.soundType==L1SoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
     //This is no longer the active speech track as it has finished.
@@ -522,8 +522,8 @@
     
     // This sound *should* be an instance of our subclass.  Otherwise not sure what
     // is happening
-    if (![audioSource isKindOfClass:[HHAudioSource class]]) return;
-    HHAudioSource * source = (HHAudioSource*) audioSource;
+    if (![audioSource isKindOfClass:[ATAudioSource class]]) return;
+    ATAudioSource * source = (ATAudioSource*) audioSource;
     NSLog(@"Sound finished: %@",source.key);
     
     
@@ -574,7 +574,7 @@
 
 -(void) unpauseGlobal{
     @synchronized(self){
-    for (HHAudioSource * sound in globallyPausedSounds){
+    for (ATAudioSource * sound in globallyPausedSounds){
         if (![sound isPlaying]){
             [sound resume]; //we only resume if the pause-fade finished.   
             NSLog(@"Resuming %@",sound.key);
@@ -593,7 +593,7 @@
 -(void) pauseGlobal{
     @synchronized(self){
     for (NSString * key in audioSamples){
-        HHAudioSource * sound = [audioSamples objectForKey:key];
+        ATAudioSource * sound = [audioSamples objectForKey:key];
         if ([sound isPlaying]){
             [sound fadeOut:PAUSE_FADE_TIME];
             NSLog(@"Pausing %@",sound.key);

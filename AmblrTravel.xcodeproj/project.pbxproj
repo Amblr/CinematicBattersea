@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D15280616A7F8B5009585FB /* ATOptionsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15280516A7F8B5009585FB /* ATOptionsMenuController.m */; };
 		6DBB872916A74CDD00981FA4 /* IASKAppSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB872316A74CDD00981FA4 /* IASKAppSettingsView.xib */; };
 		6DBB872B16A74CDD00981FA4 /* IASKAppSettingsWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB872416A74CDD00981FA4 /* IASKAppSettingsWebView.xib */; };
 		6DBB872D16A74CDD00981FA4 /* IASKPSSliderSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB872516A74CDD00981FA4 /* IASKPSSliderSpecifierViewCell.xib */; };
@@ -76,7 +77,7 @@
 		D8230930143CD02900894000 /* libAmblr-Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D823092F143CD02900894000 /* libAmblr-Core.a */; };
 		D823093414405FA000894000 /* ATMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D823093114405FA000894000 /* ATMainViewController.m */; };
 		D823093514405FA000894000 /* ATMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D823093314405FA000894000 /* ATMainViewController.xib */; };
-		D83204A5144060CD0052038D /* HHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D83204A0144060CD0052038D /* HHSoundManager.m */; };
+		D83204A5144060CD0052038D /* ATSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D83204A0144060CD0052038D /* ATSoundManager.m */; };
 		D83204A7144060CD0052038D /* HHIntroSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D83204A4144060CD0052038D /* HHIntroSound.mp3 */; };
 		D83204F0144063E80052038D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DE144063E80052038D /* UIKit.framework */; };
 		D83204F1144063E80052038D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DF144063E80052038D /* libz.dylib */; };
@@ -101,19 +102,19 @@
 		D8CAF1B51482CFD400BEE0B6 /* HHNewLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8CAF1B41482CFD400BEE0B6 /* HHNewLogo.jpg */; };
 		D8CAF1B81482D04800BEE0B6 /* HHNewLogo56.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CAF1B71482D04800BEE0B6 /* HHNewLogo56.png */; };
 		D8CE47BD144580ED00B08C71 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE47BC144580ED00B08C71 /* AVFoundation.framework */; };
-		D8CE47C1144586AA00B08C71 /* HHOptionsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */; };
-		D8CE47C2144586AA00B08C71 /* HHOptionsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */; };
+		D8CE47C2144586AA00B08C71 /* ATOptionsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C0144586A900B08C71 /* ATOptionsMenuController.xib */; };
 		D8CE47C4144588C700B08C71 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = D8CE47C3144588C700B08C71 /* help.html */; };
-		D8D86CF41472CEE6003F63A2 /* HHWalksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D86CF21472CEE4003F63A2 /* HHWalksViewController.m */; };
-		D8D86CF51472CEE6003F63A2 /* HHWalksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D86CF31472CEE5003F63A2 /* HHWalksViewController.xib */; };
-		D8D86D5A1472F694003F63A2 /* HHCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D86D581472F693003F63A2 /* HHCreditsViewController.m */; };
-		D8D86D5B1472F694003F63A2 /* HHCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D86D591472F694003F63A2 /* HHCreditsViewController.xib */; };
-		D8ED442614750E9900CDF716 /* HHAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ED442414750E9800CDF716 /* HHAboutViewController.m */; };
-		D8ED442714750E9900CDF716 /* HHAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8ED442514750E9800CDF716 /* HHAboutViewController.xib */; };
+		D8D86CF41472CEE6003F63A2 /* ATWalksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D86CF21472CEE4003F63A2 /* ATWalksViewController.m */; };
+		D8D86CF51472CEE6003F63A2 /* ATWalksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D86CF31472CEE5003F63A2 /* ATWalksViewController.xib */; };
+		D8D86D5A1472F694003F63A2 /* ATCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D86D581472F693003F63A2 /* ATCreditsViewController.m */; };
+		D8D86D5B1472F694003F63A2 /* ATCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D86D591472F694003F63A2 /* ATCreditsViewController.xib */; };
+		D8ED442614750E9900CDF716 /* ATAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ED442414750E9800CDF716 /* ATAboutViewController.m */; };
+		D8ED442714750E9900CDF716 /* ATAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8ED442514750E9800CDF716 /* ATAboutViewController.xib */; };
 		D8EFF92E144069FF0073D9A2 /* ATAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EFF92D144069FF0073D9A2 /* ATAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D15280516A7F8B5009585FB /* ATOptionsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATOptionsMenuController.m; sourceTree = "<group>"; };
 		6DBB872316A74CDD00981FA4 /* IASKAppSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKAppSettingsView.xib; path = "../../Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKAppSettingsView.xib"; sourceTree = "<group>"; };
 		6DBB872416A74CDD00981FA4 /* IASKAppSettingsWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKAppSettingsWebView.xib; path = "../../Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKAppSettingsWebView.xib"; sourceTree = "<group>"; };
 		6DBB872516A74CDD00981FA4 /* IASKPSSliderSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKPSSliderSpecifierViewCell.xib; path = "../../Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKPSSliderSpecifierViewCell.xib"; sourceTree = "<group>"; };
@@ -195,8 +196,8 @@
 		D823093114405FA000894000 /* ATMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMainViewController.m; sourceTree = "<group>"; };
 		D823093214405FA000894000 /* ATMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMainViewController.h; sourceTree = "<group>"; };
 		D823093314405FA000894000 /* ATMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATMainViewController.xib; sourceTree = "<group>"; };
-		D83204A0144060CD0052038D /* HHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHSoundManager.m; sourceTree = "<group>"; };
-		D83204A1144060CD0052038D /* HHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHSoundManager.h; sourceTree = "<group>"; };
+		D83204A0144060CD0052038D /* ATSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSoundManager.m; sourceTree = "<group>"; };
+		D83204A1144060CD0052038D /* ATSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSoundManager.h; sourceTree = "<group>"; };
 		D83204A4144060CD0052038D /* HHIntroSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HHIntroSound.mp3; sourceTree = "<group>"; };
 		D83204DE144063E80052038D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D83204DF144063E80052038D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -212,7 +213,7 @@
 		D83204EE144063E80052038D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D83204EF144063E80052038D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D83205021440646B0052038D /* MainWindow_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPhone.xib; sourceTree = "<group>"; };
-		D846FFAE144F4D1D00867811 /* HHConfigurationOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHConfigurationOptions.h; sourceTree = "<group>"; };
+		D846FFAE144F4D1D00867811 /* ATConfigurationOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATConfigurationOptions.h; sourceTree = "<group>"; };
 		D846FFB0144F4E2100867811 /* story.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = story.json; sourceTree = "<group>"; };
 		D846FFB5144F4E6900867811 /* icon_controls_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_controls_3.png; path = HackneyHear/icon_controls_3.png; sourceTree = "<group>"; };
 		D846FFB6144F4E6900867811 /* icon_controls_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_controls_4.png; path = HackneyHear/icon_controls_4.png; sourceTree = "<group>"; };
@@ -222,19 +223,18 @@
 		D8CAF1B41482CFD400BEE0B6 /* HHNewLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = HHNewLogo.jpg; path = HackneyHear/HHNewLogo.jpg; sourceTree = "<group>"; };
 		D8CAF1B71482D04800BEE0B6 /* HHNewLogo56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HHNewLogo56.png; path = HackneyHear/HHNewLogo56.png; sourceTree = "<group>"; };
 		D8CE47BC144580ED00B08C71 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		D8CE47BE144586A900B08C71 /* HHOptionsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHOptionsMenuController.h; sourceTree = "<group>"; };
-		D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHOptionsMenuController.m; sourceTree = "<group>"; };
-		D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHOptionsMenuController.xib; sourceTree = "<group>"; };
+		D8CE47BE144586A900B08C71 /* ATOptionsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATOptionsMenuController.h; sourceTree = "<group>"; };
+		D8CE47C0144586A900B08C71 /* ATOptionsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATOptionsMenuController.xib; sourceTree = "<group>"; };
 		D8CE47C3144588C700B08C71 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
-		D8D86CF11472CEE4003F63A2 /* HHWalksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHWalksViewController.h; sourceTree = "<group>"; };
-		D8D86CF21472CEE4003F63A2 /* HHWalksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHWalksViewController.m; sourceTree = "<group>"; };
-		D8D86CF31472CEE5003F63A2 /* HHWalksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHWalksViewController.xib; sourceTree = "<group>"; };
-		D8D86D571472F693003F63A2 /* HHCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCreditsViewController.h; sourceTree = "<group>"; };
-		D8D86D581472F693003F63A2 /* HHCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCreditsViewController.m; sourceTree = "<group>"; };
-		D8D86D591472F694003F63A2 /* HHCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHCreditsViewController.xib; sourceTree = "<group>"; };
-		D8ED442314750E9800CDF716 /* HHAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHAboutViewController.h; sourceTree = "<group>"; };
-		D8ED442414750E9800CDF716 /* HHAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHAboutViewController.m; sourceTree = "<group>"; };
-		D8ED442514750E9800CDF716 /* HHAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHAboutViewController.xib; sourceTree = "<group>"; };
+		D8D86CF11472CEE4003F63A2 /* ATWalksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATWalksViewController.h; sourceTree = "<group>"; };
+		D8D86CF21472CEE4003F63A2 /* ATWalksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATWalksViewController.m; sourceTree = "<group>"; };
+		D8D86CF31472CEE5003F63A2 /* ATWalksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATWalksViewController.xib; sourceTree = "<group>"; };
+		D8D86D571472F693003F63A2 /* ATCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCreditsViewController.h; sourceTree = "<group>"; };
+		D8D86D581472F693003F63A2 /* ATCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCreditsViewController.m; sourceTree = "<group>"; };
+		D8D86D591472F694003F63A2 /* ATCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATCreditsViewController.xib; sourceTree = "<group>"; };
+		D8ED442314750E9800CDF716 /* ATAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAboutViewController.h; sourceTree = "<group>"; };
+		D8ED442414750E9800CDF716 /* ATAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAboutViewController.m; sourceTree = "<group>"; };
+		D8ED442514750E9800CDF716 /* ATAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATAboutViewController.xib; sourceTree = "<group>"; };
 		D8EFF92C144069FF0073D9A2 /* ATAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAppDelegate.h; sourceTree = "<group>"; };
 		D8EFF92D144069FF0073D9A2 /* ATAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -395,26 +395,26 @@
 				D81A6EA41444558400394431 /* atmos.json */,
 				D81A6EA51444558500394431 /* music.json */,
 				D81A6EA61444558500394431 /* speech.json */,
-				D83204A0144060CD0052038D /* HHSoundManager.m */,
-				D83204A1144060CD0052038D /* HHSoundManager.h */,
+				D83204A0144060CD0052038D /* ATSoundManager.m */,
+				D83204A1144060CD0052038D /* ATSoundManager.h */,
 				D83204A4144060CD0052038D /* HHIntroSound.mp3 */,
-				D846FFAE144F4D1D00867811 /* HHConfigurationOptions.h */,
+				D846FFAE144F4D1D00867811 /* ATConfigurationOptions.h */,
 				D823093114405FA000894000 /* ATMainViewController.m */,
 				D823093214405FA000894000 /* ATMainViewController.h */,
 				D823093314405FA000894000 /* ATMainViewController.xib */,
 				D8EFF92C144069FF0073D9A2 /* ATAppDelegate.h */,
 				D8EFF92D144069FF0073D9A2 /* ATAppDelegate.m */,
-				D8CE47BE144586A900B08C71 /* HHOptionsMenuController.h */,
-				D8CE47BF144586A900B08C71 /* HHOptionsMenuController.m */,
-				D8D86CF11472CEE4003F63A2 /* HHWalksViewController.h */,
-				D8D86CF21472CEE4003F63A2 /* HHWalksViewController.m */,
-				D8D86CF31472CEE5003F63A2 /* HHWalksViewController.xib */,
-				D8D86D571472F693003F63A2 /* HHCreditsViewController.h */,
-				D8D86D581472F693003F63A2 /* HHCreditsViewController.m */,
-				D8D86D591472F694003F63A2 /* HHCreditsViewController.xib */,
-				D8ED442314750E9800CDF716 /* HHAboutViewController.h */,
-				D8ED442414750E9800CDF716 /* HHAboutViewController.m */,
-				D8ED442514750E9800CDF716 /* HHAboutViewController.xib */,
+				D8CE47BE144586A900B08C71 /* ATOptionsMenuController.h */,
+				6D15280516A7F8B5009585FB /* ATOptionsMenuController.m */,
+				D8D86CF11472CEE4003F63A2 /* ATWalksViewController.h */,
+				D8D86CF21472CEE4003F63A2 /* ATWalksViewController.m */,
+				D8D86CF31472CEE5003F63A2 /* ATWalksViewController.xib */,
+				D8D86D571472F693003F63A2 /* ATCreditsViewController.h */,
+				D8D86D581472F693003F63A2 /* ATCreditsViewController.m */,
+				D8D86D591472F694003F63A2 /* ATCreditsViewController.xib */,
+				D8ED442314750E9800CDF716 /* ATAboutViewController.h */,
+				D8ED442414750E9800CDF716 /* ATAboutViewController.m */,
+				D8ED442514750E9800CDF716 /* ATAboutViewController.xib */,
 				D8230918143CCE8700894000 /* iPhone */,
 				D823090D143CCE8600894000 /* Supporting Files */,
 			);
@@ -440,7 +440,7 @@
 			children = (
 				D8230919143CCE8700894000 /* ATAppDelegate_iPhone.h */,
 				D823091A143CCE8700894000 /* ATAppDelegate_iPhone.m */,
-				D8CE47C0144586A900B08C71 /* HHOptionsMenuController.xib */,
+				D8CE47C0144586A900B08C71 /* ATOptionsMenuController.xib */,
 				D83205021440646B0052038D /* MainWindow_iPhone.xib */,
 			);
 			name = iPhone;
@@ -505,15 +505,15 @@
 				D81A6EA71444558500394431 /* atmos.json in Resources */,
 				D81A6EA81444558500394431 /* music.json in Resources */,
 				D81A6EA91444558500394431 /* speech.json in Resources */,
-				D8CE47C2144586AA00B08C71 /* HHOptionsMenuController.xib in Resources */,
+				D8CE47C2144586AA00B08C71 /* ATOptionsMenuController.xib in Resources */,
 				D8CE47C4144588C700B08C71 /* help.html in Resources */,
 				D846FFB1144F4E2200867811 /* story.json in Resources */,
 				D846FFBA144F4E6900867811 /* icon_controls_3.png in Resources */,
 				D846FFBB144F4E6900867811 /* icon_controls_4.png in Resources */,
 				D846FFBD144F4E9E00867811 /* Default.png in Resources */,
-				D8D86CF51472CEE6003F63A2 /* HHWalksViewController.xib in Resources */,
-				D8D86D5B1472F694003F63A2 /* HHCreditsViewController.xib in Resources */,
-				D8ED442714750E9900CDF716 /* HHAboutViewController.xib in Resources */,
+				D8D86CF51472CEE6003F63A2 /* ATWalksViewController.xib in Resources */,
+				D8D86D5B1472F694003F63A2 /* ATCreditsViewController.xib in Resources */,
+				D8ED442714750E9900CDF716 /* ATAboutViewController.xib in Resources */,
 				D8B7F8971479274200FFB778 /* flood.mp3 in Resources */,
 				D8CAF1B11482CDAD00BEE0B6 /* headphone_message.png in Resources */,
 				D8CAF1B51482CFD400BEE0B6 /* HHNewLogo.jpg in Resources */,
@@ -589,12 +589,12 @@
 				D8230914143CCE8600894000 /* main.m in Sources */,
 				D823091B143CCE8700894000 /* ATAppDelegate_iPhone.m in Sources */,
 				D823093414405FA000894000 /* ATMainViewController.m in Sources */,
-				D83204A5144060CD0052038D /* HHSoundManager.m in Sources */,
+				D83204A5144060CD0052038D /* ATSoundManager.m in Sources */,
 				D8EFF92E144069FF0073D9A2 /* ATAppDelegate.m in Sources */,
-				D8CE47C1144586AA00B08C71 /* HHOptionsMenuController.m in Sources */,
-				D8D86CF41472CEE6003F63A2 /* HHWalksViewController.m in Sources */,
-				D8D86D5A1472F694003F63A2 /* HHCreditsViewController.m in Sources */,
-				D8ED442614750E9900CDF716 /* HHAboutViewController.m in Sources */,
+				D8D86CF41472CEE6003F63A2 /* ATWalksViewController.m in Sources */,
+				D8D86D5A1472F694003F63A2 /* ATCreditsViewController.m in Sources */,
+				D8ED442614750E9900CDF716 /* ATAboutViewController.m in Sources */,
+				6D15280616A7F8B5009585FB /* ATOptionsMenuController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

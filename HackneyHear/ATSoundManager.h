@@ -13,7 +13,7 @@
 #define HH_INTRO_SOUND_ENDED_NOTIFICATION @"HH_INTRO_SOUND_ENDED_NOTIFICATION"
 
 
-@interface HHAudioSource : L1CDLongAudioSource {
+@interface ATAudioSource : L1CDLongAudioSource {
 @private
     L1SoundType soundType;
     BOOL hasBeenPaused;
@@ -25,7 +25,7 @@
 
 
 
-@interface HHSoundManager : NSObject<L1CDLongAudioSourceDelegate> {
+@interface ATSoundManager : NSObject<L1CDLongAudioSourceDelegate> {
     NSMutableDictionary * fadingSounds;
     NSMutableDictionary * risingSounds;
     NSMutableDictionary *audioSamples;

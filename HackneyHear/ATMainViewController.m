@@ -49,7 +49,7 @@
 #else
     realGPSControl = YES;
 #endif
-    self.soundManager = [[[HHSoundManager alloc] init] autorelease];
+    self.soundManager = [[[ATSoundManager alloc] init] autorelease];
 
     BOOL ok = [L1Utils initializeDirs];
     if (!ok) NSAssert(ok, @"Unable to ini dirs.");
@@ -99,20 +99,6 @@
     self.walkOverlay = nil;
 }
 
--(NSString*) filenameForNodeImage:(L1Node*) node
-{
-    for(L1Resource * resource in node.resources){
-        if ([resource.type isEqualToString:@"image"] && resource.saveLocal){
-            if (resource.local){
-                return [resource localFilePath];
-            }else{
-                [resource downloadResourceData]; //We wanted the data but could not get it.  Start DL now so we might next time.
-            }
-        }
-    }
-    
-    return nil;
-}
 
 
 
@@ -220,6 +206,7 @@
 #endif
     trackMe = [[NSUserDefaults standardUserDefaults] boolForKey:@"track_user_location"];
     [locationManager startUpdatingLocation];
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     
     if ([CLLocationManager locationServicesEnabled] && self.scenario){
         if (realGPSControl){
@@ -331,6 +318,7 @@
             [self addManualUserLocationAt:firstNodeCoord];
             NSLog(@"Added manual user location");
         }
+        [self zoomToNode:firstNode];
 #endif
     }
     
@@ -356,7 +344,24 @@
 
 
 #pragma  mark -
-#pragma mark Sound
+#pragma mark Sound & Image
+
+-(NSString*) filenameForNodeImage:(L1Node*) node
+{
+    for(L1Resource * resource in node.resources){
+        if ([resource.type isEqualToString:@"image"] && resource.saveLocal){
+            if (resource.local){
+                return [resource localFilePath];
+            }else{
+                [resource downloadResourceData]; //We wanted the data but could not get it.  Start DL now so we might next time.
+            }
+        }
+    }
+    
+    return nil;
+}
+
+
 -(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType
 {
     for(L1Resource * resource in node.resources){
@@ -536,6 +541,10 @@
 
 -(void) checkForBackgroundExpiry
 {
+    
+    NSLog(@"Background expiry not used.");
+    return;
+    
     //If the app has not been playing any sound for a certain length of time we should alert the user and
     //then switch off application updates
     if ([[UIApplication sharedApplication] applicationState]!=UIApplicationStateBackground) return;
@@ -740,7 +749,7 @@
     [self setNowPlayingLabel];
 }
 
--(void) soundManager:(HHSoundManager*)manager soundDidFinish:(NSString*) key
+-(void) soundManager:(ATSoundManager*)manager soundDidFinish:(NSString*) key
 {
     L1Node * node = [self.scenario.nodes objectForKey:key];
     node.enabled=NO;

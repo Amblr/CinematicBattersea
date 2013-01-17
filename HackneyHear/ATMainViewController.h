@@ -14,9 +14,9 @@
 #import "SimpleAudioEngine.h"
 #import "L1BigBrother.h"
 //#import "L1DownloadProximityMonitor.h"
-#import "HHSoundManager.h"
+#import "ATSoundManager.h"
 
-#import "HHConfigurationOptions.h"
+#import "ATConfigurationOptions.h"
 #import "L1OverlayView.h"
 
 #define NO_WALK_SELECTED -1
@@ -42,7 +42,7 @@
     L1BigBrother * fakeLocationTracker;
 //    L1DownloadProximityMonitor * proximityMonitor;
     UIButton * skipButton;
-    HHSoundManager * soundManager;
+    ATSoundManager * soundManager;
     IBOutlet UIButton * pauseButton;
     IBOutlet L1DownloadProximityMonitor * proximityMonitor;
     NSDate * sinclairSpecialCaseNodeFirstOffTime;
@@ -57,7 +57,7 @@
 @property (assign) int selectedWalk;
 @property (retain) L1Scenario * scenario;
 @property (retain) NSDate * sinclairSpecialCaseNodeFirstOffTime;
-@property (retain) HHSoundManager * soundManager;
+@property (retain) ATSoundManager * soundManager;
 -(void) globalPauseToggle;
 
 -(void) setWalk:(int) walkIndex;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HHWalksViewController : UIViewController
+@interface ATWalksViewController : UIViewController
 {
     IBOutlet UIScrollView * scrollView;
     IBOutlet UIView * contentView;

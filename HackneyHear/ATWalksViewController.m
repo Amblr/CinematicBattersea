@@ -6,13 +6,13 @@
 //  Copyright (c) 2011 Imperial College London. All rights reserved.
 //
 
-#import "HHWalksViewController.h"
+#import "ATWalksViewController.h"
 #import "ATMainViewController.h"
 
 #define TRY_WALK @"Try this walk"
 #define HIDE_WALK @"Hide this walk"
 
-@implementation HHWalksViewController
+@implementation ATWalksViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

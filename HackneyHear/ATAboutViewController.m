@@ -6,12 +6,12 @@
 //  Copyright (c) 2011 Imperial College London. All rights reserved.
 //
 
-#import "HHAboutViewController.h"
+#import "ATAboutViewController.h"
 #import "L1DownloadManager.h"
 #import "L1DownloadProximityMonitor.h"
 #import "ATMainViewController.h"
 #import "ATAppDelegate.h"
-@implementation HHAboutViewController
+@implementation ATAboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

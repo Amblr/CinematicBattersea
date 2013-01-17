@@ -203,25 +203,29 @@ void audioRouteChangeListenerCallback (void *data, AudioSessionPropertyID ID, UI
 }
 
 
+-(void) scenarioLoadedFromFileWithData:(NSData*)data{
+    L1Scenario * scenario = [[[L1Scenario alloc] init] autorelease];
+    scenario.key = @"4e15c53add71aa000100025b";
+    scenario.delegate = hhViewController;
+    hhViewController.scenario = scenario;
+    [scenario  downloadedStoryData:data withResponse:nil];
 
+}
 
 -(void) setupScenario {
-    L1Scenario * scenario;
     if (useLoadedScenario){
         NSLog(@"SETTING SCENARIO FROM FIXED FILE!");
         NSString * storyFile = [[NSBundle mainBundle]pathForResource:@"story" ofType:@"json"];
-        scenario = [[[L1Scenario alloc] init] autorelease];
-        scenario.key = @"4e15c53add71aa000100025b";
         NSData * data = [NSData dataWithContentsOfFile:storyFile];
-        [self performSelector:@selector(hackScenarioReady:) withObject:data afterDelay:1.0];
+        [self performSelector:@selector(scenarioLoadedFromFileWithData:) withObject:data afterDelay:1.0];
     }
     else{
         NSArray * urls = [NSArray arrayWithObjects:STORY_URL, STORY_URL_2, nil];
-        scenario = [L1Scenario scenarioFromStoryURLs:urls withKey:SCENARIO_KEY];
-    }     
+        L1Scenario * scenario = [L1Scenario scenarioFromStoryURLs:urls withKey:SCENARIO_KEY];
+        scenario.delegate = hhViewController;
+        hhViewController.scenario = scenario;
+    }
     
-    scenario.delegate = hhViewController;
-    hhViewController.scenario = scenario;
     //mediaStatusViewController.scenario = scenario;
     
 }
