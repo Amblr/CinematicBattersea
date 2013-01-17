@@ -7,7 +7,7 @@
 //
 
 #import "HHWalksViewController.h"
-#import "HackneyHear_ViewController.h"
+#import "ATMainViewController.h"
 
 #define TRY_WALK @"Try this walk"
 #define HIDE_WALK @"Hide this walk"
@@ -79,7 +79,7 @@
     int mainViewControllerIndex = 0;
     
     UITabBarController * tabBarController = (UITabBarController *) self.parentViewController;
-    HackneyHear_ViewController * viewController = [tabBarController.viewControllers objectAtIndex:mainViewControllerIndex];
+    ATMainViewController * viewController = [tabBarController.viewControllers objectAtIndex:mainViewControllerIndex];
     
     //Reset all the other buttons
     for (UIButton * button in walkButtons){

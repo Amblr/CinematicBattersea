@@ -68,16 +68,17 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUIViewController" key="IBUISelectedViewController" id="702081527">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="184965310">
-						<string key="IBUITitle">About</string>
+				<object class="IBUIViewController" key="IBUISelectedViewController" id="943309135">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="1003862230">
+						<string key="IBUITitle">Map</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon-about.png</string>
+							<string key="NSResourceName">icon-map.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<reference key="IBUIParentViewController" ref="286482485"/>
+					<string key="IBUINibName">ATMainViewController</string>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 					<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 						<int key="IBUIInterfaceOrientation">1</int>
@@ -88,17 +89,17 @@
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIViewController" id="943309135">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1003862230">
-							<string key="IBUITitle">Map</string>
+					<reference ref="943309135"/>
+					<object class="IBUIViewController" id="702081527">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="184965310">
+							<string key="IBUITitle">About</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">icon-map.png</string>
+								<string key="NSResourceName">icon-about.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIParentViewController" ref="286482485"/>
-						<string key="IBUINibName">Hackney_Hear_ViewController</string>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 							<int key="IBUIInterfaceOrientation">1</int>
@@ -107,7 +108,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
-					<reference ref="702081527"/>
 					<object class="IBUIViewController" id="1025953332">
 						<string key="IBUITitle">Walks</string>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="640759297">
@@ -357,13 +357,13 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>HackneyHear_ViewController</string>
+					<string>ATMainViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>HackneyHearAppDelegate</string>
+					<string>ATAppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>L1DownloadProximityMonitor</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

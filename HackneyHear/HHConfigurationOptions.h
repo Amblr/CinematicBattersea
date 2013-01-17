@@ -11,7 +11,7 @@
 
 #define FORCE_INTRO_LANUCH 1
 
-#define RESTRICT_TO_HACKNEY 1
+
 
 #define SPLASH_SCREEN_DELAY 2.0
 
@@ -31,14 +31,11 @@
 #define INITIAL_DELTA_LAT 0.006805
 #define INITIAL_DELTA_LON 0.00505
 
-#ifdef ALEX_HEAR    
-#define STORY_URL @"http://amblr.heroku.com/scenarios/4e249f58d7c4b60001000023/stories/4e249fe5d7c4b600010000c1.json"
-#define SCENARIO_KEY @"4e15c53add71aa000100025"
-#else
-#define STORY_URL @"http://amblr.heroku.com/scenarios/4e15c53add71aa000100025b/stories/4e15c6be7bd01600010000c0.json"
-#define SCENARIO_KEY @"4e249f58d7c4b60001000023"
 
-#endif
+#define STORY_URL @"http://amblr.heroku.com/scenarios/50f6fb6b4a24c20002004c6f/stories/50f6fc2b4a24c20002004daa.json"
+#define SCENARIO_KEY @"50f6fb6b4a24c20002004c6f"
+
+#define STORY_URL_2 @"http://amblr.heroku.com/scenarios/50f6fb6b4a24c20002004c6f/stories/50f6fbaa4a24c20002004d77.json"
 
 
 

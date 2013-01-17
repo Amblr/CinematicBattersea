@@ -9,8 +9,8 @@
 #import "HHAboutViewController.h"
 #import "L1DownloadManager.h"
 #import "L1DownloadProximityMonitor.h"
-#import "HackneyHear_ViewController.h"
-#import "HackneyHearAppDelegate.h"
+#import "ATMainViewController.h"
+#import "ATAppDelegate.h"
 @implementation HHAboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -72,10 +72,10 @@
     
 //    [[UIApplication sharedApplication] delegate];
     UITabBarController * parent = [self tabBarController];
-    HackneyHear_ViewController * mainViewController = [[parent viewControllers]objectAtIndex:0];
+    ATMainViewController * mainViewController = [[parent viewControllers]objectAtIndex:0];
     [mainViewController reset];
     
-    HackneyHearAppDelegate * appDelegate = (HackneyHearAppDelegate*) [[UIApplication sharedApplication] delegate];
+    ATAppDelegate * appDelegate = (ATAppDelegate*) [[UIApplication sharedApplication] delegate];
     [appDelegate setupScenario];
     [parent setSelectedIndex:0];
     
