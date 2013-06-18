@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6D15280616A7F8B5009585FB /* ATOptionsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15280516A7F8B5009585FB /* ATOptionsMenuController.m */; };
+		6D15281016A7FCBD009585FB /* CBNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15280F16A7FCBD009585FB /* CBNode.m */; };
+		6D15281316A801AF009585FB /* story2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D15281216A801AF009585FB /* story2.json */; };
+		6D15281516A82765009585FB /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D15281416A82764009585FB /* splash.png */; };
+		6D15281716A8276A009585FB /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D15281616A82769009585FB /* splash@2x.png */; };
+		6D324EE016ADF08900812534 /* CB-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D324EDF16ADF08900812534 /* CB-icon.png */; };
+		6D7F189D16A9486A00D899E6 /* ATSoundManager2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7F189C16A9486A00D899E6 /* ATSoundManager2.m */; };
 		6DBB872916A74CDD00981FA4 /* IASKAppSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB872316A74CDD00981FA4 /* IASKAppSettingsView.xib */; };
 		6DBB872B16A74CDD00981FA4 /* IASKAppSettingsWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB872416A74CDD00981FA4 /* IASKAppSettingsWebView.xib */; };
 		6DBB872D16A74CDD00981FA4 /* IASKPSSliderSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB872516A74CDD00981FA4 /* IASKPSSliderSpecifierViewCell.xib */; };
@@ -61,8 +67,6 @@
 		6DE98AE916A7554E008641C6 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A8B16A7554E008641C6 /* line.png */; };
 		6DE98AEB16A7554E008641C6 /* small-hackneyhear.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A8C16A7554E008641C6 /* small-hackneyhear.png */; };
 		6DE98AED16A7554E008641C6 /* small-hackneyhear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A8D16A7554E008641C6 /* small-hackneyhear@2x.png */; };
-		6DE98AEF16A7554E008641C6 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A8E16A7554E008641C6 /* splash.png */; };
-		6DE98AF116A7554E008641C6 /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A8F16A7554E008641C6 /* splash@2x.png */; };
 		6DE98AF316A7554E008641C6 /* walk1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A9016A7554E008641C6 /* walk1.png */; };
 		6DE98AF516A7554E008641C6 /* walk2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A9116A7554E008641C6 /* walk2.png */; };
 		6DE98AF716A7554E008641C6 /* walk3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE98A9216A7554E008641C6 /* walk3.png */; };
@@ -78,7 +82,6 @@
 		D823093414405FA000894000 /* ATMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D823093114405FA000894000 /* ATMainViewController.m */; };
 		D823093514405FA000894000 /* ATMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D823093314405FA000894000 /* ATMainViewController.xib */; };
 		D83204A5144060CD0052038D /* ATSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D83204A0144060CD0052038D /* ATSoundManager.m */; };
-		D83204A7144060CD0052038D /* HHIntroSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D83204A4144060CD0052038D /* HHIntroSound.mp3 */; };
 		D83204F0144063E80052038D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DE144063E80052038D /* UIKit.framework */; };
 		D83204F1144063E80052038D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204DF144063E80052038D /* libz.dylib */; };
 		D83204F3144063E80052038D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83204E1144063E80052038D /* CoreLocation.framework */; };
@@ -97,7 +100,6 @@
 		D846FFBA144F4E6900867811 /* icon_controls_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D846FFB5144F4E6900867811 /* icon_controls_3.png */; };
 		D846FFBB144F4E6900867811 /* icon_controls_4.png in Resources */ = {isa = PBXBuildFile; fileRef = D846FFB6144F4E6900867811 /* icon_controls_4.png */; };
 		D846FFBD144F4E9E00867811 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D846FFBC144F4E9E00867811 /* Default.png */; };
-		D8B7F8971479274200FFB778 /* flood.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8B7F8961479274100FFB778 /* flood.mp3 */; };
 		D8CAF1B11482CDAD00BEE0B6 /* headphone_message.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CAF1B01482CDAC00BEE0B6 /* headphone_message.png */; };
 		D8CAF1B51482CFD400BEE0B6 /* HHNewLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8CAF1B41482CFD400BEE0B6 /* HHNewLogo.jpg */; };
 		D8CAF1B81482D04800BEE0B6 /* HHNewLogo56.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CAF1B71482D04800BEE0B6 /* HHNewLogo56.png */; };
@@ -115,6 +117,14 @@
 
 /* Begin PBXFileReference section */
 		6D15280516A7F8B5009585FB /* ATOptionsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATOptionsMenuController.m; sourceTree = "<group>"; };
+		6D15280E16A7FCBD009585FB /* CBNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBNode.h; sourceTree = "<group>"; };
+		6D15280F16A7FCBD009585FB /* CBNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBNode.m; sourceTree = "<group>"; };
+		6D15281216A801AF009585FB /* story2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = story2.json; sourceTree = "<group>"; };
+		6D15281416A82764009585FB /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		6D15281616A82769009585FB /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
+		6D324EDF16ADF08900812534 /* CB-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CB-icon.png"; sourceTree = "<group>"; };
+		6D7F189B16A9486A00D899E6 /* ATSoundManager2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSoundManager2.h; sourceTree = "<group>"; };
+		6D7F189C16A9486A00D899E6 /* ATSoundManager2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSoundManager2.m; sourceTree = "<group>"; };
 		6DBB872316A74CDD00981FA4 /* IASKAppSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKAppSettingsView.xib; path = "../../Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKAppSettingsView.xib"; sourceTree = "<group>"; };
 		6DBB872416A74CDD00981FA4 /* IASKAppSettingsWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKAppSettingsWebView.xib; path = "../../Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKAppSettingsWebView.xib"; sourceTree = "<group>"; };
 		6DBB872516A74CDD00981FA4 /* IASKPSSliderSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKPSSliderSpecifierViewCell.xib; path = "../../Amblr-Core/Amblr-Core/InAppSettingsKit/Xibs/IASKPSSliderSpecifierViewCell.xib"; sourceTree = "<group>"; };
@@ -175,8 +185,6 @@
 		6DE98A8B16A7554E008641C6 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = line.png; path = icons/line.png; sourceTree = "<group>"; };
 		6DE98A8C16A7554E008641C6 /* small-hackneyhear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small-hackneyhear.png"; path = "icons/small-hackneyhear.png"; sourceTree = "<group>"; };
 		6DE98A8D16A7554E008641C6 /* small-hackneyhear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small-hackneyhear@2x.png"; path = "icons/small-hackneyhear@2x.png"; sourceTree = "<group>"; };
-		6DE98A8E16A7554E008641C6 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = icons/splash.png; sourceTree = "<group>"; };
-		6DE98A8F16A7554E008641C6 /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash@2x.png"; path = "icons/splash@2x.png"; sourceTree = "<group>"; };
 		6DE98A9016A7554E008641C6 /* walk1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = walk1.png; path = icons/walk1.png; sourceTree = "<group>"; };
 		6DE98A9116A7554E008641C6 /* walk2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = walk2.png; path = icons/walk2.png; sourceTree = "<group>"; };
 		6DE98A9216A7554E008641C6 /* walk3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = walk3.png; path = icons/walk3.png; sourceTree = "<group>"; };
@@ -185,10 +193,10 @@
 		D81A6EA41444558400394431 /* atmos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atmos.json; sourceTree = "<group>"; };
 		D81A6EA51444558500394431 /* music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = music.json; sourceTree = "<group>"; };
 		D81A6EA61444558500394431 /* speech.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = speech.json; sourceTree = "<group>"; };
-		D8230902143CCE8600894000 /* AmblrTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmblrTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D823090E143CCE8600894000 /* AmblrTravel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AmblrTravel-Info.plist"; sourceTree = "<group>"; };
+		D8230902143CCE8600894000 /* CinematicBattersea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinematicBattersea.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D823090E143CCE8600894000 /* CinematicBattersea-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CinematicBattersea-Info.plist"; sourceTree = "<group>"; };
 		D8230910143CCE8600894000 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D8230912143CCE8600894000 /* AmblrTravel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmblrTravel-Prefix.pch"; sourceTree = "<group>"; };
+		D8230912143CCE8600894000 /* CinematicBattersea-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CinematicBattersea-Prefix.pch"; sourceTree = "<group>"; };
 		D8230913143CCE8600894000 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D8230919143CCE8700894000 /* ATAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATAppDelegate_iPhone.h; path = iPhone/ATAppDelegate_iPhone.h; sourceTree = "<group>"; };
 		D823091A143CCE8700894000 /* ATAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATAppDelegate_iPhone.m; path = iPhone/ATAppDelegate_iPhone.m; sourceTree = "<group>"; };
@@ -198,7 +206,6 @@
 		D823093314405FA000894000 /* ATMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATMainViewController.xib; sourceTree = "<group>"; };
 		D83204A0144060CD0052038D /* ATSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSoundManager.m; sourceTree = "<group>"; };
 		D83204A1144060CD0052038D /* ATSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSoundManager.h; sourceTree = "<group>"; };
-		D83204A4144060CD0052038D /* HHIntroSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HHIntroSound.mp3; sourceTree = "<group>"; };
 		D83204DE144063E80052038D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D83204DF144063E80052038D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D83204E1144063E80052038D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -218,7 +225,6 @@
 		D846FFB5144F4E6900867811 /* icon_controls_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_controls_3.png; path = HackneyHear/icon_controls_3.png; sourceTree = "<group>"; };
 		D846FFB6144F4E6900867811 /* icon_controls_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_controls_4.png; path = HackneyHear/icon_controls_4.png; sourceTree = "<group>"; };
 		D846FFBC144F4E9E00867811 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		D8B7F8961479274100FFB778 /* flood.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flood.mp3; sourceTree = "<group>"; };
 		D8CAF1B01482CDAC00BEE0B6 /* headphone_message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headphone_message.png; sourceTree = "<group>"; };
 		D8CAF1B41482CFD400BEE0B6 /* HHNewLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = HHNewLogo.jpg; path = HackneyHear/HHNewLogo.jpg; sourceTree = "<group>"; };
 		D8CAF1B71482D04800BEE0B6 /* HHNewLogo56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HHNewLogo56.png; path = HackneyHear/HHNewLogo56.png; sourceTree = "<group>"; };
@@ -330,8 +336,6 @@
 				6DE98A8B16A7554E008641C6 /* line.png */,
 				6DE98A8C16A7554E008641C6 /* small-hackneyhear.png */,
 				6DE98A8D16A7554E008641C6 /* small-hackneyhear@2x.png */,
-				6DE98A8E16A7554E008641C6 /* splash.png */,
-				6DE98A8F16A7554E008641C6 /* splash@2x.png */,
 				6DE98A9016A7554E008641C6 /* walk1.png */,
 				6DE98A9116A7554E008641C6 /* walk2.png */,
 				6DE98A9216A7554E008641C6 /* walk3.png */,
@@ -347,6 +351,9 @@
 		D82308F7143CCE8600894000 = {
 			isa = PBXGroup;
 			children = (
+				6D324EDF16ADF08900812534 /* CB-icon.png */,
+				6D15281616A82769009585FB /* splash@2x.png */,
+				6D15281416A82764009585FB /* splash.png */,
 				D8CE47BC144580ED00B08C71 /* AVFoundation.framework */,
 				D8055D6514406D4800AB5E23 /* Imported Resources */,
 				D823090C143CCE8600894000 /* AmblrTravel */,
@@ -359,7 +366,7 @@
 		D8230903143CCE8600894000 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8230902143CCE8600894000 /* AmblrTravel.app */,
+				D8230902143CCE8600894000 /* CinematicBattersea.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -390,15 +397,18 @@
 			isa = PBXGroup;
 			children = (
 				D8CAF1B01482CDAC00BEE0B6 /* headphone_message.png */,
-				D8B7F8961479274100FFB778 /* flood.mp3 */,
 				D846FFB0144F4E2100867811 /* story.json */,
+				6D15281216A801AF009585FB /* story2.json */,
 				D81A6EA41444558400394431 /* atmos.json */,
 				D81A6EA51444558500394431 /* music.json */,
 				D81A6EA61444558500394431 /* speech.json */,
+				6D15280E16A7FCBD009585FB /* CBNode.h */,
+				6D15280F16A7FCBD009585FB /* CBNode.m */,
+				D846FFAE144F4D1D00867811 /* ATConfigurationOptions.h */,
 				D83204A0144060CD0052038D /* ATSoundManager.m */,
 				D83204A1144060CD0052038D /* ATSoundManager.h */,
-				D83204A4144060CD0052038D /* HHIntroSound.mp3 */,
-				D846FFAE144F4D1D00867811 /* ATConfigurationOptions.h */,
+				6D7F189B16A9486A00D899E6 /* ATSoundManager2.h */,
+				6D7F189C16A9486A00D899E6 /* ATSoundManager2.m */,
 				D823093114405FA000894000 /* ATMainViewController.m */,
 				D823093214405FA000894000 /* ATMainViewController.h */,
 				D823093314405FA000894000 /* ATMainViewController.xib */,
@@ -426,9 +436,9 @@
 			isa = PBXGroup;
 			children = (
 				D846FFBC144F4E9E00867811 /* Default.png */,
-				D823090E143CCE8600894000 /* AmblrTravel-Info.plist */,
+				D823090E143CCE8600894000 /* CinematicBattersea-Info.plist */,
 				D823090F143CCE8600894000 /* InfoPlist.strings */,
-				D8230912143CCE8600894000 /* AmblrTravel-Prefix.pch */,
+				D8230912143CCE8600894000 /* CinematicBattersea-Prefix.pch */,
 				D8230913143CCE8600894000 /* main.m */,
 				D8CE47C3144588C700B08C71 /* help.html */,
 			);
@@ -449,9 +459,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D8230901143CCE8600894000 /* AmblrTravel */ = {
+		D8230901143CCE8600894000 /* CinematicBattersea */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8230928143CCE8700894000 /* Build configuration list for PBXNativeTarget "AmblrTravel" */;
+			buildConfigurationList = D8230928143CCE8700894000 /* Build configuration list for PBXNativeTarget "CinematicBattersea" */;
 			buildPhases = (
 				D82308FE143CCE8600894000 /* Sources */,
 				D82308FF143CCE8600894000 /* Frameworks */,
@@ -461,9 +471,9 @@
 			);
 			dependencies = (
 			);
-			name = AmblrTravel;
+			name = CinematicBattersea;
 			productName = HackneyHear;
-			productReference = D8230902143CCE8600894000 /* AmblrTravel.app */;
+			productReference = D8230902143CCE8600894000 /* CinematicBattersea.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -475,7 +485,7 @@
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Imperial College London";
 			};
-			buildConfigurationList = D82308FC143CCE8600894000 /* Build configuration list for PBXProject "AmblrTravel" */;
+			buildConfigurationList = D82308FC143CCE8600894000 /* Build configuration list for PBXProject "CinematicBattersea" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -487,7 +497,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D8230901143CCE8600894000 /* AmblrTravel */,
+				D8230901143CCE8600894000 /* CinematicBattersea */,
 			);
 		};
 /* End PBXProject section */
@@ -499,7 +509,6 @@
 			files = (
 				D8230911143CCE8600894000 /* InfoPlist.strings in Resources */,
 				D823093514405FA000894000 /* ATMainViewController.xib in Resources */,
-				D83204A7144060CD0052038D /* HHIntroSound.mp3 in Resources */,
 				D83205031440646B0052038D /* MainWindow_iPhone.xib in Resources */,
 				D8055D9414406EFB00AB5E23 /* HH_logo_114.jpg in Resources */,
 				D81A6EA71444558500394431 /* atmos.json in Resources */,
@@ -514,7 +523,6 @@
 				D8D86CF51472CEE6003F63A2 /* ATWalksViewController.xib in Resources */,
 				D8D86D5B1472F694003F63A2 /* ATCreditsViewController.xib in Resources */,
 				D8ED442714750E9900CDF716 /* ATAboutViewController.xib in Resources */,
-				D8B7F8971479274200FFB778 /* flood.mp3 in Resources */,
 				D8CAF1B11482CDAD00BEE0B6 /* headphone_message.png in Resources */,
 				D8CAF1B51482CFD400BEE0B6 /* HHNewLogo.jpg in Resources */,
 				D8CAF1B81482D04800BEE0B6 /* HHNewLogo56.png in Resources */,
@@ -571,11 +579,13 @@
 				6DE98AE916A7554E008641C6 /* line.png in Resources */,
 				6DE98AEB16A7554E008641C6 /* small-hackneyhear.png in Resources */,
 				6DE98AED16A7554E008641C6 /* small-hackneyhear@2x.png in Resources */,
-				6DE98AEF16A7554E008641C6 /* splash.png in Resources */,
-				6DE98AF116A7554E008641C6 /* splash@2x.png in Resources */,
 				6DE98AF316A7554E008641C6 /* walk1.png in Resources */,
 				6DE98AF516A7554E008641C6 /* walk2.png in Resources */,
 				6DE98AF716A7554E008641C6 /* walk3.png in Resources */,
+				6D15281316A801AF009585FB /* story2.json in Resources */,
+				6D15281516A82765009585FB /* splash.png in Resources */,
+				6D15281716A8276A009585FB /* splash@2x.png in Resources */,
+				6D324EE016ADF08900812534 /* CB-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +605,8 @@
 				D8D86D5A1472F694003F63A2 /* ATCreditsViewController.m in Sources */,
 				D8ED442614750E9900CDF716 /* ATAboutViewController.m in Sources */,
 				6D15280616A7F8B5009585FB /* ATOptionsMenuController.m in Sources */,
+				6D15281016A7FCBD009585FB /* CBNode.m in Sources */,
+				6D7F189D16A9486A00D899E6 /* ATSoundManager2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,12 +692,13 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HackneyHear/AmblrTravel-Prefix.pch";
+				GCC_PREFIX_HEADER = "HackneyHear/CinematicBattersea-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "HackneyHear/AmblrTravel-Info.plist";
+				INFOPLIST_FILE = "HackneyHear/CinematicBattersea-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				"OTHER_CFLAGS[arch=*]" = "";
-				PRODUCT_NAME = AmblrTravel;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = CinematicBattersea;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -700,11 +713,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HackneyHear/AmblrTravel-Prefix.pch";
+				GCC_PREFIX_HEADER = "HackneyHear/CinematicBattersea-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "HackneyHear/AmblrTravel-Info.plist";
+				INFOPLIST_FILE = "HackneyHear/CinematicBattersea-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PRODUCT_NAME = AmblrTravel;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = CinematicBattersea;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
@@ -715,7 +729,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D82308FC143CCE8600894000 /* Build configuration list for PBXProject "AmblrTravel" */ = {
+		D82308FC143CCE8600894000 /* Build configuration list for PBXProject "CinematicBattersea" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8230926143CCE8700894000 /* Debug */,
@@ -724,7 +738,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8230928143CCE8700894000 /* Build configuration list for PBXNativeTarget "AmblrTravel" */ = {
+		D8230928143CCE8700894000 /* Build configuration list for PBXNativeTarget "CinematicBattersea" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8230929143CCE8700894000 /* Debug */,

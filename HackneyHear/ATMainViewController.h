@@ -15,7 +15,7 @@
 #import "L1BigBrother.h"
 //#import "L1DownloadProximityMonitor.h"
 #import "ATSoundManager.h"
-
+#import "CBNode.h"
 #import "ATConfigurationOptions.h"
 #import "L1OverlayView.h"
 
@@ -23,7 +23,6 @@
 
 
 @class L1DownloadProximityMonitor;
-
 
 @interface ATMainViewController : L1MapViewController<CLLocationManagerDelegate> {
     IBOutlet UILabel * nowPlayingLabel;
@@ -45,7 +44,7 @@
     ATSoundManager * soundManager;
     IBOutlet UIButton * pauseButton;
     IBOutlet L1DownloadProximityMonitor * proximityMonitor;
-    NSDate * sinclairSpecialCaseNodeFirstOffTime;
+//    NSDate * sinclairSpecialCaseNodeFirstOffTime;
     int selectedWalk;
     L1Overlay * walkOverlay;
     NSDate * lastActivation;
@@ -78,10 +77,10 @@
 -(void) nodeSource:(id) nodeManager didReceiveNodes:(NSDictionary*) nodes;
 //-(void) nodeDownloadFailedForScenario:(L1Scenario*) scenario;
 // Sound
--(void) nodeSoundOff:(L1Node*) node;
--(void) nodeSoundOn:(L1Node*) node;
+-(void) nodeSoundOff:(CBNode*) node;
+-(void) nodeSoundOn:(CBNode*) node;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
--(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType;
+-(NSString*) filenameForNodeSound:(CBNode*) node;
 -(void) checkFirstLaunch;
 -(void) zoomToCurrentLocation;
 @end

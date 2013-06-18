@@ -24,7 +24,6 @@
 
 
 
-
 @interface ATSoundManager : NSObject<L1CDLongAudioSourceDelegate> {
     NSMutableDictionary * fadingSounds;
     NSMutableDictionary * risingSounds;
@@ -33,6 +32,7 @@
     NSString * activeSpeechTrack;
     NSString * activeMusicTrack;
     NSString * activeAtmosTrack;
+    NSString * activeBedTrack;
     
     BOOL oneSoundOfTypeAtATime;
     
@@ -73,5 +73,5 @@
 -(void) fadeOutSound:(NSString *) key;
 
 -(void) toggleGlobalPause;
-
+-(void) considerIncreasingBedVolume;
 @end

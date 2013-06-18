@@ -10,8 +10,9 @@
 #import "L1Path.h"
 #import "L1Utils.h"
 #import "L1DownloadProximityMonitor.h"
+#import "CBNode.h"
 
-#define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
+//#define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 #define SINCALIR_SPECIAL_NODE_NAME @"0808 Sinclair bench w sting"
 #define SINCALIR_SPECIAL_NODE_TIME 60
 
@@ -64,7 +65,7 @@
     skipButton=nil;
 //    NSLog(@"Tiles adding");
 //    NSString * tileDir = @"Tiles";
-    sinclairSpecialCaseNodeFirstOffTime = nil;
+//    sinclairSpecialCaseNodeFirstOffTime = nil;
     
     [nowPlayingView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bkg-pattern.png"]]];
     self.lastActivation = [NSDate date];
@@ -102,30 +103,6 @@
 
 
 
--(void) setNowPlayingLabel
-{
-    if (self.soundManager.globallyPaused){
-        nowPlayingView.alpha = 0.0;
-        contentImageView.hidden=YES;
-
-    }
-    else if (soundManager.currentSpeechKey){
-        L1Node * activeSpeechNode = [self.scenario.nodes objectForKey:soundManager.currentSpeechKey];
-        nowPlayingView.alpha = 1.0;
-        [nowPlayingLabel setText:[NSString stringWithFormat:@"Now playing: %@",activeSpeechNode.description]];
-        contentImageView.hidden=NO;
-        contentImageView.image = [UIImage imageWithContentsOfFile:[self filenameForNodeImage:activeSpeechNode]];
-        
-        // Also need to set image.
-    }
-    else{
-        nowPlayingView.alpha = 0.0;
-        contentImageView.hidden=YES;
-    }
-    
-}
-
-
 -(void) skipIntro:(NSObject*) dummy
 {
     NSLog(@"The intro ended or was skipped somehow.");
@@ -143,7 +120,7 @@
 //    skipButton = nil;
     [soundManager skipIntro];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self setNowPlayingLabel];
+    [self setNowPlayingMedia];
     [self locationUpdate:locationManager.location.coordinate];
 
 }
@@ -274,7 +251,7 @@
     //[self reset];
     NSLog(@"FOUND NODES");
     
-    for (L1Node *node in [nodes allValues]){
+    for (CBNode *node in [nodes allValues]){
         
         //Check if node has any sound resources.  If not ignore it.
         L1Resource * sound = nil;
@@ -292,12 +269,9 @@
         
         //Create the circle here, store it so we can keep track and change its color later,
         //and add it to the map.
-        if (![node.name isEqualToString:SPECIAL_SHAPE_NODE_NAME]){ //&& (sound.soundType==L1SoundTypeSpeech)){
             UIColor * color = [UIColor redColor];
             L1Circle * circle = [self addCircleAt:node.coordinate radius:[node.radius doubleValue] color:color];
             [circles setObject:circle forKey:node.key];
-//            [self addNode:node];
-        }
 
         //We use the enabled flag to track whether a node is playing.
         //None of them start enabled.
@@ -310,7 +284,7 @@
         //We also add a pin representing the fake user location (for testing)
         //a little offset from the first node.
 #if ALLOW_FAKE_LOCATION
-        L1Node * firstNode = [[nodes allValues] objectAtIndex:0];
+        CBNode * firstNode = [[nodes allValues] objectAtIndex:0];
         CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
         firstNodeCoord.latitude -= 5.0e-4;
         firstNodeCoord.longitude -= 5.0e-4;
@@ -346,7 +320,7 @@
 #pragma  mark -
 #pragma mark Sound & Image
 
--(NSString*) filenameForNodeImage:(L1Node*) node
+-(NSString*) filenameForNodeImage:(CBNode*) node
 {
     for(L1Resource * resource in node.resources){
         if ([resource.type isEqualToString:@"image"] && resource.saveLocal){
@@ -362,12 +336,11 @@
 }
 
 
--(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType
+-(NSString*) filenameForNodeSound:(CBNode*) node
 {
     for(L1Resource * resource in node.resources){
         if ([resource.type isEqualToString:@"sound"] && resource.saveLocal){
             if (resource.local){
-                *soundType = L1SoundTypeSpeech;
                 return [resource localFilePath];
             }else{
                 [resource downloadResourceData]; //We wanted the data but could not get it.  Start DL now so we might next time.
@@ -378,19 +351,49 @@
     return nil;
 }
 
--(void) nodeSoundOn:(L1Node*) node
+
+
+-(void) setNowPlayingMedia
+{
+    if (self.soundManager.globallyPaused){
+//TODO Consider pausing beahviour
+        nowPlayingView.alpha = 0.0;
+        contentImageView.hidden=YES;
+        
+    }
+    else if (soundManager.currentSpeechKey){
+        CBNode * activeSpeechNode = [self.scenario.nodes objectForKey:soundManager.currentSpeechKey];
+        nowPlayingView.alpha = 1.0;
+        [nowPlayingLabel setText:[NSString stringWithFormat:@"%@",activeSpeechNode.text]];
+        contentImageView.hidden=NO;
+        NSLog(@"setting label %@",activeSpeechNode.text);
+        
+        NSString * imageFilename = [self filenameForNodeImage:activeSpeechNode];
+        if (imageFilename==nil) imageFilename = @"amblr@2x.png";
+        contentImageView.image = [UIImage imageWithContentsOfFile:imageFilename];
+        
+        // Also need to set image.
+    }
+    else{
+        nowPlayingView.alpha = 0.0;
+        contentImageView.hidden=YES;
+    }
+    
+}
+
+
+-(void) nodeSoundOn:(CBNode*) node
 {           
     
     NSLog(@"Node on: %@",node.name);
-    L1SoundType soundType;
-    NSString * filename = [self filenameForNodeSound:node getType:&soundType];
+    NSString * filename = [self filenameForNodeSound:node];
     if (filename){
-        node.enabled = [soundManager playSoundWithFilename:filename key:node.key type:soundType];
+        node.enabled = [soundManager playSoundWithFilename:filename key:node.key type:node.soundType];
     }
 }
 
 
--(void) nodeSoundOff:(L1Node*) node
+-(void) nodeSoundOff:(CBNode*) node
 {
     NSLog(@"Node off: %@",node.name);
     [soundManager stopSoundWithKey:node.key];
@@ -454,17 +457,17 @@
 -(void) trackToFirstLocation:(CLLocationCoordinate2D) location
 {
 //    {134166592.0, 89216064.0, 10240.0, 14720.0}
-    MKMapRect rect = MKMapRectMake(134166592.0, 89216064.0, 10240.0, 14720.0);
-    MKMapPoint point = MKMapPointForCoordinate(location);
-    if (MKMapRectContainsPoint(rect, point)){
-        
-    }
-    else //The user is not in Hackney!
-    {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"You are not in Hackney" message:@"You don't seem to be in our area.  Run this application as you walk around the London Fields area to experience a rich audio tapestry of life in the borough." delegate:nil cancelButtonTitle:@"I'll go there now." otherButtonTitles: nil];
-        [alert show];
-
-    }
+//    MKMapRect rect = MKMapRectMake(134166592.0, 89216064.0, 10240.0, 14720.0);
+//    MKMapPoint point = MKMapPointForCoordinate(location);
+//    if (MKMapRectContainsPoint(rect, point)){
+//        
+//    }
+//    else //The user is not in Hackney!
+//    {
+//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"You are not in Hackney" message:@"You don't seem to be in our area.  Run this application as you walk around the London Fields area to experience a rich audio tapestry of life in the borough." delegate:nil cancelButtonTitle:@"I'll go there now." otherButtonTitles: nil];
+//        [alert show];
+//
+//    }
     firstLocation=NO;
 }
 
@@ -587,51 +590,14 @@
     NSMutableArray * offNodes = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray * onNodes = [NSMutableArray arrayWithCapacity:0];
     
-    for (L1Node * node in [self.scenario.nodes allValues]){
+    for (CBNode * node in [self.scenario.nodes allValues]){
         CLRegion * region = [node region];
         BOOL wasEnabled = node.enabled;
         BOOL nowEnabled = [region containsCoordinate:location];
-        if ([node.name isEqualToString:SPECIAL_SHAPE_NODE_NAME]){
-            nowEnabled = [self inSpecialRegion:location];
-        }
         
-        // Handle the special case awkward node.
-        //We use sinclairSpecialCaseNodeFirstOffTime to track whether this is the first request or not.
-        if ([node.name isEqualToString:SINCALIR_SPECIAL_NODE_NAME]){
-            BOOL newNowEnabled = nowEnabled;
-            if ((!nowEnabled) && wasEnabled){
-                NSDate * now = [NSDate date];
-                //Node told to switch on.  Either this is the first time or not
-                if ((!sinclairSpecialCaseNodeFirstOffTime) || ([now timeIntervalSinceDate:sinclairSpecialCaseNodeFirstOffTime] < SINCALIR_SPECIAL_NODE_TIME)){
-                    //The date is nil so we have been told for the first time to switch off.
-                    //OR it is too recent to switch 
-                    //So we ignore it and wait for later.
-                    NSLog(@"Preventing Sinclair from switching off as we do not believe location");
-                    if (!sinclairSpecialCaseNodeFirstOffTime) self.sinclairSpecialCaseNodeFirstOffTime = now;
-                    newNowEnabled = YES;
-                }else
-                {
-                    //It has been long enough off so we really let it switch off
-                    //So we also need to reset the date.
-                    self.sinclairSpecialCaseNodeFirstOffTime = nil;
-                    NSLog(@"Allowing sinclair to switch off at last.");
-
-                }
-            }
-            else if (nowEnabled && wasEnabled){
-                //still enabled.  It is possible that this is a re-entry into the 
-                //node, in which case we should re-set the timing.
-                self.sinclairSpecialCaseNodeFirstOffTime = nil;
-            }
-            
-            //We may have over-ridden this, so reset it now.
-            nowEnabled = newNowEnabled;
-        }
-        
-
         if (nowEnabled) NSLog(@"Node now (or still) enabled: %@.  Old Status %d",node.name,wasEnabled);
         if (nowEnabled && (!wasEnabled)) [onNodes addObject:node];
-        if ((!nowEnabled) && wasEnabled) [offNodes addObject:node];            
+        if ((!nowEnabled) && wasEnabled) {NSLog(@"Switching off: %@",node.name);[offNodes addObject:node];}
 
         node.enabled = nowEnabled;
         
@@ -651,15 +617,15 @@
     }
         
         
-    for (L1Node * node in offNodes){
-        if ([onNodes count]>0) [self nodeSoundOff:node];
+    for (CBNode * node in offNodes){
+        [self nodeSoundOff:node];
     }
-    for (L1Node * node in onNodes){
+    for (CBNode * node in onNodes){
         [self nodeSoundOn:node];
     }
 
     
-    [self setNowPlayingLabel];
+    [self setNowPlayingMedia];
     
     if ([onNodes count]||[offNodes count]){
         self.lastActivation=[NSDate date];
@@ -746,12 +712,12 @@
             [pauseButton addTarget:self action:@selector(globalPauseToggle) forControlEvents:UIControlEventTouchUpInside];
         }
     }
-    [self setNowPlayingLabel];
+    [self setNowPlayingMedia];
 }
 
 -(void) soundManager:(ATSoundManager*)manager soundDidFinish:(NSString*) key
 {
-    L1Node * node = [self.scenario.nodes objectForKey:key];
+    CBNode * node = [self.scenario.nodes objectForKey:key];
     node.enabled=NO;
 }
 
@@ -781,6 +747,6 @@
     }
 }
 
-@synthesize sinclairSpecialCaseNodeFirstOffTime;
+//@synthesize sinclairSpecialCaseNodeFirstOffTime;
 @end
 

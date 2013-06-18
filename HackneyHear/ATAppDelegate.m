@@ -166,21 +166,30 @@ void audioRouteChangeListenerCallback (void *data, AudioSessionPropertyID ID, UI
 {
     NSString * signin = @"http://amblr.heroku.com/users/sign_in";
     NSString * email = @"alex@amblr.net";
-    NSString * name = @"Matilda0708";
-    NSString * dataString = [NSString stringWithFormat:@"{'user' : { 'email' : '%@', 'password' : '%@'}}", email,name];
+    NSString * name = @"68Kingston";
+//    NSString * dataString = [NSString stringWithFormat:@"{'user' : { 'email' : '%@', 'password' : '%@'}}", email,name];
+//
+//    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:signin 
+//                                                                       delegate:self 
+//                                                                   passSelector:@selector(doneAuthentication:response:)
+//                                                                   failSelector:@selector(failedAuthentication:)];
+//    NSMutableURLRequest * request = connection.request;
+//    
+//    [request setHTTPMethod:@"POST"];
+//    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    SimpleURLConnection * connection = [[SimpleURLConnection alloc] initWithURL:signin 
-                                                                       delegate:self 
-                                                                   passSelector:@selector(doneAuthentication:response:) 
-                                                                   failSelector:@selector(failedAuthentication:)];
-    NSMutableURLRequest * request = connection.request;
+//    NSData * data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+//    [request setHTTPBody:data];
+        
+    SimpleURLConnection * connection = [SimpleURLConnection
+                                         ConnectionForJsonWithBasicAuthUsername:email
+                                         password:name
+                                         URL:signin
+                                         delegate:self
+                                         passSelector:@selector(doneAuthentication:response:)
+                                         failSelector:@selector(failedAuthentication:)];
     
-    [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
-    NSData * data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
-    [request setHTTPBody:data];
     [connection runRequest];
     
 }
@@ -207,8 +216,17 @@ void audioRouteChangeListenerCallback (void *data, AudioSessionPropertyID ID, UI
     L1Scenario * scenario = [[[L1Scenario alloc] init] autorelease];
     scenario.key = @"4e15c53add71aa000100025b";
     scenario.delegate = hhViewController;
+    scenario.nodeClass = [CBNode class];
     hhViewController.scenario = scenario;
     [scenario  downloadedStoryData:data withResponse:nil];
+    
+    // Load second story file
+    
+    NSString * storyFile = [[NSBundle mainBundle]pathForResource:@"story2" ofType:@"json"];
+    NSData * data2 = [NSData dataWithContentsOfFile:storyFile];
+    [scenario  downloadedStoryData:data2 withResponse:nil];
+
+    
 
 }
 
@@ -220,8 +238,9 @@ void audioRouteChangeListenerCallback (void *data, AudioSessionPropertyID ID, UI
         [self performSelector:@selector(scenarioLoadedFromFileWithData:) withObject:data afterDelay:1.0];
     }
     else{
-        NSArray * urls = [NSArray arrayWithObjects:STORY_URL, STORY_URL_2, nil];
+        NSArray * urls = [NSArray arrayWithObjects:STORY_URL, nil];
         L1Scenario * scenario = [L1Scenario scenarioFromStoryURLs:urls withKey:SCENARIO_KEY];
+        scenario.nodeClass=[CBNode class];
         scenario.delegate = hhViewController;
         hhViewController.scenario = scenario;
     }

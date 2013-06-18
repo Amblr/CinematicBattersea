@@ -9,6 +9,7 @@
 #import "ATSoundManager.h"
 #import "L1Utils.h"
 #import "L1Node.h"
+#import "CBNode.h"
 
 #define SOUND_UPDATE_TIME_STEP 0.5
 
@@ -17,12 +18,14 @@
 #define SOUND_FADE_TIME_INTRO 2.0
 #define SOUND_FADE_TIME_MUSIC 5.0
 #define SOUND_FADE_TIME_ATMOS 5.0
+#define SOUND_FADE_TIME_BED 4.0
 
 #define SOUND_RISE_TIME 5.0
 #define SOUND_RISE_TIME_SPEECH 2.0
 #define SOUND_RISE_TIME_INTRO 2.0
 #define SOUND_RISE_TIME_MUSIC 5.0
 #define SOUND_RISE_TIME_ATMOS 5.0
+#define SOUND_RISE_TIME_BED 4.0
 
 #define SPEECH_RESTART_REWIND 5.0
 
@@ -66,8 +69,6 @@
         activeSpeechTrack=nil;
         activeAtmosTrack=nil;
         activeMusicTrack=nil;
-        fadingSounds = [[NSMutableDictionary alloc] initWithCapacity:0];
-        risingSounds = [[NSMutableDictionary alloc] initWithCapacity:0];
         
         lastCompletionTime = [[NSMutableDictionary alloc] initWithCapacity:0];
         introIsPlaying=NO;
@@ -79,14 +80,8 @@
         introBeforeBreakPoint=NO;
         oneSoundOfTypeAtATime = YES;
         
-        if (oneSoundOfTypeAtATime){
-            speechTimeForInterruption = SPEECH_TIME_FOR_INTERRUPTION_3G;
-            speechDurationForNoInterruption = SPEECH_DURATION_FOR_NO_INTERRUPTION_3G;
-        }
-        else{
-            speechTimeForInterruption = 0.0;
-            speechDurationForNoInterruption = 0.0;
-        }
+        speechTimeForInterruption = SPEECH_TIME_FOR_INTERRUPTION_3G;
+        speechDurationForNoInterruption = SPEECH_DURATION_FOR_NO_INTERRUPTION_3G;
         NSLog(@"Min progress for interruption: %f",speechTimeForInterruption);
         NSLog(@"Duration for never any interruption: %f",speechDurationForNoInterruption);
    
@@ -148,7 +143,7 @@
     ATAudioSource * introSound = [[ATAudioSource alloc] init];
     introSound.hasBeenPaused=NO;
     introSound.delegate=self;
-    introSound.soundType=L1SoundTypeIntro;
+    introSound.soundType=CBSoundTypeIntro;
     introSound.key=INTRO_SOUND_KEY;
     NSString * filename = [[NSBundle mainBundle] pathForResource:@"HHIntroSound" ofType:@"mp3"];
     [audioSamples setObject:introSound forKey:INTRO_SOUND_KEY];
@@ -186,51 +181,15 @@
 }
 
 
-//
-//-(void) updatePlayingListOn:(NSArray*) nodesOn off:(NSArray*) nodesOff
-//{
-//    NSMutableArray * soundsOn = [NSMutableArray arrayWithCapacity:0];
-//    NSMutableArray * soundsOff = [NSMutableArray arrayWithCapacity:0];
-//    L1SoundType soundType;
-//    
-//    for (L1Node * node in nodesOn){
-//        for(L1Resource * resource in node.resources){
-//            if ([resource.type isEqualToString:@"sound"]){
-//                if (resource.local){
-//                    soundType = resource.soundType;
-//                    [soundsOn addObject:[resource localFileName]];
-//                }
-//                else{
-//                    [resource downloadResourceData];
-//                }
-//                
-//            }
-//        }
-//    }
-//    
-//}
-
--(BOOL) playSoundWithFilename:(NSString*)filename key:(NSString*)key type:(L1SoundType) soundType
+-(BOOL) playSoundWithFilename:(NSString*)filename key:(NSString*)key type:(CBSoundType) soundType
 {
     //Do not start playing new things if globally paused.
     if (globallyPaused) return NO;
     
     @synchronized(self){
-    if (soundType==L1SoundTypeSpeech){
-        NSDate * lastPlay = [lastCompletionTime objectForKey:key];
-        NSTimeInterval timeSinceLastPlay = [[NSDate date] timeIntervalSinceDate:lastPlay];
-        if (lastPlay) NSLog(@"Sound %@ was last completed at %f",key,timeSinceLastPlay);
-        else NSLog(@"Sound has never previously been completed");
-
-        if (lastPlay && (timeSinceLastPlay<SPEECH_MINIMUM_INTERVAL)){
-            NSLog(@"Not playing sound - too recent.");
-            return NO;
-        }
-        
-        if (![self newSpeechNodeShouldStart]){
-            NSLog(@"Not starting new sound  - criterion breached!");
-            return NO;
-        }
+    if (soundType==CBSoundTypeSpeech && ![self newSpeechNodeShouldStart]){
+        NSLog(@"Not starting new sound  - criterion breached!");
+        return NO;
     }
     
     //If we have reached the intro break point
@@ -269,51 +228,64 @@
         //But we rewind two seconds
         //If speech, restart at full volume immediately
         [sound resume];
-        if (sound.soundType==L1SoundTypeSpeech){
+        if (sound.soundType==CBSoundTypeSpeech){
             NSLog(@"The resumed sound is speech - jumping back then fading in.");
             [sound timeJump:-SPEECH_RESTART_REWIND];
         }
-        //If not speech, fade in.
+        //If not speech, just fade in.
         else{
             NSLog(@"The resumed sound is not speech - fading in.");
         }
         [self fadeInSound:sound.key];
-
-        
     }
     
+    // Any sound causes the Bed sounds playing to dip
+    if (soundType!=CBSoundTypeBed){
+        if (activeBedTrack){
+            NSLog(@"Fading bed sound down");
+            ATAudioSource * bedSound = [audioSamples objectForKey:activeBedTrack];
+            bedSound.volume = 0.25;
+        }
+    }
+        
     //If a new speech track has come along then fade out any existing one.
-    if (soundType==L1SoundTypeSpeech){
+    if (soundType==CBSoundTypeSpeech){
         if (activeSpeechTrack){
          [self fadeOutSound:activeSpeechTrack];
             NSLog(@"Fading old speech track: %@",activeSpeechTrack);
         }
         activeSpeechTrack=sound.key;
     }
-    if (oneSoundOfTypeAtATime){
-        if (soundType==L1SoundTypeAtmos){
-            if (activeAtmosTrack){
-                [self fadeOutSound:activeAtmosTrack];
-                NSLog(@"Fading old atmos track: %@",activeAtmosTrack);
-            }
-            activeAtmosTrack=sound.key;
+    else if (soundType==CBSoundTypeAtmos){
+        if (activeAtmosTrack){
+            [self fadeOutSound:activeAtmosTrack];
+            NSLog(@"Fading old atmos track: %@",activeAtmosTrack);
         }
-        else if (soundType==L1SoundTypeMusic){
-            if (activeMusicTrack){
-                [self fadeOutSound:activeMusicTrack];
-                NSLog(@"Fading old music track: %@",activeMusicTrack);
-            }
-            activeMusicTrack=sound.key;
-        }
-        
-        
+        activeAtmosTrack=sound.key;
     }
+    else if (soundType==CBSoundTypeMusic){
+        if (activeMusicTrack){
+            [self fadeOutSound:activeMusicTrack];
+            NSLog(@"Fading old music track: %@",activeMusicTrack);
+        }
+        activeMusicTrack=sound.key;
+    }
+    else if (soundType==CBSoundTypeBed){
+        if (activeBedTrack){
+            [self fadeOutSound:activeBedTrack];
+            NSLog(@"Fading old music track: %@",activeBedTrack);
+        }
+        activeBedTrack=sound.key;
+    }
+        
+        
 
 
-        if (soundType==L1SoundTypeAtmos) NSLog(@"Playing atmos %@",filename);
-        else if (soundType==L1SoundTypeMusic) NSLog(@"Playing music %@",filename);
-        else if (soundType==L1SoundTypeSpeech) NSLog(@"Playing speech %@",filename);
-        else if (soundType==L1SoundTypeUnknown) NSLog(@"Playing unkown sound type %@",filename);
+
+        if (soundType==CBSoundTypeAtmos) NSLog(@"Playing atmos %@",filename);
+        else if (soundType==CBSoundTypeMusic) NSLog(@"Playing music %@",filename);
+        else if (soundType==CBSoundTypeSpeech) NSLog(@"Playing speech %@",filename);
+        else if (soundType==CBSoundTypeBed) NSLog(@"Playing bed %@",filename);
         else NSLog(@"Playing something mysterious: %@",filename);
     }
     
@@ -331,17 +303,20 @@
 -(float) fadeTimeForSound:(ATAudioSource*)sound
 {
     switch (sound.soundType) {
-        case L1SoundTypeAtmos:
+        case CBSoundTypeAtmos:
             return SOUND_FADE_TIME_ATMOS;
             break;
-        case L1SoundTypeMusic:
+        case CBSoundTypeMusic:
             return SOUND_FADE_TIME_MUSIC;
             break;
-        case L1SoundTypeSpeech:
+        case CBSoundTypeSpeech:
             return SOUND_FADE_TIME_SPEECH;
             break;
-        case L1SoundTypeIntro:
+        case CBSoundTypeIntro:
             return SOUND_FADE_TIME_INTRO;
+            break;
+        case CBSoundTypeBed:
+            return SOUND_FADE_TIME_BED;
             break;
         default:
             return SOUND_FADE_TIME;
@@ -352,17 +327,20 @@
 -(float) riseTimeForSound:(ATAudioSource*)sound
 {
     switch (sound.soundType) {
-        case L1SoundTypeAtmos:
+        case CBSoundTypeAtmos:
             return SOUND_RISE_TIME_ATMOS;
             break;
-        case L1SoundTypeMusic:
+        case CBSoundTypeMusic:
             return SOUND_RISE_TIME_MUSIC;
             break;
-        case L1SoundTypeSpeech:
+        case CBSoundTypeSpeech:
             return SOUND_RISE_TIME_SPEECH;
             break;
-        case L1SoundTypeIntro:
+        case CBSoundTypeIntro:
             return SOUND_RISE_TIME_INTRO;
+            break;
+        case CBSoundTypeBed:
+            return SOUND_RISE_TIME_BED;
             break;
         default:
             return SOUND_RISE_TIME;
@@ -376,108 +354,14 @@
     
     ATAudioSource * sound = [audioSamples objectForKey:key];
     [sound fadeOut:[self fadeTimeForSound:sound]];
-    //    @synchronized(self){
-    //
-    //    ATAudioSource * sound = [audioSamples objectForKey:key];
-    //    if (!sound){
-    //        NSLog(@"Tried to fade out sound not found: %@",sound.key);
-    //        return;
-    //    }
-    //        if ([key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-    //        if (oneSoundOfTypeAtATime){
-    //            if ([key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
-    //            if ([key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
-    //        }
-    //    //If the sound is already rising then we should over-rule this and start fading.
-    //        if ([risingSounds objectForKey:key]){
-    //            [risingSounds removeObjectForKey:key];
-    //        }
-    //        [fadingSounds setObject:sound forKey:key];
-    //    }
 }
 
 -(void) fadeInSound:(NSString *) key
 {
     ATAudioSource * sound = [audioSamples objectForKey:key];
     [sound riseIn:[self riseTimeForSound:sound]];
-
-//    @synchronized(self){
-//        ATAudioSource * sound = [audioSamples objectForKey:key];
-//        if (!sound){
-//            NSLog(@"Tried to fade out sound not found: %@",sound.key);
-//            return;
-//        }
-//        
-//        //If the sound is already fading then we should over-rule this and start rising.
-//        if ([fadingSounds objectForKey:key]){
-//            [fadingSounds removeObjectForKey:key];
-//        }
-//        [risingSounds setObject:sound forKey:key];
-//    }
 }
 
-
-//This method gets triggered every 1/2 second or so to update the sound volumes.
-//We keep track of whether there are any sounds rising or falling.
--(void) updateSoundVolumes:(NSObject*) dummy
-{
-    //Do not update if global pause is active.
-    if (globallyPaused) return;
-
-    @synchronized(self){
-        
-        
-    //Quick exit if there are no sounds to process.
-    int nRising = [risingSounds count];
-    int nFading = [fadingSounds count];
-    if (nRising==0 && nFading==0) return;
-
-    //Fade out the fading sounds.
-    NSArray * fadingSoundsArray;
-        fadingSoundsArray = [fadingSounds allValues];
-    for (ATAudioSource * sound in fadingSoundsArray){
-        //Reduce the volume by the correct amount, which depends on the total fade time.
-        float fadeTime = [self fadeTimeForSound:sound];
-        sound.volume = sound.volume-SOUND_UPDATE_TIME_STEP/fadeTime;        
-        NSLog(@"Fading %@",sound.key);
-        
-        //When the sound has fully faded we pause so we can restart it later.
-        if (sound.volume<=0.0){
-            sound.volume=0.0;
-            NSLog(@"Done fading %@ - pausing",sound.key);
-            [sound pause];
-            //We can drop the intro altogether now as we will never replay it.
-            if (sound.soundType==L1SoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
-            //This is no longer the active speech track as it has finished.
-            if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-            if (oneSoundOfTypeAtATime){
-                if ([sound.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
-                if ([sound.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
-                
-            }
-            
-            [fadingSounds removeObjectForKey:sound.key];
-        }
-    }
-    
-    NSArray * risingSoundsArray;
-        risingSoundsArray = [risingSounds allValues];
-    for (ATAudioSource * sound in risingSoundsArray){
-        float riseTime = [self riseTimeForSound:sound];
-        sound.volume = sound.volume+SOUND_UPDATE_TIME_STEP/riseTime;        
-        NSLog(@"Rising %@",sound.key);
-
-        //When the sound has fully faded we pause so we can restart it later.
-        if (sound.volume>=1.0){
-            NSLog(@"Done rising %@",sound.key);
-
-            sound.volume=1.0;
-            [risingSounds removeObjectForKey:sound.key];
-        }
-
-    }
-    }
-}
 
 -(void) l1CDAudioSourceDidFinishFading:(L1CDLongAudioSource *)source
 {
@@ -489,25 +373,33 @@
         //during pause, which we do not want to do if we are fading because we are paused
         return;
         }
-    if (sound.soundType==L1SoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
+    if (sound.soundType==CBSoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
     //This is no longer the active speech track as it has finished.
     if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
     if ([sound.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
     if ([sound.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+    if ([sound.key isEqualToString:activeBedTrack]) activeBedTrack=nil;
     NSLog(@"Done fading %@.",sound.key);
+    [self considerIncreasingBedVolume];
+        
     }
+}
+
+-(void) considerIncreasingBedVolume
+{
+    if (!activeBedTrack) return;
+    if (activeSpeechTrack || activeMusicTrack || activeAtmosTrack) return;
+    ATAudioSource * bedTrack = [audioSamples objectForKey:activeBedTrack];
+    if (bedTrack.isFading) return;
+    if (bedTrack.isRising) return;
+    NSLog(@"Setting volume of sound bed back to 1");
+    bedTrack.volume=1.0;
 }
 
 -(void) l1CDAudioSourceDidFinishRising:(L1CDLongAudioSource *)source
 {
     @synchronized(self){
     ATAudioSource * sound = (ATAudioSource*) source;
-//    [sound pause];
-//    if (sound.soundType==L1SoundTypeIntro) [audioSamples removeObjectForKey:sound.key];
-    //This is no longer the active speech track as it has finished.
-//    if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-//    if ([sound.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
-//    if ([sound.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
     NSLog(@"Done rising %@",sound.key);
     }
 }
@@ -527,15 +419,11 @@
     NSLog(@"Sound finished: %@",source.key);
     
     
-    // If the sound is a speech track then note that it is no longer active, 
-    // so that another can replace it without a clash.
-    if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
-
-    if (oneSoundOfTypeAtATime){
-        if ([source.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
-        if ([source.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
-
-    }
+//    if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+//    if ([source.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+//    if ([source.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
+//    if ([source.key isEqualToString:activeBedTrack]) activeBedTrack=nil;
+    
         
     // If this track is the intro track then note that it has stopped playing so we do
     // not try to stop it again.  We also post a notificiation that tells the main view controller
@@ -545,23 +433,14 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:HH_INTRO_SOUND_ENDED_NOTIFICATION object:nil];
     }
     
-    // We do not want to play speech nodes twice in a short time period if they
-    // finish completely.  Record what time it finished so we can check again later.
-    if (source.soundType==L1SoundTypeSpeech){
-        [lastCompletionTime setObject:[NSDate date] forKey:source.key];
-    }
-    
     //We want to repeat music and atmost when they finish
-//    if (source.soundType==L1SoundTypeMusic || source.soundType==L1SoundTypeAtmos){
-    if (source.soundType==L1SoundTypeAtmos || source.soundType==L1SoundTypeMusic){
+    if ((source.soundType==CBSoundTypeAtmos || source.soundType==CBSoundTypeMusic || source.soundType==CBSoundTypeSpeech || source.soundType==CBSoundTypeBed)){
         [source play];
     }
     else
         // For other sounds we just note that they are no longer rising or falling and remove the reference
         // to them so they are freed.
     {
-        if ([risingSounds objectForKey:source.key]) [risingSounds removeObjectForKey:source.key];
-        if ([fadingSounds objectForKey:source.key]) [fadingSounds removeObjectForKey:source.key];
         [audioSamples removeObjectForKey:source.key];
         SEL sel = @selector(soundManager:soundDidFinish:);
         if ([self.delegate respondsToSelector:sel]){
@@ -623,24 +502,6 @@
 {
     return activeSpeechTrack;
 }
-
-//
-//
-//-(NSString*) filenameForNodeSound:(L1Node*) node getType:(L1SoundType*) soundType
-//{
-//    for(L1Resource * resource in node.resources){
-//        if ([resource.type isEqualToString:@"sound"] && resource.saveLocal){
-//            if (resource.local){
-//                *soundType = resource.soundType;
-//                return [resource localFilePath];
-//            }else{
-//                [resource downloadResourceData]; //We wanted the data but could not get it.  Start DL now so we might next time.
-//            }
-//        }   
-//    }
-//    
-//    return nil;
-//}
 
 
 

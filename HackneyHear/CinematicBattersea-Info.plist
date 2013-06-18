@@ -5,11 +5,16 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>LondonFields</string>
+	<string>Cinema Battersea</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>HHNewLogo56.png</string>
+	<string>CB-icon.png</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>HHNewLogo.png</string>
+		<string>CB-icon.png</string>
+	</array>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
@@ -17,7 +22,7 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>HHNewLogo.png</string>
-				<string>HHNewLogo56.png</string>
+				<string>CB-icon.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>
@@ -35,7 +40,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.amblr.travel</string>
+	<string>com.amblr.battersea</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

@@ -32,10 +32,9 @@
 #define INITIAL_DELTA_LON 0.00505
 
 
-#define STORY_URL @"http://amblr.heroku.com/scenarios/50f6fb6b4a24c20002004c6f/stories/50f6fc2b4a24c20002004daa.json"
-#define SCENARIO_KEY @"50f6fb6b4a24c20002004c6f"
+#define STORY_URL @"http://amblr.heroku.com/scenarios/50f6fcef4a24c20002004e4c/stories/50f6fd334a24c20002004e7b.json"
+#define SCENARIO_KEY @"50f6fcef4a24c20002004e4c"
 
-#define STORY_URL_2 @"http://amblr.heroku.com/scenarios/50f6fb6b4a24c20002004c6f/stories/50f6fbaa4a24c20002004d77.json"
 
 
 
