@@ -11,11 +11,27 @@
 #import "L1Utils.h"
 #import "L1DownloadProximityMonitor.h"
 #import "CBNode.h"
+#import "TileOverlayView.h"
+#import "TileOverlay.h"
+#import "L1Overlay.h"
 
 //#define SPECIAL_SHAPE_NODE_NAME @"2508 bway sound track01"
 #define SINCALIR_SPECIAL_NODE_NAME @"0808 Sinclair bench w sting"
 #define SINCALIR_SPECIAL_NODE_TIME 60
 
+NSInteger nodeSortFunction(CBNode * node1, CBNode * node2, void * context)
+{
+    if (node1.soundType==CBSoundTypeBed){
+        if (node2.soundType==CBSoundTypeBed)
+            return NSOrderedSame;
+        else return NSOrderedAscending;
+    }
+    else{
+        if (node2.soundType==CBSoundTypeBed)
+            return NSOrderedDescending;
+        else return NSOrderedSame;
+    }
+}
 
 
 @implementation ATMainViewController
@@ -79,8 +95,36 @@
     southWest.longitude = -0.28;
     northEast.latitude = 51.8;
     northEast.longitude = -0.0;
+
+    CLLocationCoordinate2D lowerLeftMap = CLLocationCoordinate2DMake(51.474494, -0.168348);
+    CLLocationCoordinate2D upperRightMap = CLLocationCoordinate2DMake(51.487850, -0.136946);
+
+    UIImage * mapOverlayImage = [UIImage imageNamed:@"overlayMap.jpg"];
+    if (!mapOverlayImage){
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"UhOh" message:@"Could not load thing." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        L1Overlay * overlay = [[L1Overlay alloc] initWithImage:mapOverlayImage withLowerLeftCoordinate:lowerLeftMap withUpperRightCoordinate:upperRightMap];
+        [self addImageOverlay:overlay];
+    }
+    
+    
 //    [self whiteOutFrom:southWest to:northEast];
-//    [self addTilesFromDirectory:tileDir];
+//    [self addTilesFromDirectory:@"Tiles2"];
+////    [self addTilesFromDirectory:@"Tiles" cache:NO extension:@"png"];
+//    for (id<MKOverlay> overlay in self.primaryMapView.overlays){
+//        if ([overlay isKindOfClass:[TileOverlay class]]){
+//            NSLog(@"XXXXXXX  %@", overlay);
+//            TileOverlay * overlay_ = (TileOverlay*) overlay;
+////            TileOverlayView * overlayView = [self.primaryMapView viewForOverlay:overlay];
+//            MKMapPoint p1 = overlay_.boundingMapRect.origin;
+//            MKMapPoint p2 = MKMapPointMake(overlay_.boundingMapRect.origin.x+overlay_.boundingMapRect.size.width, overlay_.boundingMapRect.origin.y+overlay_.boundingMapRect.size.height);
+//            [self whiteOutFrom: MKCoordinateForMapPoint(p1) to:MKCoordinateForMapPoint(p2)];
+//        }
+//    }
+//    
+
     [self checkFirstLaunch];
     
     //    lat:   lon:  dLat:   dLon:)
@@ -193,7 +237,7 @@
             [self locationUpdate:self.manualUserLocation.coordinate];
         }
     }
-    NSLog(@"View did appear");
+//    NSLog(@"View did appear");
     [self performSelector:@selector(showMap:) withObject:nil afterDelay:0.1];
 //    [self performSelector:@selector(testHack:) withObject:nil afterDelay:10.0];
 
@@ -220,7 +264,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    NSLog(@"VIEW WILL APPEAR");
+//    NSLog(@"VIEW WILL APPEAR");
     self.view.alpha=0.01;
     [super viewWillAppear:animated];
 }
@@ -284,15 +328,12 @@
         //We also add a pin representing the fake user location (for testing)
         //a little offset from the first node.
 #if ALLOW_FAKE_LOCATION
-        CBNode * firstNode = [[nodes allValues] objectAtIndex:0];
-        CLLocationCoordinate2D firstNodeCoord = firstNode.coordinate;
-        firstNodeCoord.latitude -= 5.0e-4;
-        firstNodeCoord.longitude -= 5.0e-4;
+        CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(51.477891, -0.160782);
         if (!self.manualUserLocation) {
-            [self addManualUserLocationAt:firstNodeCoord];
+            [self addManualUserLocationAt:startCoord];
             NSLog(@"Added manual user location");
         }
-        [self zoomToNode:firstNode];
+        [self zoomToCoordinate:startCoord];
 #endif
     }
     
@@ -363,14 +404,19 @@
     }
     else if (soundManager.currentSpeechKey){
         CBNode * activeSpeechNode = [self.scenario.nodes objectForKey:soundManager.currentSpeechKey];
-        nowPlayingView.alpha = 1.0;
-        [nowPlayingLabel setText:[NSString stringWithFormat:@"%@",activeSpeechNode.text]];
-        contentImageView.hidden=NO;
-        NSLog(@"setting label %@",activeSpeechNode.text);
+//        NSLog(@"setting label from node %@ -  '%@'",activeSpeechNode.name, activeSpeechNode.text);
+        if (![activeSpeechNode.text isEqualToString:@""]){
+            nowPlayingView.alpha = 1.0;
+            [nowPlayingLabel setText:[NSString stringWithFormat:@"%@",activeSpeechNode.text]];
+        }
+        else{
+            nowPlayingView.alpha = 0.0;
+        }
+//        contentImageView.hidden=NO;
         
-        NSString * imageFilename = [self filenameForNodeImage:activeSpeechNode];
-        if (imageFilename==nil) imageFilename = @"amblr@2x.png";
-        contentImageView.image = [UIImage imageWithContentsOfFile:imageFilename];
+//        NSString * imageFilename = [self filenameForNodeImage:activeSpeechNode];
+//        if (imageFilename==nil) imageFilename = @"amblr@2x.png";
+//        contentImageView.image = [UIImage imageWithContentsOfFile:imageFilename];
         
         // Also need to set image.
     }
@@ -566,11 +612,14 @@
 
 -(void) locationUpdate:(CLLocationCoordinate2D) location
 {
+//    NSLog(@"%@", primaryMapView.overlays);
     if (soundManager.globallyPaused){
         NSLog(@"Ignoring location update becaue we are globally paused - no changes applied.");
         return;
     }
     NSLog(@"Updated to location: lat = %f,   lon = %f", location.latitude,location.longitude);
+    MKMapPoint point = MKMapPointForCoordinate(location);
+    NSLog(@"Map Point = %@", MKStringFromMapPoint(point));
     [proximityMonitor updateLocation:location];
     if (firstLocation){
         [self trackToFirstLocation:location];
@@ -615,8 +664,11 @@
             }
         }
     }
-        
-        
+    
+    // Sort the nodes so that the bed nodes appear first, so that they get dimmed before the
+    // other nodes reset their volume to 1.
+    [offNodes sortedArrayUsingFunction:nodeSortFunction context:NULL];
+    
     for (CBNode * node in offNodes){
         [self nodeSoundOff:node];
     }

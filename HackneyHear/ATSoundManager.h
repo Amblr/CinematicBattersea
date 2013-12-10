@@ -10,6 +10,7 @@
 #import "SimpleAudioEngine.h"
 #import "L1Scenario.h"
 #import "L1CDLongAudioSource.h"
+#import "CBNode.h"
 #define HH_INTRO_SOUND_ENDED_NOTIFICATION @"HH_INTRO_SOUND_ENDED_NOTIFICATION"
 
 
@@ -62,7 +63,7 @@
 @property (readonly) BOOL globallyPaused;
 
 //return YES if the sound is actually played.
--(BOOL) playSoundWithFilename:(NSString*)filename key:(NSString*)key type:(L1SoundType) soundType;
+-(BOOL) playSoundWithFilename:(NSString*)filename key:(NSString*)key type:(CBSoundType) soundType;
 -(void) stopSoundWithKey:(NSString*) key;
 
 -(void) startIntro;

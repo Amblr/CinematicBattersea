@@ -353,7 +353,20 @@
 {
     
     ATAudioSource * sound = [audioSamples objectForKey:key];
-    [sound fadeOut:[self fadeTimeForSound:sound]];
+    NSLog(@"Told to fade %@",sound);
+    if (!sound) return;
+    if ([sound.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
+    if ([sound.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
+    if ([sound.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
+    if ([sound.key isEqualToString:activeBedTrack]) activeBedTrack=nil;
+    if (sound.isPlaying){
+        NSLog(@"Fading %@",sound);
+        [sound fadeOut:[self fadeTimeForSound:sound]];
+    }
+    else{
+        NSLog(@"Already finished %@",sound);
+        [self l1CDAudioSourceDidFinishFading:sound];
+    }
 }
 
 -(void) fadeInSound:(NSString *) key
@@ -419,7 +432,6 @@
     NSLog(@"Sound finished: %@",source.key);
     
     
-//    if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
 //    if ([source.key isEqualToString:activeMusicTrack]) activeMusicTrack=nil;
 //    if ([source.key isEqualToString:activeAtmosTrack]) activeAtmosTrack=nil;
 //    if ([source.key isEqualToString:activeBedTrack]) activeBedTrack=nil;
@@ -434,13 +446,14 @@
     }
     
     //We want to repeat music and atmost when they finish
-    if ((source.soundType==CBSoundTypeAtmos || source.soundType==CBSoundTypeMusic || source.soundType==CBSoundTypeSpeech || source.soundType==CBSoundTypeBed)){
+    if ((source.soundType==CBSoundTypeAtmos || source.soundType==CBSoundTypeMusic || source.soundType==CBSoundTypeBed)){
         [source play];
     }
     else
         // For other sounds we just note that they are no longer rising or falling and remove the reference
         // to them so they are freed.
     {
+        if ([source.key isEqualToString:activeSpeechTrack]) activeSpeechTrack=nil;
         [audioSamples removeObjectForKey:source.key];
         SEL sel = @selector(soundManager:soundDidFinish:);
         if ([self.delegate respondsToSelector:sel]){

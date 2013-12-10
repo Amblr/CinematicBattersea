@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Cinema Battersea</string>
+	<string>Box of Delights</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>HHNewLogo.png</string>
-		<string>CB-icon.png</string>
+		<string>OA-icon.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -22,7 +22,7 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>HHNewLogo.png</string>
-				<string>CB-icon.png</string>
+				<string>OA-icon.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>
@@ -40,7 +40,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.amblr.battersea</string>
+	<string>com.amblr.aspire</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
